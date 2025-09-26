@@ -2,15 +2,15 @@ Web container: port 8080
 
 Container baze podataka: port 1433
 
-#Podaci za prijavu
+# Podaci za prijavu
 
-##Korisnik:
+## Korisnik:
 
 Korisničko ime: test
 
 Šifra: test123
 
-##Admin:
+## Admin:
 
 Korisničko ime: admin
 
