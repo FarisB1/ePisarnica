@@ -1,0 +1,230 @@
+﻿@model ePisarnica.Models.ProtocolEntry
+
+@{
+    ViewData["Title"] = "Uredi Protokol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Uredi Protokol #@Model.BrojProtokola</h3>
+                    <div class="card-tools">
+                        <a href="@Url.Action("Index")" class="btn btn-sm btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Nazad na listu
+                        </a>
+                    </div>
+                </div>
+
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="BrojProtokola" />
+                        <input type="hidden" asp-for="Datum" />
+                        <input type="hidden" asp-for="QrCodePath" />
+                        <input type="hidden" asp-for="DocumentId" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="BrojProtokola" class="control-label">Broj Protokola</label>
+                                    <input asp-for="BrojProtokola" class="form-control" disabled />
+                                    <span asp-validation-for="BrojProtokola" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Datum" class="control-label">Datum</label>
+                                    <input asp-for="Datum" class="form-control" disabled />
+                                    <span asp-validation-for="Datum" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Stranka" class="control-label">Stranka *</label>
+                                    <input asp-for="Stranka" class="form-control" />
+                                    <span asp-validation-for="Stranka" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Primalac" class="control-label">Primalac</label>
+                                    <input asp-for="Primalac" class="form-control" />
+                                    <span asp-validation-for="Primalac" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="Hitno" class="control-label">Hitno</label>
+                                    <select asp-for="Hitno" class="form-control" asp-items="ViewBag.HitnoOptions">
+                                        <option value="">-- Odaberite --</option>
+                                    </select>
+                                    <span asp-validation-for="Hitno" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="VrstaPostupka" class="control-label">Vrsta Postupka</label>
+                                    <select asp-for="VrstaPostupka" class="form-control" asp-items="ViewBag.VrstaPostupkaOptions">
+                                        <option value="">-- Odaberite --</option>
+                                    </select>
+                                    <span asp-validation-for="VrstaPostupka" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="RokZaOdgovor" class="control-label">Rok za Odgovor</label>
+                                    <input asp-for="RokZaOdgovor" type="date" class="form-control" />
+                                    <span asp-validation-for="RokZaOdgovor" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Dostavio" class="control-label">Dostavio</label>
+                                    <input asp-for="Dostavio" class="form-control" />
+                                    <span asp-validation-for="Dostavio" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Telefon" class="control-label">Telefon</label>
+                                    <input asp-for="Telefon" class="form-control" />
+                                    <span asp-validation-for="Telefon" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label">Email</label>
+                                    <input asp-for="Email" type="email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Adresa" class="control-label">Adresa</label>
+                                    <input asp-for="Adresa" class="form-control" />
+                                    <span asp-validation-for="Adresa" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Document Section -->
+                        <div class="card card-secondary mt-3">
+                            <div class="card-header">
+                                <h3 class="card-title">Dokument</h3>
+                            </div>
+                            <div class="card-body">
+                                @if (Model.Document != null)
+                                {
+                                    <div class="form-group">
+                                        <label>Trenutni dokument:</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" value="@Model.OriginalFileName" disabled />
+                                            <div class="input-group-append">
+                                                <a href="@Model.Document.FilePath" target="_blank" class="btn btn-info">
+                                                    <i class="fas fa-download"></i> Preuzmi
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status dokumenta</label>
+                                        <select name="DocumentStatus" class="form-control" asp-items="ViewBag.StatusOptions">
+                                            <option value="">-- Odaberite status --</option>
+                                        </select>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle"></i> Nema priloženog dokumenta.
+                                    </div>
+                                }
+
+                                <div class="form-group">
+                                    <label for="UploadedFile">Zamijeni dokument (opcionalno)</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="UploadedFile" name="UploadedFile">
+                                        <label class="custom-file-label" for="UploadedFile">Odaberite novi fajl</label>
+                                    </div>
+                                    <small class="form-text text-muted">Maksimalna veličina: 10MB</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Napomena" class="control-label">Napomena</label>
+                            <textarea asp-for="Napomena" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="Napomena" class="text-danger"></span>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.QrCodePath))
+                        {
+                            <div class="form-group">
+                                <label class="control-label">QR Kod</label>
+                                <div>
+                                    <img src="@Model.QrCodePath" alt="QR Code" class="img-thumbnail" style="max-width: 150px;" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Sačuvaj promjene
+                        </button>
+                        <a href="@Url.Action("Details", new { id = Model.Id })" class="btn btn-info">
+                            <i class="fas fa-eye"></i> Pregled
+                        </a>
+                        <a href="@Url.Action("Index")" class="btn btn-secondary">Otkaži</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // File input label update
+            $('.custom-file-input').on('change', function() {
+                var fileName = $(this).val().split('\\').pop();
+                $(this).next('.custom-file-label').addClass("selected").html(fileName);
+            });
+
+            // Set current document status if exists
+        @if (Model.Document != null)
+        {
+            <text>
+                    $('select[name="DocumentStatus"]').val('@Model.Document.Status.ToString()');
+            </text>
+        }
+
+            // Form submission handling
+            $('form').on('submit', function() {
+                $('button[type="submit"]').prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Čuvanje...');
+            });
+        });
+    </script>
+}

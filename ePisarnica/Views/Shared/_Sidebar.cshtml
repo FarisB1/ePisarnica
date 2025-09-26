@@ -1,0 +1,466 @@
+﻿@using ePisarnica.Models
+@using System.Security.Claims
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext _context
+@{
+    // Dobavi ID korisnika iz claimsa
+    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    var isAdmin = User.IsInRole("Admin");
+
+    // Inicijalizacija praznih kolekcija da bi se izbjegle null reference
+    var userFiles = new List<Document>();
+    var userFolders = new List<Folder>();
+    var recentFiles = new List<Document>();
+    var trashCount = 0;
+
+    // Samo ako je korisnik prijavljen, čitaj iz baze
+    if (User.Identity.IsAuthenticated && !string.IsNullOrEmpty(userId))
+    {
+        if (isAdmin)
+        {
+            // Admin vidi sve fajlove i foldere
+            userFiles = _context.Documents.Include(d => d.User).Where(d => !d.IsTrashed).ToList();
+            userFolders = _context.Folders.Include(f => f.User).ToList();
+            recentFiles = userFiles.OrderByDescending(f => f.ModifiedAt).Take(5).ToList();
+            trashCount = _context.Documents.Count(d => d.IsTrashed);
+        }
+        else
+        {
+            // Obični korisnik vidi samo svoje fajlove
+            userFiles = _context.Documents.Where(d => d.UserId.ToString() == userId && !d.IsTrashed).ToList();
+            userFolders = _context.Folders.Where(f => f.UserId.ToString() == userId).ToList();
+            recentFiles = userFiles.OrderByDescending(f => f.ModifiedAt).Take(5).ToList();
+            trashCount = _context.Documents.Count(d => d.UserId.ToString() == userId && d.IsTrashed);
+        }
+    }
+}
+
+<div class="sidebar p-3 shadow-sm rounded bg-white h-100">
+    <!-- Naslov -->
+    <h5 class="mb-3 fw-semibold">
+        <i class="bi bi-folder-fill me-2 text-primary"></i>
+        @if (isAdmin)
+        {
+            <span>Svi fajlovi <small class="badge bg-warning text-dark ms-1">Admin</small></span>
+        }
+        else
+        {
+            <span>Moji fajlovi</span>
+        }
+    </h5>
+
+    <!-- Pretraga -->
+    <div class="search-section mb-4 position-relative">
+        <div class="position-relative">
+            <input type="text" id="folderSearchInput" class="form-control form-control-sm"
+                   placeholder="@(isAdmin ? "Pretraži sve foldere i fajlove..." : "Pretraži foldere i fajlove...")" autocomplete="off">
+            <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-2 text-muted"></i>
+        </div>
+        <!-- Rezultati pretrage -->
+        <div id="searchResults" class="search-dropdown position-absolute w-100 bg-white border rounded shadow-sm mt-1"
+             style="display: none; z-index: 1000; max-height: 300px; overflow-y: auto;">
+            <!-- Rezultati pretrage će se prikazati ovdje -->
+        </div>
+    </div>
+
+    <!-- Brzi pristup -->
+    <h6 class="text-muted small text-uppercase mb-2">Brzi pristup</h6>
+    <ul class="list-unstyled mb-4">
+        <li class="mb-2">
+            <a asp-controller="FileManager" asp-action="Index" asp-route-folder="recent" class="text-decoration-none text-dark">
+                <i class="bi bi-clock text-primary me-2"></i> Nedavno (@(recentFiles.Count))
+            </a>
+        </li>
+        <li class="mb-2">
+            <a asp-controller="FileManager" asp-action="Index" asp-route-folder="images" class="text-decoration-none text-dark">
+                <i class="bi bi-image text-success me-2"></i> Slike (@(userFiles.Count(f => f.FileType == FileType.Image)))
+            </a>
+        </li>
+        <li class="mb-2">
+            <a asp-controller="FileManager" asp-action="Index" asp-route-folder="documents" class="text-decoration-none text-dark">
+                <i class="bi bi-file-earmark-text text-info me-2"></i> Dokumenti (@(userFiles.Count(f => f.FileType == FileType.Document)))
+            </a>
+        </li>
+        <li class="mb-2">
+            <a asp-controller="FileManager" asp-action="Index" asp-route-folder="shared" class="text-decoration-none text-dark">
+                <i class="bi bi-people text-warning me-2"></i> Dijeljeno (@(userFiles.Count(f => f.IsShared)))
+            </a>
+        </li>
+        <li class="mb-2">
+            <a asp-controller="FileManager" asp-action="Trash" class="text-decoration-none text-dark">
+                <i class="bi bi-trash text-danger me-2"></i> Korpa (@(trashCount))
+            </a>
+        </li>
+    </ul>
+
+    <!-- Sekcija foldera -->
+    <h6 class="text-muted small text-uppercase mb-2">
+        @if (isAdmin)
+        {
+            <span>Svi folderi</span>
+        }
+        else
+        {
+            <span>Moji folderi</span>
+        }
+    </h6>
+    <ul class="list-unstyled mb-4" id="foldersList">
+        @foreach (var folder in userFolders)
+        {
+            <li class="mb-2 folder-item" data-folder-name="@folder.Name.ToLower()"
+                data-folder-owner="@(isAdmin ? folder.User?.Username?.ToLower() ?? "" : "")">
+                <a asp-controller="FileManager" asp-action="Index" asp-route-folder="@folder.Name" class="text-decoration-none text-dark">
+                    <i class="bi bi-folder-fill me-2" style="color: @folder.Color"></i>
+                    @folder.Name
+                    @if (isAdmin && folder.User != null)
+                    {
+                        <small class="text-muted">(@folder.User.Username)</small>
+                    }
+                    <small class="text-muted">(@(userFiles.Count(f => f.FolderId == folder.Id)))</small>
+                </a>
+            </li>
+        }
+        @if (!userFolders.Any())
+        {
+            <li class="text-muted small">
+                @if (isAdmin)
+                {
+                    <span>Nije pronađen nijedan folder</span>
+                }
+                else
+                {
+                    <span>Još uvijek niste kreirali folder</span>
+                }
+            </li>
+        }
+    </ul>
+
+    <!-- Nedavni fajlovi -->
+    <h6 class="text-muted small text-uppercase mb-2">Nedavni fajlovi</h6>
+    <ul class="list-unstyled">
+        @foreach (var file in recentFiles.Take(3))
+        {
+            <li class="d-flex align-items-center mb-3 recent-file-item"
+                data-file-name="@file.Title.ToLower()"
+                data-file-owner="@(isAdmin ? file.User?.Username?.ToLower() ?? "" : "")">
+                <i class="@GetFileIcon(file.FileExtension) @GetFileIconClass(file.FileExtension) fs-5 me-2"></i>
+                <div class="flex-grow-1">
+                    <p class="mb-0 small fw-semibold">@file.Title@file.FileExtension</p>
+                    <small class="text-muted">
+                        @FormatDate(file.ModifiedAt)
+                        @if (isAdmin && file.User != null)
+                        {
+                            <span> • @file.User.Username</span>
+                        }
+                    </small>
+                </div>
+            </li>
+        }
+        @if (!recentFiles.Any())
+        {
+            <li class="text-muted small">Nema nedavnih fajlova</li>
+        }
+    </ul>
+</div>
+
+<style>
+    .search-section {
+        position: relative;
+    }
+
+    .search-dropdown {
+        border: 1px solid #dee2e6;
+        border-top: none;
+    }
+
+    .search-result-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        border-bottom: 1px solid #f8f9fa;
+        transition: background-color 0.2s ease;
+    }
+
+        .search-result-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+    .search-category {
+        font-size: 0.75rem;
+        color: #6c757d;
+        background-color: #f8f9fa;
+        padding: 4px 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .sidebar {
+        position: relative;
+    }
+
+    .badge {
+        font-size: 0.65rem;
+    }
+
+    .folder-item small {
+        font-size: 0.75rem;
+    }
+
+    .recent-file-item .text-muted {
+        font-size: 0.7rem;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('folderSearchInput');
+        const searchResults = document.getElementById('searchResults');
+        const foldersList = document.getElementById('foldersList');
+        const isAdmin = @Json.Serialize(isAdmin);
+
+        // Store data directly from DOM for search
+        const folders = [];
+        const files = [];
+
+        // Extract folder data from DOM
+        document.querySelectorAll('.folder-item a').forEach(link => {
+            const linkText = link.textContent.trim();
+            const folderName = linkText.split('(')[0].trim();
+            const folderIcon = link.querySelector('i');
+            const folderColor = folderIcon ? folderIcon.style.color : '#6c757d';
+
+            // Extract file count (last number in parentheses)
+            const fileCountMatches = linkText.match(/\((\d+)\)$/);
+            const fileCount = fileCountMatches ? parseInt(fileCountMatches[1]) : 0;
+
+            // Extract owner name if admin (second to last text in parentheses)
+            let ownerName = '';
+            if (isAdmin) {
+                const ownerMatch = linkText.match(/\(([^)]+)\)\s*\(\d+\)$/);
+                if (ownerMatch) {
+                    ownerName = ownerMatch[1];
+                }
+            }
+
+            folders.push({
+                name: folderName,
+                color: folderColor,
+                fileCount: fileCount,
+                owner: ownerName
+            });
+        });
+
+        // Extract file data from DOM
+        document.querySelectorAll('.recent-file-item').forEach(item => {
+            const fileTitle = item.querySelector('p').textContent.split('.')[0];
+            const fileExtension = item.querySelector('p').textContent.split('.').slice(1).join('.');
+            const fileDateText = item.querySelector('small').textContent;
+            const fileIcon = item.querySelector('i').className;
+
+            // Extract owner name if admin
+            let ownerName = '';
+            if (isAdmin) {
+                const ownerMatch = fileDateText.match(/•\s*(.+)$/);
+                if (ownerMatch) {
+                    ownerName = ownerMatch[1];
+                }
+            }
+
+            files.push({
+                title: fileTitle,
+                extension: fileExtension ? '.' + fileExtension : '',
+                dateText: fileDateText,
+                iconClass: fileIcon,
+                owner: ownerName
+            });
+        });
+
+        let searchTimeout;
+
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            const query = this.value.trim().toLowerCase();
+
+            if (query.length === 0) {
+                hideSearchResults();
+                showAllFolders();
+                return;
+            }
+
+            if (query.length < 2) {
+                return;
+            }
+
+            // Debounce search
+            searchTimeout = setTimeout(() => {
+                performSearch(query);
+            }, 300);
+        });
+
+        // Hide search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                hideSearchResults();
+            }
+        });
+
+        function performSearch(query) {
+            console.log('Searching for:', query);
+
+            // Filter folders
+            const matchingFolders = folders.filter(folder => {
+                const folderMatch = folder.name.toLowerCase().includes(query);
+                const ownerMatch = isAdmin && folder.owner.toLowerCase().includes(query);
+                return folderMatch || ownerMatch;
+            });
+
+            // Filter files
+            const matchingFiles = files.filter(file => {
+                const fileMatch = file.title.toLowerCase().includes(query);
+                const ownerMatch = isAdmin && file.owner.toLowerCase().includes(query);
+                return fileMatch || ownerMatch;
+            });
+
+            console.log('Pronadjeni folderi:', matchingFolders);
+            console.log('Pronadjeni fajlovi:', matchingFiles);
+
+            // Show filtered results
+            if (matchingFolders.length > 0 || matchingFiles.length > 0) {
+                showSearchResults(matchingFolders, matchingFiles);
+            } else {
+                showNoResults();
+            }
+
+            // Filter sidebar folders
+            filterSidebarFolders(query);
+        }
+
+        function showSearchResults(folders, files) {
+            let html = '';
+
+            if (folders.length > 0) {
+                html += '<div class="search-category">Folderi</div>';
+                folders.forEach(folder => {
+                    const ownerText = isAdmin && folder.owner ? ` (${folder.owner})` : '';
+                    html += `
+                        <div class="search-result-item" onclick="navigateToFolder('${folder.name}')">
+                            <i class="bi bi-folder-fill me-2" style="color: ${folder.color}"></i>
+                            <span class="fw-semibold">${folder.name}</span>
+                            <small class="text-muted">${ownerText}</small>
+                            <small class="text-muted ms-auto">(${folder.fileCount} files)</small>
+                        </div>
+                    `;
+                });
+            }
+
+            if (files.length > 0) {
+                html += '<div class="search-category">Fajlovi</div>';
+                files.forEach(file => {
+                    const ownerText = isAdmin && file.owner ? ` • ${file.owner}` : '';
+                    html += `
+                        <div class="search-result-item">
+                            <i class="${file.iconClass} me-2"></i>
+                            <span class="fw-semibold">${file.title}${file.extension}</span>
+                            <small class="text-muted d-block">${file.dateText.replace(/•.*$/, '')}${ownerText}</small>
+                        </div>
+                    `;
+                });
+            }
+
+            searchResults.innerHTML = html;
+            searchResults.style.display = 'block';
+        }
+
+        function showNoResults() {
+            searchResults.innerHTML = '<div class="search-result-item text-muted">Nema rezultata</div>';
+            searchResults.style.display = 'block';
+        }
+
+        function hideSearchResults() {
+            searchResults.style.display = 'none';
+        }
+
+        function filterSidebarFolders(query) {
+            const folderItems = document.querySelectorAll('.folder-item');
+            folderItems.forEach(item => {
+                const folderName = item.dataset.folderName || '';
+                const folderOwner = item.dataset.folderOwner || '';
+
+                const folderMatch = folderName.includes(query);
+                const ownerMatch = isAdmin && folderOwner.includes(query);
+
+                if (folderMatch || ownerMatch) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function showAllFolders() {
+            const folderItems = document.querySelectorAll('.folder-item');
+            folderItems.forEach(item => {
+                item.style.display = 'block';
+            });
+        }
+
+        // Navigation functions
+        window.navigateToFolder = function(folderName) {
+            window.location.href = '@Url.Action("Index", "FileManager")' + '?folder=' + encodeURIComponent(folderName);
+        }
+    });
+</script>
+
+@functions {
+    private string GetFileIcon(string extension)
+    {
+        return extension.ToLower() switch
+        {
+            ".pdf" => "bi-file-earmark-pdf",
+            ".doc" or ".docx" => "bi-file-earmark-word",
+            ".xls" or ".xlsx" => "bi-file-earmark-excel",
+            ".ppt" or ".pptx" => "bi-file-earmark-ppt",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" => "bi-file-earmark-image",
+            ".mp3" or ".wav" or ".ogg" => "bi-file-earmark-music",
+            ".mp4" or ".mov" or ".avi" => "bi-file-earmark-play",
+            ".zip" or ".rar" or ".7z" => "bi-file-earmark-zip",
+            _ => "bi-file-earmark"
+        };
+    }
+
+    private string GetFileIconClass(string extension)
+    {
+        return extension.ToLower() switch
+        {
+            ".pdf" => "text-danger",
+            ".doc" or ".docx" => "text-primary",
+            ".xls" or ".xlsx" => "text-success",
+            ".ppt" or ".pptx" => "text-warning",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" => "text-info",
+            ".mp3" or ".wav" or ".ogg" => "text-secondary",
+            ".mp4" or ".mov" or ".avi" => "text-primary",
+            ".zip" or ".rar" or ".7z" => "text-warning",
+            _ => "text-secondary"
+        };
+    }
+
+    private string FormatDate(DateTime date)
+    {
+        var timeSpan = DateTime.Now - date;
+        if (timeSpan.TotalDays > 30)
+            return $"{(int)(timeSpan.TotalDays / 30)} mjeseci ranije";
+        else if (timeSpan.TotalDays > 7)
+            return $"{(int)(timeSpan.TotalDays / 7)} sedmica ranije";
+        else if (timeSpan.TotalDays > 1)
+            return $"{(int)timeSpan.TotalDays} dana ranije";
+        else if (timeSpan.TotalHours > 1)
+            return $"{(int)timeSpan.TotalHours} sati ranije";
+        else if (timeSpan.TotalMinutes > 1)
+            return $"{(int)timeSpan.TotalMinutes} minuta ranije";
+        else
+            return "Upravo sada";
+    }
+}

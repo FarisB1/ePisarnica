@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ePisarnica.Models.Document>
+
+<h2>🗑 Trash</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Trashed At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+            <tr>
+                <td>@file.FileName</td>
+                <td>@file.TrashedAt</td>
+                <td>
+                    <form asp-action="Restore" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@file.Id" />
+                        <button type="submit" class="btn btn-success btn-sm">♻ Restore</button>
+                    </form>
+
+                    <form asp-action="DeletePermanent" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@file.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">❌ Delete Permanent</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">⬅ Back to Files</a>

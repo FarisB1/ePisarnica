@@ -1,0 +1,83 @@
+﻿@model ePisarnica.ViewModels.MyAccountViewModel
+@{
+    ViewData["Title"] = "My Account";
+}
+
+<div class="container my-5 d-flex justify-content-center">
+    <div class="card shadow-lg border-0 rounded-4 w-100" style="max-width: 700px;">
+        <div class="card-header bg-primary text-white text-center py-4 rounded-top-4">
+            <i class="bi bi-person-circle fs-1 d-block mb-2"></i>
+            <h3 class="mb-0">Moj nalog</h3>
+            <small>Uredi svoje podatke i postavke</small>
+        </div>
+
+        <div class="card-body p-4">
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success text-center shadow-sm rounded-3">
+                    <i class="bi bi-check-circle me-2"></i>@TempData["Message"]
+                </div>
+            }
+
+            <form asp-action="MyAccount" method="post" class="row g-4">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="col-md-6">
+                    <label asp-for="Ime" class="form-label fw-semibold">
+                        <i class="bi bi-person-fill me-1"></i>Ime
+                    </label>
+                    <input asp-for="Ime" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Unesi ime" />
+                    <span asp-validation-for="Ime" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Prezime" class="form-label fw-semibold">
+                        <i class="bi bi-person-fill me-1"></i>Prezime
+                    </label>
+                    <input asp-for="Prezime" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Unesi prezime" />
+                    <span asp-validation-for="Prezime" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Username" class="form-label fw-semibold">
+                        <i class="bi bi-person-badge me-1"></i>Korisničko ime
+                    </label>
+                    <input asp-for="Username" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Unesi korisničko ime" />
+                    <span asp-validation-for="Username" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label fw-semibold">
+                        <i class="bi bi-envelope-fill me-1"></i>Email
+                    </label>
+                    <input asp-for="Email" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Unesi email" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-12">
+                    <label asp-for="NewPassword" class="form-label fw-semibold">
+                        <i class="bi bi-lock-fill me-1"></i>Novi password (opcionalno)
+                    </label>
+                    <input asp-for="NewPassword" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="********" />
+                    <span asp-validation-for="NewPassword" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12 text-center mt-4">
+                    <button type="submit" class="btn btn-lg btn-success px-5 rounded-3 shadow-sm">
+                        <i class="bi bi-save me-2"></i>Sačuvaj promjene
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card-footer bg-light text-center py-3 rounded-bottom-4">
+            <small class="text-muted">
+                <i class="bi bi-shield-lock me-1"></i>Vaši podaci su sigurni i zaštićeni
+            </small>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="bs" class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ePisarnica</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ePisarnica.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    @await RenderSectionAsync("Styles", required: false)
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container-fluid">
+                <!-- Brand -->
+                <a class="navbar-brand fw-bold text-primary" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-journal-text"></i> ePisarnica
+                </a>
+
+                <!-- Mobile toggle -->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainNav" aria-controls="mainNav">
+                    <i class="bi bi-list fs-2 text-primary"></i>
+                </button>
+
+                <!-- Offcanvas (for mobile) -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="mainNav" aria-labelledby="mainNavLabel">
+                    <div class="offcanvas-header border-bottom">
+                        <h5 class="offcanvas-title fw-bold text-primary" id="mainNavLabel">Navigacija</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body d-lg-flex justify-content-between">
+                        <ul class="navbar-nav me-lg-3">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                                    <i class="bi bi-house-door"></i> Početna
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="FileManager" asp-action="Index">
+                                    <i class="bi bi-folder2"></i> Fajlovi
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Protocol" asp-action="Index">
+                                    <i class="bi bi-diagram-3"></i> Protokol
+                                </a>
+                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Account" asp-action="ManageUsers">
+                                        <i class="bi bi-people-fill"></i> Upravljanje korisnicima
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Account" asp-action="Login">
+                                        <i class="bi bi-box-arrow-in-right"></i> Prijava
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Account" asp-action="Register">
+                                        <i class="bi bi-person-plus"></i> Registracija
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Account" asp-action="MyAccount">
+                                        <i class="bi bi-person"></i> @User.Identity.Name
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-danger" asp-controller="Account" asp-action="Logout">
+                                        <i class="bi bi-box-arrow-right"></i> Odjava
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- MAIN CONTENT with Sidebar -->
+    <main role="main" class="flex-fill">
+        <div class="container-fluid">
+            <div class="row">
+
+                
+                <!-- Sidebar -->
+                <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title fw-bold" id="mobileSidebarLabel">Meni</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Zatvori"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        @await Html.PartialAsync("_Sidebar")
+                    </div>
+                </div>
+
+                <!-- Sidebar Static (Desktop) -->
+                <aside class="d-none d-md-block col-md-3 col-lg-2 mb-3">
+                    @await Html.PartialAsync("_Sidebar")
+                </aside>
+
+                <!-- Main content -->
+                <section class="col-12 col-md-9 col-lg-10 pb-3">
+                    @RenderBody()
+                </section>
+
+
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+
+</html>

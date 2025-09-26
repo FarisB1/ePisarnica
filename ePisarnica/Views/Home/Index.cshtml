@@ -1,0 +1,130 @@
+﻿@model ePisarnica.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Početna - ePisarnica";
+}
+
+<div class="container py-5">
+    <!-- Hero sekcija -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6 text-center text-lg-start">
+            <h1 class="fw-bold text-primary mb-3">
+                Dobrodošli u ePisarnicu
+            </h1>
+            <p class="lead text-muted">
+                Digitalna pisarnica za upravljanje dokumentima, protokolima i korisnicima.
+                Pojednostavite svoj rad i pratite dokumente na jednom mjestu.
+            </p>
+            <div class="d-flex justify-content-center justify-content-lg-start gap-3 mt-4">
+                <a class="btn btn-primary btn-lg" asp-controller="FileManager" asp-action="Index">
+                    <i class="bi bi-folder2-open"></i> Upravljanje dokumentima
+                </a>
+                <a class="btn btn-outline-secondary btn-lg" asp-controller="Protocol" asp-action="Index">
+                    <i class="bi bi-diagram-3"></i> Protokol
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center mt-4 mt-lg-0">
+            <img src="~/images/episarnica_logo.png" class="img-fluid" alt="Digitalna pisarnica ilustracija" style="max-height: 350px;" />
+        </div>
+    </div>
+
+    @if(User.IsInRole("Admin")){
+        <!-- Statistički pregledi -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm border-0">
+                    <div class="card-body">
+                        <i class="bi bi-file-earmark-text text-primary fs-2"></i>
+                        <h5 class="mt-2 fw-bold">Protokoli</h5>
+                        <p class="display-6 fw-bold text-primary">@Model.TotalProtocols</p>
+                        <small class="text-muted">(+@Model.RecentActivity u zadnjih 7 dana)</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm border-0">
+                    <div class="card-body">
+                        <i class="bi bi-folder-fill text-success fs-2"></i>
+                        <h5 class="mt-2 fw-bold">Dokumenti</h5>
+                        <p class="display-6 fw-bold text-success">@Model.TotalDocuments</p>
+                        <small class="text-muted">ukupno u sistemu</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm border-0">
+                    <div class="card-body">
+                        <i class="bi bi-people-fill text-warning fs-2"></i>
+                        <h5 class="mt-2 fw-bold">Korisnici</h5>
+                        <p class="display-6 fw-bold text-warning">@Model.ActiveUsers / @Model.TotalUsers</p>
+                        <small class="text-muted">aktivni / ukupno</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm border-0">
+                    <div class="card-body">
+                        <i class="bi bi-clock-history text-danger fs-2"></i>
+                        <h5 class="mt-2 fw-bold">Zadnja Aktivnost</h5>
+                        @if (Model.RecentProtocols.Any())
+                        {
+                            <p class="fw-bold text-danger" style="font-size: 32px;">@Model.RecentProtocols.First().Datum.ToString("dd MMM HH:mm:ss")</p>
+                            <small class="text-muted">Protokol: @Model.RecentProtocols.First().BrojProtokola</small>
+                        }
+                        else
+                        {
+                            <p class="fw-bold text-muted">Nema aktivnosti</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- Brzi linkovi -->
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-folder-fill text-primary fs-1"></i>
+                    <h5 class="mt-3 fw-bold">Dokumenti</h5>
+                    <p class="text-muted">
+                        Kreirajte, organizujte i arhivirajte sve vaše dokumente na jednom mjestu.
+                    </p>
+                    <a asp-controller="FileManager" asp-action="Index" class="btn btn-sm btn-outline-primary">
+                        Otvori <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-diagram-3-fill text-success fs-1"></i>
+                    <h5 class="mt-3 fw-bold">Protokol</h5>
+                    <p class="text-muted">
+                        Pregled i praćenje svih protokola u realnom vremenu uz evidenciju.
+                    </p>
+                    <a asp-controller="Protocol" asp-action="Index" class="btn btn-sm btn-outline-success">
+                        Pregledaj <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill text-warning fs-1"></i>
+                    <h5 class="mt-3 fw-bold">Korisnici</h5>
+                    <p class="text-muted">
+                        Upravljanje korisničkim računima i administracija sistema.
+                    </p>
+                    <a asp-controller="Account" asp-action="ManageUsers" class="btn btn-sm btn-outline-warning">
+                        Upravljaj <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

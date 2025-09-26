@@ -1,0 +1,1146 @@
+﻿@model ePisarnica.ViewModels.PagedResult<ePisarnica.Models.ProtocolEntry>
+
+<!-- Mobile Filter Toggle Button (visible only on mobile) -->
+<div class="d-block d-md-none mb-3">
+    <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
+            type="button" data-bs-toggle="collapse"
+            data-bs-target="#filterCollapse" aria-expanded="false"
+            aria-controls="filterCollapse">
+        <span><i class="bi bi-funnel me-2"></i> Filteri i pretraga</span>
+        <i class="bi bi-chevron-down"></i>
+    </button>
+</div>
+
+<div class="card mb-4 mt-5">
+    <div class="card-header d-none d-md-block">
+        <div class="d-flex justify-content-between align-items-center">
+            <h6 class="mb-0">
+                <i class="bi bi-funnel"></i> Filteri i pretraga
+            </h6>
+            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+                <i class="bi bi-chevron-down"></i> Opcije pretrage
+            </button>
+        </div>
+    </div>
+    <div class="collapse @((!string.IsNullOrEmpty(ViewBag.SearchTerm) ||
+                           !string.IsNullOrEmpty(ViewBag.StatusFilter) ||
+                           !string.IsNullOrEmpty(ViewBag.DateFrom) ||
+                           !string.IsNullOrEmpty(ViewBag.DateTo)) ? "show" : "")"
+         id="filterCollapse">
+        <div class="card-body">
+            <form method="get" asp-action="Index" id="filterForm">
+                <div class="row g-3">
+                    <!-- Search Box -->
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Pretraži</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" name="search"
+                                   value="@ViewBag.SearchTerm"
+                                   placeholder="Broj protokola, stranka, fajl...">
+                            <button class="btn btn-outline-secondary" type="button" onclick="clearSearch()">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+                        <div class="form-text">Pretraži po broju protokola, stranci ili nazivu fajla</div>
+                    </div>
+
+                    <!-- Status Filter -->
+                    <div class="col-12 col-md-3">
+                        <label class="form-label">Status dokumenta</label>
+                        <select class="form-select" name="status">
+                            <option value="">Svi statusi</option>
+                            @{
+                                var statusOptions = new Dictionary<string, string>
+                            {
+                            { "Zaprimljeno", "Zaprimljeno" },
+                            { "Uvid", "Na uvidu" },
+                            { "UObradi", "U obradi" },
+                            { "NaDopuni", "Na dopuni" },
+                            { "Recenzija", "Recenzija" },
+                            { "Odobreno", "Odobreno" },
+                            { "Odbijeno", "Odbijeno" },
+                            { "Arhivirano", "Arhivirano" }
+                            };
+                            }
+
+                            @foreach (var option in statusOptions)
+                            {
+                                <option value="@option.Key" selected="@(ViewBag.StatusFilter == option.Key)">@option.Value</option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Date Range -->
+                    <div class="col-6 col-md-2">
+                        <label class="form-label">Datum od</label>
+                        <input type="date" class="form-control" name="dateFrom" value="@ViewBag.DateFrom">
+                    </div>
+
+                    <div class="col-6 col-md-2">
+                        <label class="form-label">Datum do</label>
+                        <input type="date" class="form-control" name="dateTo" value="@ViewBag.DateTo">
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="col-12 col-md-1 d-flex align-items-end">
+                        <div class="d-flex flex-md-column w-100 gap-2">
+                            <button type="submit" class="btn btn-primary flex-fill">
+                                <i class="bi bi-search d-md-none"></i>
+                                <span class="d-none d-md-inline">Primeni</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary flex-fill" onclick="clearAllFilters()">
+                                <i class="bi bi-arrow-clockwise d-md-none"></i>
+                                <span class="d-none d-md-inline">Resetuj</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Date Filters -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="btn-group btn-group-sm w-100" role="group">
+                            <input type="radio" class="btn-check" name="quickDate" id="today" onclick="setDateRange('today')">
+                            <label class="btn btn-outline-info" for="today">Danas</label>
+
+                            <input type="radio" class="btn-check" name="quickDate" id="thisWeek" onclick="setDateRange('week')">
+                            <label class="btn btn-outline-info" for="thisWeek">Nedelja</label>
+
+                            <input type="radio" class="btn-check" name="quickDate" id="thisMonth" onclick="setDateRange('month')">
+                            <label class="btn btn-outline-info" for="thisMonth">Mesec</label>
+
+                            <input type="radio" class="btn-check" name="quickDate" id="thisYear" onclick="setDateRange('year')">
+                            <label class="btn btn-outline-info" for="thisYear">Godina</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Results Summary -->
+@if (ViewBag.SearchTerm != null || ViewBag.StatusFilter != null || ViewBag.DateFrom != null || ViewBag.DateTo != null)
+{
+    <div class="alert alert-info d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+        <div class="mb-2 mb-md-0">
+            <i class="bi bi-info-circle"></i>
+            Prikazuje se @Model.Items.Count() rezultata
+            @if (!string.IsNullOrEmpty(ViewBag.SearchTerm))
+            {
+                <span>za pretragu "<strong>@ViewBag.SearchTerm</strong>"</span>
+            }
+            @if (!string.IsNullOrEmpty(ViewBag.StatusFilter))
+            {
+                <span>sa statusom "<strong>@ViewBag.StatusFilter</strong>"</span>
+            }
+            @if (!string.IsNullOrEmpty(ViewBag.DateFrom) || !string.IsNullOrEmpty(ViewBag.DateTo))
+            {
+                <span>
+                    u periodu
+                    @if (!string.IsNullOrEmpty(ViewBag.DateFrom))
+                    {
+                        <strong>@DateTime.Parse(ViewBag.DateFrom.ToString()).ToString("dd.MM.yyyy")</strong>
+                    }
+                    @if (!string.IsNullOrEmpty(ViewBag.DateFrom) && !string.IsNullOrEmpty(ViewBag.DateTo))
+                    {
+                        <span> - </span>
+                    }
+                    @if (!string.IsNullOrEmpty(ViewBag.DateTo))
+                    {
+                        <strong>@DateTime.Parse(ViewBag.DateTo.ToString()).ToString("dd.MM.yyyy")</strong>
+                    }
+                </span>
+            }
+        </div>
+        <a href="@Url.Action("Index")" class="btn btn-sm btn-outline-secondary align-self-md-stretch">
+            <i class="bi bi-x"></i> Obriši filtere
+        </a>
+    </div>
+}
+
+<!-- Mobile Action Buttons -->
+<div class="d-block d-md-none mb-3">
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-file-earmark-arrow-down"></i> Izvoz
+        </button>
+        <ul class="dropdown-menu w-100">
+            <li><a class="dropdown-item" href="#" onclick="exportToExcel()">Excel izvoz</a></li>
+            <li><a class="dropdown-item" href="#" onclick="generateReport()">PDF izveštaj</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" onclick="generateSelectedReport('excel')">Excel odabranih</a></li>
+            <li><a class="dropdown-item" href="#" onclick="generateSelectedReport('pdf')">PDF odabranih</a></li>
+        </ul>
+
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-printer"></i> Štampaj
+        </button>
+        <ul class="dropdown-menu w-100">
+            <li><a class="dropdown-item" href="#" onclick="printSummary()">Sažetak</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" onclick="printSelected()">Označene stavke</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Desktop Export and Report Actions -->
+<div class="mb-4 d-none d-md-flex flex-wrap align-items-center gap-2">
+    <!-- Export dropdown -->
+    <div class="btn-group btn-sm">
+        <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle d-flex align-items-center gap-1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-file-earmark-arrow-down"></i> Izvoz
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#" onclick="exportToExcel()">
+                    <i class="bi bi-file-excel"></i> Excel izvoz
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#" onclick="generateReport()">
+                    <i class="bi bi-file-pdf"></i> PDF izveštaj
+                </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#" onclick="generateSelectedReport('excel')">
+                    <i class="bi bi-file-earmark-excel"></i> Excel odabranih
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#" onclick="generateSelectedReport('pdf')">
+                    <i class="bi bi-filetype-pdf"></i> PDF odabranih
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Print dropdown -->
+    <div class="btn-group btn-sm">
+        <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle d-flex align-items-center gap-1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-printer"></i> Štampaj
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" onclick="printSummary()">Sažetak</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" onclick="printSelected()">Označene stavke</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-2">
+    <h2 class="mb-0">Ulazni dnevnik</h2>
+    <div class="d-flex flex-column flex-sm-row gap-2">
+        @if (ViewBag.IsAdmin)
+        {
+            <span class="badge bg-success me-0 me-sm-2 mb-1 mb-sm-0 align-self-start">
+                <i class="bi bi-shield-check"></i> Admin mod
+            </span>
+        }
+        else
+        {
+            <span class="badge bg-info me-0 me-sm-2 mb-1 mb-sm-0 align-self-start">
+                <i class="bi bi-person"></i> Moj protokol
+            </span>
+        }
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Novi unos
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <!-- Results Info -->
+            <div class="p-3 pb-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                <div class="mb-2 mb-md-0">
+                    @if (!string.IsNullOrEmpty(ViewBag.SearchTerm))
+                    {
+                        <span class="text-muted">Search results for "<strong>@ViewBag.SearchTerm</strong>": @Model.TotalCount entries found</span>
+                        <button class="btn btn-sm btn-outline-secondary ms-2" onclick="clearSearch()">
+                            <i class="bi bi-x"></i> Clear
+                        </button>
+                    }
+                    else
+                    {
+                        <span class="text-muted">
+                            @if (ViewBag.IsAdmin)
+                            {
+                                <text>Prikazuje se @Model.Items.Count() od @Model.TotalCount protokola (svi korisnici)</text>
+                            }
+                            else
+                            {
+                                <text>Prikazuje se @Model.Items.Count() od @Model.TotalCount mojih protokola</text>
+                            }
+                        </span>
+                    }
+                </div>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <label class="form-label mb-0 text-muted small">Po stranici:</label>
+                    <select class="form-select form-select-sm" style="width: auto;" onchange="changePageSize(this.value)">
+                        <option value="10" selected="@(Model.PageSize == 10)">10</option>
+                        <option value="25" selected="@(Model.PageSize == 25)">25</option>
+                        <option value="50" selected="@(Model.PageSize == 50)">50</option>
+                        <option value="100" selected="@(Model.PageSize == 100)">100</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Mobile Card View -->
+            <div class="d-block d-md-none">
+                @if (!Model.Items.Any())
+                {
+                    <div class="text-center py-5">
+                        <i class="bi bi-journal-x fs-1 text-muted"></i>
+                        <p class="text-muted mt-2">Nema unosa u protokolu</p>
+                        <a asp-action="Create" class="btn btn-primary">Dodaj prvi unos</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="accordion" id="protocolAccordion">
+                        @foreach (var item in Model.Items)
+                        {
+                            <div class="accordion-item">
+                                <h2 class="accordion-header d-flex align-items-center" id="heading-@item.Id">
+                                    <!-- Checkbox aligned left -->
+                                    <input type="checkbox"
+                                           name="selectedIds"
+                                           value="@item.Id"
+                                           class="select-item me-2" 
+                                           style="margin-left: .5rem!important"/>
+
+                                    <!-- Accordion button takes the rest of the space -->
+                                    <button class="accordion-button collapsed flex-grow-1" type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapse-@item.Id"
+                                            aria-expanded="false"
+                                            aria-controls="collapse-@item.Id">
+
+                                        <div class="d-flex justify-content-between w-100">
+                                            <div>
+                                                <span class="badge bg-primary">@item.BrojProtokola</span>
+                                                @if (item.IsNew && ViewBag.IsAdmin)
+                                                {
+                                                    <span class="badge bg-danger ms-1">NOVO</span>
+                                                }
+                                                @item.Document?.FileName
+                                                @if (item.IsSigned)
+                                                {
+                                                    <span class="badge bg-success ms-1">
+                                                        <i class="bi bi-check-circle-fill"></i>
+                                                    </span>
+                                                }
+                                            </div>
+                                            <div class="text-muted small">
+                                                @item.Datum.ToString("dd.MM.yyyy")
+                                            </div>
+                                        </div>
+                                    </button>
+                                </h2>
+
+                                <div id="collapse-@item.Id" class="accordion-collapse collapse"
+                                     aria-labelledby="heading-@item.Id" data-bs-parent="#protocolAccordion">
+                                    <div class="accordion-body">
+                                        <div class="d-flex mb-2">
+                                            <strong>Stranka:</strong>
+                                            <span class="ms-2">@item.Stranka</span>
+                                        </div>
+
+                                        @if (!string.IsNullOrEmpty(item.Napomena))
+                                        {
+                                            <div class="mb-2">
+                                                <strong>Napomena:</strong>
+                                                <div class="text-muted">@item.Napomena</div>
+                                            </div>
+                                        }
+
+                                        @if (item.Document != null)
+                                        {
+                                            <div class="mb-2">
+                                                <strong>Fajl:</strong>
+                                                <div class="d-flex align-items-center mt-1">
+                                                    <i class="@GetFileIcon(item.Document.FileExtension) @GetFileIconClass(item.Document.FileExtension) me-2"></i>
+                                                    <div>
+                                                        <div class="fw-medium">@item.Document.Title</div>
+                                                        <small class="text-muted">@item.Document.FileType • @FormatFileSize(item.Document.FileSize)</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <strong>Status:</strong>
+                                                <span class="badge @GetStatusBadgeClass(item.Document.Status) ms-2">
+                                                    @GetStatusDisplayName(item.Document.Status)
+                                                </span>
+                                            </div>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(item.QrCodePath))
+                                        {
+                                            <div class="mb-3">
+                                                <strong>QR kod:</strong>
+                                                <div class="mt-1">
+                                                    <img src="@item.QrCodePath" width="60" height="60" class="img-thumbnail"
+                                                         data-bs-toggle="modal" data-bs-target="#qrModal"
+                                                         onclick="showQrCode('@item.QrCodePath', '@item.BrojProtokola')"
+                                                         style="cursor: pointer;"
+                                                         title="Klikni za uvećanje" />
+                                                </div>
+                                            </div>
+                                        }
+
+                                        <div class="d-flex gap-1 mt-3">
+                                            <a asp-action="Details" asp-route-id="@item.Id"
+                                               class="btn btn-outline-info btn-sm flex-fill">
+                                                <i class="bi bi-eye"></i> Detalji
+                                            </a>
+                                            @if (item.Document != null)
+                                            {
+                                                <a asp-controller="FileManager" asp-action="DownloadFile" asp-route-id="@item.Document.Id"
+                                                   class="btn btn-outline-primary btn-sm flex-fill">
+                                                    <i class="bi bi-download"></i> Preuzmi
+                                                </a>
+                                            }
+                                            <a href="@Url.Action("GenerateReport", new {
+                                                dateFrom = ViewBag.DateFrom,
+                                                dateTo = ViewBag.DateTo,
+                                                status = ViewBag.StatusFilter,
+                                                vrstaPostupka = ViewBag.VrstaPostupkaFilter,
+                                                format = "pdf" })"
+                                               class="btn btn-outline-danger btn-sm flex-fill" target="_blank">
+                                                <i class="bi bi-file-break-fill"></i> PDF
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+
+            <!-- Desktop Table View -->
+            <table class="table table-hover d-none d-md-table">
+                <thead class="table-light sticky-top" style="top: 0">
+                    <tr>
+                        <th style="width: 40px;">
+                            <input type="checkbox" id="selectAll" onclick="toggleSelectAll(this)" />
+                        </th>
+                        <th style="width: 120px;">Broj protokola</th>
+                        <th style="width: 140px;">Datum</th>
+                        <th style="min-width: 150px;">Stranka</th>
+                        <th style="min-width: 200px;">Napomena</th>
+                        <th style="min-width: 200px;">Fajl</th>
+                        <th style="width: 100px;">Tip fajla</th>
+                        <th style="width: 80px;">Veličina</th>
+                        <th style="width: 120px;">Stanje</th>
+                        <th style="width: 80px;">QR kod</th>
+                        <th style="width: 160px;">Akcije</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr class="@(item.IsNew && ViewBag.IsAdmin ? "table-warning" : "")">
+                            <td>
+                                <input type="checkbox" name="selectedIds" value="@item.Id" class="select-item" />
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center gap-1">
+                                    <span class="badge bg-primary">@item.BrojProtokola</span>
+                                    @if (item.IsNew && ViewBag.IsAdmin)
+                                    {
+                                        <span class="badge bg-danger" title="Novi protokol">
+                                            <i class="bi bi-star-fill"></i> NOVO
+                                        </span>
+                                    }
+                                    @if (item.IsSigned)
+                                    {
+                                        <span class="badge bg-success" title="Potpisano">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                        </span>
+                                    }
+                                </div>
+                            </td>
+                            <td>@item.Datum.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>
+                                <strong>@item.Stranka</strong>
+                                
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Napomena))
+                                {
+                                    <span class="text-muted" title="@item.Napomena">
+                                        @(item.Napomena.Length > 30 ? item.Napomena.Substring(0, 30) + "..." : item.Napomena)
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Document != null)
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <i class="@GetFileIcon(item.Document.FileExtension) @GetFileIconClass(item.Document.FileExtension) me-2"></i>
+                                        <div class="text-truncate" style="max-width: 150px;">
+                                            <div class="fw-medium text-truncate">@item.Document.Title</div>
+                                            <small class="text-muted text-truncate d-block">@item.Document.FileName</small>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Bez fajla</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Document != null)
+                                {
+                                    <span class="badge bg-secondary">@item.Document.FileType</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Document != null)
+                                {
+                                    <small>@FormatFileSize(item.Document.FileSize)</small>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </td>
+                            <td>
+                                    <span class="badge @GetStatusBadgeClass(item.Document?.Status ?? DocumentStatus.Zaprimljeno)">
+                                        @GetStatusDisplayName(item.Document?.Status ?? DocumentStatus.Zaprimljeno)
+                                    </span>
+                            </td>
+                            <td class="text-center">
+                                @if (!string.IsNullOrEmpty(item.QrCodePath))
+                                {
+                                    <img src="@item.QrCodePath" width="40" height="40" class="img-thumbnail"
+                                         data-bs-toggle="modal" data-bs-target="#qrModal"
+                                         onclick="showQrCode('@item.QrCodePath', '@item.BrojProtokola')"
+                                         style="cursor: pointer;"
+                                         title="Klikni za uvećanje" />
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group-horizontal btn-group-sm" role="group">
+                                    <a asp-action="Details" asp-route-id="@item.Id"
+                                       class="btn btn-outline-info" title="Detalji">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    @if (item.Document != null)
+                                    {
+                                        <a asp-controller="FileManager" asp-action="DownloadFile" asp-route-id="@item.Document.Id"
+                                           class="btn btn-outline-primary" title="Preuzmi fajl">
+                                            <i class="bi bi-download"></i>
+                                        </a>
+                                    }
+                                    <a href="@Url.Action("GenerateReport", new {
+                                        dateFrom = ViewBag.DateFrom,
+                                        dateTo = ViewBag.DateTo,
+                                        status = ViewBag.StatusFilter,
+                                        vrstaPostupka = ViewBag.VrstaPostupkaFilter,
+                                        format = "pdf" })"
+                                       class="btn btn-outline-danger" target="_blank" title="Preuzmi PDF">
+                                        <i class="bi bi-file-break-fill"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (!Model.Items.Any())
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-journal-x fs-1 text-muted"></i>
+                <p class="text-muted mt-2">Nema unosa u protokolu</p>
+                <a asp-action="Create" class="btn btn-primary">Dodaj prvi unos</a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- QR Code Modal -->
+<div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="qrModalLabel">QR kod - Protokol <span id="qrProtocolNumber"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="qrCodeImage" src="" class="img-fluid" alt="QR Code" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                <button type="button" class="btn btn-primary" onclick="printQrCode()">
+                    <i class="bi bi-printer"></i> Štampaj
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.TotalPages > 1)
+{
+    <nav aria-label="File pagination" class="mt-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="pagination-info text-muted small mb-2 mb-md-0">
+                Strana @Model.PageNumber od @Model.TotalPages
+                (@((Model.PageNumber - 1) * Model.PageSize + 1) - @Math.Min(Model.PageNumber * Model.PageSize, Model.TotalCount) od @Model.TotalCount stavki)
+            </div>
+            <ul class="pagination pagination-sm mb-0">
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="goToPage(1)" title="Prva strana">
+                            <i class="bi bi-chevron-double-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="goToPage(@(Model.PageNumber - 1))" title="Prethodna strana">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="bi bi-chevron-double-left"></i></span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+                    </li>
+                }
+
+                @{
+                    var startPage = Math.Max(1, Model.PageNumber - 2);
+                    var endPage = Math.Min(Model.TotalPages, Model.PageNumber + 2);
+
+                    if (startPage > 1)
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    }
+                }
+
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                        @if (i == Model.PageNumber)
+                        {
+                            <span class="page-link">@i</span>
+                        }
+                        else
+                        {
+                            <a class="page-link" href="#" onclick="goToPage(@i)">@i</a>
+                        }
+                    </li>
+                }
+
+                @if (endPage < Model.TotalPages)
+                {
+                    <li class="page-item disabled">
+                        <span class="page-link">...</span>
+                    </li>
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="goToPage(@(Model.PageNumber + 1))" title="Sledeća strana">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="goToPage(@Model.TotalPages)" title="Poslednja strana">
+                            <i class="bi bi-chevron-double-right"></i>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="bi bi-chevron-double-right"></i></span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+}
+
+<style>
+    /* Mobile optimizations */
+    @@media (max-width: 767.98px) {
+        .card-body {
+            padding: 1rem;
+        }
+
+        .input-group {
+            flex-wrap: nowrap;
+        }
+
+        .btn-group > .btn {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .accordion-button {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .accordion-body {
+            padding: 1rem;
+        }
+
+        .table-responsive {
+            border-radius: 0.375rem;
+            overflow: hidden;
+        }
+    }
+
+    /* Enhanced styling for better UX */
+    .badge {
+        font-size: 0.75em;
+    }
+
+    .select-item {
+        cursor: pointer;
+    }
+
+    .table th {
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .sticky-top {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 10;
+    }
+
+    .btn-check:checked + .btn-outline-info {
+        background-color: #0dcaf0;
+        border-color: #0dcaf0;
+        color: #000;
+    }
+
+    /* Animation for better UX */
+    .accordion-button:not(.collapsed) {
+        background-color: #f8f9fa;
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,0.125);
+    }
+
+    /* Print styles */
+    @@media print {
+        .card:first-child, .alert, .btn-group, .d-flex.justify-content-between,
+        .pagination, .modal, .d-grid, .dropdown-menu {
+            display: none !important;
+        }
+
+        .table {
+            font-size: 0.8rem;
+        }
+
+        .badge {
+            border: 1px solid #000 !important;
+            color: #000 !important;
+            background: transparent !important;
+        }
+
+        .card, .card-body {
+            border: none;
+            padding: 0;
+        }
+    }
+</style>
+
+
+@section Scripts {
+<script>
+            
+            function toggleSelectAll(source) {
+            const checkboxes = document.querySelectorAll('.select-item');
+            checkboxes.forEach(cb => cb.checked = source.checked);
+        }
+
+                function generateSelectedReport(format) {
+            const selected = Array.from(document.querySelectorAll('.select-item:checked'))
+                                  .map(cb => cb.value);
+
+            if (selected.length === 0) {
+                alert("Molimo odaberite barem jedan protokol.");
+                return;
+            }
+
+            // ✅ Use correct controller name here
+            const url = '@Url.Action("GenerateReport", "Protocol")'
+                + "?format=" + format
+                + "&selectedIds=" + selected.join(",");
+
+            window.open(url, "_blank");
+        }
+
+        function changePageSize(newSize) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('pageSize', newSize); // update pageSize
+            url.searchParams.set('page', 1);           // reset to first page
+            window.location.href = url.toString();     // reload page
+        }
+    // Search and filter functions
+    function clearSearch() {
+        document.querySelector('input[name="search"]').value = '';
+        document.getElementById('filterForm').submit();
+    }
+
+    function clearAllFilters() {
+        const form = document.getElementById('filterForm');
+        form.reset();
+        // Clear quick date selections
+        document.querySelectorAll('input[name="quickDate"]').forEach(input => input.checked = false);
+        form.submit();
+    }
+
+    function setDateRange(period) {
+        const dateFrom = document.querySelector('input[name="dateFrom"]');
+        const dateTo = document.querySelector('input[name="dateTo"]');
+        const today = new Date();
+
+        switch(period) {
+            case 'today':
+                dateFrom.value = today.toISOString().split('T')[0];
+                dateTo.value = today.toISOString().split('T')[0];
+                break;
+            case 'week':
+                const weekStart = new Date(today.setDate(today.getDate() - today.getDay()));
+                const weekEnd = new Date(today.setDate(today.getDate() - today.getDay() + 6));
+                dateFrom.value = weekStart.toISOString().split('T')[0];
+                dateTo.value = weekEnd.toISOString().split('T')[0];
+                break;
+            case 'month':
+                const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+                const monthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                dateFrom.value = monthStart.toISOString().split('T')[0];
+                dateTo.value = monthEnd.toISOString().split('T')[0];
+                break;
+            case 'year':
+                const yearStart = new Date(today.getFullYear(), 0, 1);
+                const yearEnd = new Date(today.getFullYear(), 11, 31);
+                dateFrom.value = yearStart.toISOString().split('T')[0];
+                dateTo.value = yearEnd.toISOString().split('T')[0];
+                break;
+        }
+
+        // Auto-submit after setting dates
+        setTimeout(() => {
+            document.getElementById('filterForm').submit();
+        }, 100);
+    }
+
+    // Export functions
+    function exportToExcel() {
+        // Create URL with current filters
+        const params = new URLSearchParams(window.location.search);
+        params.set('format', 'excel');
+        window.location.href = '@Url.Action("GenerateReport")?' + params.toString();
+    }
+
+    function generateReport() {
+        const params = new URLSearchParams(window.location.search);
+        params.set('format', 'pdf');
+        window.open('@Url.Action("GenerateReport")?' + params.toString(), '_blank');
+    }
+
+
+    // Auto-submit form on filter changes
+    document.querySelector('select[name="status"]').addEventListener('change', function() {
+        document.getElementById('filterForm').submit();
+    });
+
+    // Submit on Enter in search box
+    document.querySelector('input[name="search"]').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            document.getElementById('filterForm').submit();
+        }
+    });
+
+    function showQrCode(qrPath, protocolNumber) {
+        document.getElementById('qrCodeImage').src = qrPath;
+        document.getElementById('qrProtocolNumber').textContent = protocolNumber;
+    }
+
+        function goToPage(page) {
+            const form = document.getElementById('filterForm');
+            const url = new URL(window.location.href);
+
+            // Set the page query parameter
+            url.searchParams.set('page', page);
+
+            // Preserve current filters from form
+            const search = form.querySelector('input[name="search"]').value;
+            const status = form.querySelector('select[name="status"]').value;
+            const dateFrom = form.querySelector('input[name="dateFrom"]').value;
+            const dateTo = form.querySelector('input[name="dateTo"]').value;
+
+            if(search) url.searchParams.set('search', search);
+            else url.searchParams.delete('search');
+
+            if(status) url.searchParams.set('status', status);
+            else url.searchParams.delete('status');
+
+            if(dateFrom) url.searchParams.set('dateFrom', dateFrom);
+            else url.searchParams.delete('dateFrom');
+
+            if(dateTo) url.searchParams.set('dateTo', dateTo);
+            else url.searchParams.delete('dateTo');
+
+            // Navigate to the new URL
+            window.location.href = url.toString();
+        }
+</script>
+
+    <script>
+                function buildPrintHeader(title) {
+            var now = new Date();
+            var dateTime = now.toLocaleString('sr-RS');
+            return '<div style="font-family: Arial, sans-serif; margin: 20px;">' +
+                '<div style="text-align: center; margin-bottom: 30px;">' +
+                '<h1 style="color: #333; margin-bottom: 10px;">📋 ' + title + '</h1>' +
+                '<p style="font-size: 14px; color: #666;">Datum i vreme: ' + dateTime + '</p>' +
+                '</div>';
+        }
+
+        function buildPrintStyle() {
+            var style = document.createElement('style');
+            style.id = 'printStyle';
+            style.innerHTML = `
+        @@media print {
+                    body { margin: 0; font-family: Arial, sans-serif; }
+                    table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+                    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; font-size: 13px; }
+                    th { background-color: #007bff; color: white; font-weight: bold; }
+                    tbody tr:nth-child(even) { background-color: #f9f9f9; }
+                    tbody tr:nth-child(odd) { background-color: #fff; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+
+        function printSummary() {
+            var table = document.querySelector('table');
+            if (!table) { alert('Tabela nije pronađena.'); return; }
+
+            var rows = table.querySelectorAll('tbody tr');
+            if (rows.length === 0) { alert('Tabela nema podataka.'); return; }
+
+            var originalContent = document.body.innerHTML;
+            var originalTitle = document.title;
+            document.title = 'Sažetak protokola - ' + new Date().toLocaleString('sr-RS');
+
+            var summaryHTML = buildPrintHeader('Sažetak protokola') +
+                '<table>' +
+                '<thead>' +
+                '<tr>' +
+                '<th>ID protokola</th>' +
+                '<th>Stranka</th>' +
+                '<th>Fajl</th>' +
+                '<th>Status</th>' +
+                '<th>Datum</th>' +
+                '</tr>' +
+                '</thead><tbody>';
+
+            rows.forEach(row => {
+                var id = row.querySelector('input[name="selectedIds"]')?.value || '-';
+                var user = row.cells[3]?.textContent.trim() || '-';
+                var fileCell = row.cells[5];
+                var file = '-';
+                if (fileCell && fileCell.querySelector('div.fw-medium')) {
+                    file = fileCell.querySelector('div.fw-medium').textContent.trim();
+                }
+                var status = row.cells[8]?.textContent.trim() || '-';
+                var date = row.cells[2]?.textContent.trim() || '-';
+
+                summaryHTML += '<tr>' +
+                    '<td>' + id + '</td>' +
+                    '<td>' + user + '</td>' +
+                    '<td>' + file + '</td>' +
+                    '<td>' + status + '</td>' +
+                    '<td>' + date + '</td>' +
+                    '</tr>';
+            });
+
+            summaryHTML += '</tbody></table><div style="margin-top:30px;text-align:center;font-size:12px;color:#888;">Sažetak - Stranica 1</div>';
+
+            document.body.innerHTML = summaryHTML;
+            buildPrintStyle();
+            window.print();
+            document.body.innerHTML = originalContent;
+            document.title = originalTitle;
+            document.head.querySelector('#printStyle')?.remove();
+        }
+
+        function printSelected() {
+            var checkboxes = document.querySelectorAll('table input[type="checkbox"]:checked');
+            if (checkboxes.length === 0) { alert('Nema označenih stavki.'); return; }
+
+            var originalContent = document.body.innerHTML;
+            var originalTitle = document.title;
+            document.title = 'Označene stavke - ' + new Date().toLocaleString('sr-RS');
+
+            var summaryHTML = buildPrintHeader('Označene stavke') +
+                '<table>' +
+                '<thead>' +
+                '<tr>' +
+                '<th>ID protokola</th>' +
+                '<th>Stranka</th>' +
+                '<th>Fajl</th>' +
+                '<th>Status</th>' +
+                '<th>Datum</th>' +
+                '</tr>' +
+                '</thead><tbody>';
+
+            checkboxes.forEach(cb => {
+                var row = cb.closest('tr');
+                var id = cb.value || '-';
+                var user = row.cells[3]?.textContent.trim() || '-';
+                var fileCell = row.cells[5];
+                var file = '-';
+                if (fileCell && fileCell.querySelector('div.fw-medium')) {
+                    file = fileCell.querySelector('div.fw-medium').textContent.trim();
+                }
+                var status = row.cells[8]?.textContent.trim() || '-';
+                var date = row.cells[2]?.textContent.trim() || '-';
+
+                summaryHTML += '<tr>' +
+                    '<td>' + id + '</td>' +
+                    '<td>' + user + '</td>' +
+                    '<td>' + file + '</td>' +
+                    '<td>' + status + '</td>' +
+                    '<td>' + date + '</td>' +
+                    '</tr>';
+            });
+
+            summaryHTML += '</tbody></table><div style="margin-top:30px;text-align:center;font-size:12px;color:#888;">Označene stavke - Stranica 1</div>';
+
+            document.body.innerHTML = summaryHTML;
+            buildPrintStyle();
+            window.print();
+            document.body.innerHTML = originalContent;
+            document.title = originalTitle;
+            document.head.querySelector('#printStyle')?.remove();
+        }
+
+    </script>
+}
+@functions {
+    private string GetFileIcon(string extension)
+    {
+        return extension.ToLower() switch
+        {
+            ".pdf" => "bi-file-earmark-pdf",
+            ".doc" or ".docx" => "bi-file-earmark-word",
+            ".xls" or ".xlsx" => "bi-file-earmark-excel",
+            ".ppt" or ".pptx" => "bi-file-earmark-ppt",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" => "bi-file-earmark-image",
+            ".mp3" or ".wav" or ".ogg" => "bi-file-earmark-music",
+            ".mp4" or ".mov" or ".avi" => "bi-file-earmark-play",
+            ".zip" or ".rar" or ".7z" => "bi-file-earmark-zip",
+            _ => "bi-file-earmark"
+        };
+    }
+
+    private string GetFileIconClass(string extension)
+    {
+        return extension.ToLower() switch
+        {
+            ".pdf" => "text-danger",
+            ".doc" or ".docx" => "text-primary",
+            ".xls" or ".xlsx" => "text-success",
+            ".ppt" or ".pptx" => "text-warning",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" => "text-info",
+            ".mp3" or ".wav" or ".ogg" => "text-secondary",
+            ".mp4" or ".mov" or ".avi" => "text-primary",
+            ".zip" or ".rar" or ".7z" => "text-warning",
+            _ => "text-secondary"
+        };
+    }
+
+    private string FormatFileSize(long bytes)
+    {
+        string[] sizes = { "B", "KB", "MB", "GB" };
+        int order = 0;
+        double len = bytes;
+        while (len >= 1024 && order < sizes.Length - 1)
+        {
+            order++;
+            len = len / 1024;
+        }
+        return $"{len:0.##} {sizes[order]}";
+    }
+
+    private string GetStatusBadgeClass(ePisarnica.Models.DocumentStatus status)
+    {
+        return status switch
+        {
+            ePisarnica.Models.DocumentStatus.Zaprimljeno => "bg-info",
+            ePisarnica.Models.DocumentStatus.Uvid => "bg-warning",
+            ePisarnica.Models.DocumentStatus.UObradi => "bg-primary",
+            ePisarnica.Models.DocumentStatus.NaDopuni => "bg-secondary",
+            ePisarnica.Models.DocumentStatus.Recenzija => "bg-dark",
+            ePisarnica.Models.DocumentStatus.Odobreno => "bg-success",
+            ePisarnica.Models.DocumentStatus.Odbijeno => "bg-danger",
+            ePisarnica.Models.DocumentStatus.Arhivirano => "bg-light text-dark",
+            ePisarnica.Models.DocumentStatus.IsTrashed => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+
+    private string GetStatusDisplayName(ePisarnica.Models.DocumentStatus status)
+    {
+        return status switch
+        {
+            ePisarnica.Models.DocumentStatus.Zaprimljeno => "Zaprimljeno",
+            ePisarnica.Models.DocumentStatus.Uvid => "Na uvidu",
+            ePisarnica.Models.DocumentStatus.UObradi => "U obradi",
+            ePisarnica.Models.DocumentStatus.NaDopuni => "Na dopuni",
+            ePisarnica.Models.DocumentStatus.Recenzija => "Recenzija",
+            ePisarnica.Models.DocumentStatus.Odobreno => "Odobreno",
+            ePisarnica.Models.DocumentStatus.Odbijeno => "Odbijeno",
+            ePisarnica.Models.DocumentStatus.Arhivirano => "Arhivirano",
+            ePisarnica.Models.DocumentStatus.IsTrashed => "Obrisano",
+            _ => status.ToString()
+        };
+    }
+}

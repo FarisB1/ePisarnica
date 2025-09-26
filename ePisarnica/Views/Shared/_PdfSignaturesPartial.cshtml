@@ -1,0 +1,68 @@
+﻿@using ePisarnica.Services
+@model List<PDFSignatureInfo>
+
+@if (Model != null && Model.Any())
+{
+    <div class="card mt-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">
+                <i class="fas fa-file-signature"></i> Digitalni potpisi u PDF-u
+                <span class="badge bg-light text-dark">@Model.Count</span>
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>Naziv potpisa</th>
+                            <th>Potpisnik</th>
+                            <th>Datum potpisa</th>
+                            <th>Razlog</th>
+                            <th>Lokacija</th>
+                            <th>Status</th>
+                            <th>Certifikat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var signature in Model.OrderByDescending(s => s.SigningTime))
+                        {
+                            <tr class="@(signature.IsValid ? "table-success" : "table-danger")">
+                                <td>@signature.SignatureName</td>
+                                <td>@signature.SignerName</td>
+                                <td>@signature.SigningTime.ToString("dd.MM.yyyy HH:mm")</td>
+                                <td>@signature.Reason</td>
+                                <td>@signature.Location</td>
+                                <td>
+                                    @if (signature.IsValid)
+                                    {
+                                        <span class="badge bg-success">Valjan</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Nevaljan</span>
+                                        @if (!string.IsNullOrEmpty(signature.Error))
+                                        {
+                                            <br />
+
+                                            <small class="text-muted">@signature.Error</small>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <small class="text-muted">@signature.CertificateSubject</small>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info mt-4">
+        <i class="fas fa-info-circle"></i> PDF dokument ne sadrži digitalne potpise.
+    </div>
+}

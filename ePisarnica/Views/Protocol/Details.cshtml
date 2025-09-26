@@ -1,0 +1,1788 @@
+﻿@using ePisarnica.Services
+@model ePisarnica.Models.ProtocolEntry
+
+<div class="row">
+    <div class="col-lg-8 col-12 mb-3 mb-lg-0">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+                <h4 class="mb-2 mb-sm-0">
+                    <i class="bi bi-journal-text"></i> Protokol #@Model.BrojProtokola
+                </h4>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-arrow-left"></i> <span class="d-none d-sm-inline">Nazad na listu</span>
+                    </a>
+                    @if (Model.Document != null)
+                    {
+                        <a asp-controller="FileManager" asp-action="DownloadFile" asp-route-id="@Model.Document.Id"
+                           class="btn btn-primary btn-sm">
+                            <i class="bi bi-download"></i> <span class="d-none d-sm-inline">Preuzmi fajl</span>
+                        </a>
+                    }
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Basic Information -->
+                <div class="row mb-4">
+                    <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                        <h6 class="text-muted">Datum unosa</h6>
+                        <p class="fs-6 fs-sm-5">@Model.Datum.ToString("dd.MM.yyyy HH:mm")</p>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h6 class="text-muted">Stranka</h6>
+                        <p class="fs-6 fs-sm-5 fw-semibold">@Model.Stranka</p>
+                    </div>
+                </div>
+
+                <!-- Additional Protocol Information -->
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <h6 class="text-muted">Primalac</h6>
+                        <p class="fs-6">@(string.IsNullOrEmpty(Model.Primalac) ? "Nije uneseno" : Model.Primalac)</p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6 class="text-muted">Dostavio</h6>
+                        <p class="fs-6">@(string.IsNullOrEmpty(Model.Dostavio) ? "Nije uneseno" : Model.Dostavio)</p>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <h6 class="text-muted">Hitnost</h6>
+                        <span class="badge @GetUrgencyBadge(Model.Hitno)">
+                            @(string.IsNullOrEmpty(Model.Hitno) ? "Normalno" : Model.Hitno)
+                        </span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6 class="text-muted">Vrsta postupka</h6>
+                        <p class="fs-6">@(string.IsNullOrEmpty(Model.VrstaPostupka) ? "Nije odabrano" : Model.VrstaPostupka)</p>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <h6 class="text-muted">Adresa</h6>
+                        <p class="fs-6">@(string.IsNullOrEmpty(Model.Adresa) ? "Nije uneseno" : Model.Adresa)</p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6 class="text-muted">Kontakt</h6>
+                        <p class="fs-6">
+                            @if (!string.IsNullOrEmpty(Model.Telefon) || !string.IsNullOrEmpty(Model.Email))
+                            {
+                                @if (!string.IsNullOrEmpty(Model.Telefon))
+                                {
+                                    <span>@Model.Telefon</span>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Telefon) && !string.IsNullOrEmpty(Model.Email))
+                                {
+                                    <br />
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Email))
+                                {
+                                    <a href="mailto:@Model.Email">@Model.Email</a>
+                                }
+                            }
+                            else
+                            {
+                                <span>Nije uneseno</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Deadlines -->
+                <div class="row mb-4">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <h6 class="text-muted">Rok za odgovor</h6>
+                        <p class="fs-6 @GetDeadlineClass(Model.RokZaOdgovor)">
+                            @(Model.RokZaOdgovor?.ToString("dd.MM.yyyy") ?? "Nije postavljen")
+                            @if (Model.RokZaOdgovor.HasValue && Model.RokZaOdgovor.Value < DateTime.Now)
+                            {
+                                <span class="badge bg-danger ms-2">Istekao</span>
+                            }
+                            else if (Model.RokZaOdgovor.HasValue && Model.RokZaOdgovor.Value < DateTime.Now.AddDays(3))
+                            {
+                                <span class="badge bg-warning ms-2">Uskoro</span>
+                            }
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h6 class="text-muted">Preostalo vrijeme</h6>
+                        <p class="fs-6">
+                            @if (Model.RokZaOdgovor.HasValue)
+                            {
+                                var timeLeft = Model.RokZaOdgovor.Value - DateTime.Now;
+                                if (timeLeft.TotalDays > 0)
+                                {
+                                    <span>@Math.Ceiling(timeLeft.TotalDays) dana</span>
+                                }
+                                else if (timeLeft.TotalHours > 0)
+                                {
+                                    <span>@Math.Ceiling(timeLeft.TotalHours) sati</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">Rok je istekao</span>
+                                }
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.Napomena))
+                {
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h6 class="text-muted">Napomena</h6>
+                            <div class="p-3 bg-light rounded napomena-content">
+                                @Html.Raw(Model.Napomena.Replace("\n", "<br/>"))
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <!-- File Information with Edit Options -->
+                @if (Model.Document != null)
+                {
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                                <h6 class="text-muted mb-2 mb-sm-0">Informacije o fajlu</h6>
+                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editFileModal">
+                                    <i class="bi bi-pencil"></i> <span class="d-none d-sm-inline">Uredi fajl</span>
+                                </button>
+                            </div>
+
+                            <div class="card border-start border-secondary border-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 col-sm-auto text-center text-sm-start mb-3 mb-sm-0">
+                                            <i class="@GetFileIcon(Model.Document.FileExtension) @GetFileIconClass(Model.Document.FileExtension) file-icon-mobile"></i>
+                                        </div>
+                                        <div class="col-12 col-sm">
+                                            <h5 class="mb-1 text-break">@Model.Document.Title</h5>
+                                            <p class="text-muted mb-1 text-break">@Model.Document.FileName</p>
+                                            <div class="d-flex gap-2 flex-wrap">
+                                                <span class="badge bg-secondary">@Model.Document.FileType</span>
+                                                <span class="badge @GetStatusBadgeClass(Model.Document.Status)" id="currentStatus">
+                                                    @GetStatusDisplayName(Model.Document.Status)
+                                                </span>
+                                                <small class="text-muted">@FormatFileSize(Model.Document.FileSize)</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-auto mt-3 mt-sm-0">
+                                            <div class="d-grid gap-2 d-sm-block">
+                                                <a asp-controller="FileManager" asp-action="ViewFile" asp-route-id="@Model.Document.Id"
+                                                   class="btn btn-outline-secondary btn-sm w-100 w-sm-auto" target="_blank">
+                                                    <i class="bi bi-eye"></i> Pregledaj
+                                                </a>
+                                                <a asp-controller="FileManager" asp-action="DownloadFile" asp-route-id="@Model.Document.Id"
+                                                   class="btn btn-outline-primary btn-sm w-100 w-sm-auto">
+                                                    <i class="bi bi-download"></i> Preuzmi
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="my-3">
+
+                                    <div class="row text-sm">
+                                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                            <small class="text-muted">Kreirano: @Model.Document.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <small class="text-muted">Modificirano: @Model.Document.ModifiedAt.ToString("dd.MM.yyyy HH:mm")</small>
+                                        </div>
+                                        @if (Model.Document.IsTrashed)
+                                        {
+                                            <div class="col-12 mt-1">
+                                                <small class="text-danger">
+                                                    <i class="bi bi-exclamation-triangle"></i>
+                                                    Fajl je premješten u korpu @Model.Document.TrashedAt?.ToString("dd.MM.yyyy HH:mm")
+                                                </small>
+                                            </div>
+                                        }
+                                        @if (Model.Document.IsShared)
+                                        {
+                                            <div class="col-12 mt-1">
+                                                <small class="text-info">
+                                                    <i class="bi bi-share"></i> Fajl je podijeljen
+                                                </small>
+                                            </div>
+                                        }
+                                        @if (Model.Document.Folder != null)
+                                        {
+                                            <div class="col-12 mt-1">
+                                                <small class="text-muted">
+                                                    <i class="bi bi-folder"></i> Folder: @Model.Document.Folder.Name
+                                                </small>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle"></i>
+                                Ovaj protokol nema povezan fajl.
+                                <a href="#" class="alert-link" data-bs-toggle="modal" data-bs-target="#addFileModal">Dodaj fajl</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <!-- Protocol Actions -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-grid gap-2 d-sm-flex flex-wrap">
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+                                <i class="bi bi-pencil"></i> Uredi protokol
+                            </a>
+                            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addNoteModal">
+                                <i class="bi bi-chat"></i> Dodaj napomenu
+                            </button>
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="bi bi-trash"></i> Obriši
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-12">
+        <!-- QR Code Card -->
+        @if (!string.IsNullOrEmpty(Model.QrCodePath))
+        {
+            <div class="card mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">QR kod</h6>
+                    <div>
+                        <button class="btn btn-sm btn-outline-primary" onclick="enlargeQrCode()">
+                            <i class="bi bi-zoom-in"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body text-center">
+                    <img src="@Model.QrCodePath"
+                         class="img-fluid qr-code-image"
+                         alt="QR Code"
+                         id="qrCodeImage"
+                         onclick="enlargeQrCode()"
+                         title="Klikni za uvećanje"
+                         data-protocol="@Html.Encode(Model.BrojProtokola)"
+                         data-stranka="@Html.Encode(Model.Stranka)"
+                         data-datum="@Html.Encode(Model.Datum.ToString("dd.MM.yyyy"))"
+                         data-primalac="@Html.Encode(Model.Primalac ?? "")" />
+                    <p class="small text-muted mt-2">
+                        Protokol: @Model.BrojProtokola<br>
+                        Stranka: @Model.Stranka<br>
+                        Datum: @Model.Datum.ToString("dd.MM.yyyy")
+                    </p>
+                </div>
+            </div>
+        }
+
+        <!-- Status History Card -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <h6 class="mb-0">Historija statusa</h6>
+            </div>
+            <div class="card-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <h6 class="mb-1 fs-7">Protokol kreiran</h6>
+                            <small class="text-muted">@Model.Datum.ToString("dd.MM.yyyy HH:mm")</small>
+                        </div>
+                    </div>
+                    @if (Model.Document != null)
+                    {
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-info"></div>
+                            <div class="timeline-content">
+                                <h6 class="mb-1 fs-7">Fajl povezan</h6>
+                                <small class="text-muted">@Model.Document.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small>
+                                <p class="mb-0 small">Status: @GetStatusDisplayName(Model.Document.Status)</p>
+                            </div>
+                        </div>
+
+                        @if (Model.Document.ModifiedAt > Model.Document.CreatedAt.AddMinutes(1))
+                        {
+                            <div class="timeline-item">
+                                <div class="timeline-marker bg-warning"></div>
+                                <div class="timeline-content">
+                                    <h6 class="mb-1 fs-7">Fajl modificiran</h6>
+                                    <small class="text-muted">@Model.Document.ModifiedAt.ToString("dd.MM.yyyy HH:mm")</small>
+                                </div>
+                            </div>
+                        }
+
+                        @if (Model.Document.IsTrashed && Model.Document.TrashedAt.HasValue)
+                        {
+                            <div class="timeline-item">
+                                <div class="timeline-marker bg-danger"></div>
+                                <div class="timeline-content">
+                                    <h6 class="mb-1 fs-7">Fajl obrisan</h6>
+                                    <small class="text-muted">@Model.Document.TrashedAt.Value.ToString("dd.MM.yyyy HH:mm")</small>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Card -->
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">Brze akcije</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="mailto:@Model.Email?subject=Protokol @Model.BrojProtokola - @Model.Stranka"
+                       class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-envelope"></i> Pošalji email
+                    </a>
+                    <button class="btn btn-outline-primary btn-sm" onclick="copyProtocolInfo()">
+                        <i class="bi bi-clipboard"></i> Kopiraj informacije
+                    </button>
+                    <a href="@Url.Action("Print", new { id = Model.Id })" class="btn btn-outline-secondary btn-sm" target="_blank">
+                        <i class="bi bi-printer"></i> Štampaj
+                    </a>
+
+                    <!-- Quick Status Change -->
+                    @if (Model.Document != null)
+                    {
+                        <div class="mt-3">
+                            <label class="form-label fw-semibold small">Promijeni status:</label>
+                            <select class="form-select form-select-sm" id="quickStatusChange" onchange="updateDocumentStatus(this.value)">
+                                <option value="">Izaberi status...</option>
+                                @foreach (var status in Enum.GetValues<DocumentStatus>())
+                                {
+                                    <option value="@status" selected="@(Model.Document?.Status == status)">
+                                        @GetStatusDisplayName(status)
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Combined Digital Signatures Panel -->
+<div class="card mt-4">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center flex-wrap">
+        <h5 class="mb-2 mb-sm-0">
+            <i class="fas fa-signature"></i> Digitalni Potpisi
+        </h5>
+        @if (ViewBag.HasPdfDigitalSignature != true)
+        {
+            <button class="btn btn-sm btn-primary" id="addSignatureBtn">
+                <i class="fas fa-plus"></i> <span class="d-sm-inline">Dodaj potpis</span>
+            </button>
+        }
+    </div>
+    <div class="card-body">
+        <div id="signaturesLoading" class="text-center py-3">
+            <div class="spinner-border text-primary" role="status"></div>
+        </div>
+
+        <div id="signaturesContainer" class="d-none">
+            <!-- PDF embedded signatures section -->
+            <div id="pdfSignatures">
+                @if (ViewBag.HasPdfDigitalSignature != null)
+                {
+                    <div class="@((ViewBag.HasPdfDigitalSignature as bool?) == true ? "alert alert-success" : "alert alert-secondary")">
+                        <i class="fas fa-file-pdf"></i>
+                        @((ViewBag.HasPdfDigitalSignature as bool?) == true ? "PDF dokument sadrži potpise" : "PDF dokument nema potpisa")
+                    </div>
+
+                    @if (ViewBag.PdfSignatureInfo is List<PDFSignatureInfo> pdfSignatures && pdfSignatures.Any())
+                    {
+                        <div class="pdf-signatures-container">
+                            @await Html.PartialAsync("_PdfSignaturesPartial", pdfSignatures)
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-secondary">
+                        <i class="fas fa-info-circle"></i> Informacije o PDF potpisima nisu dostupne.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit File Modal -->
+<div class="modal fade" id="editFileModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Uredi fajl</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editFileForm">
+                    <input type="hidden" name="ProtocolId" value="@Model.Id" />
+                    <input type="hidden" name="DocumentId" value="@Model.Document?.Id" />
+
+                    <div class="mb-3">
+                        <label class="form-label">Naziv fajla</label>
+                        <input type="text" class="form-control" name="FileName"
+                               value="@Model.Document?.Title" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" name="Status" required>
+                            <option value="">Odaberite status</option>
+                            @foreach (var status in Enum.GetValues<DocumentStatus>())
+                            {
+                                <option value="@status" selected="@(Model.Document?.Status == status)">
+                                    @GetStatusDisplayName(status)
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Napomena za fajl</label>
+                        <textarea class="form-control" name="FileNote" rows="3"
+                                  placeholder="Dodatne napomene o fajlu..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+                <button type="button" class="btn btn-primary" onclick="updateFile()">Sačuvaj</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Note Modal -->
+<div class="modal fade" id="addNoteModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Dodaj napomenu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addNoteForm">
+                    <input type="hidden" name="ProtocolId" value="@Model.Id" />
+                    <div class="mb-3">
+                        <label class="form-label">Nova napomena</label>
+                        <textarea class="form-control" name="Note" rows="4"
+                                  placeholder="Unesite novu napomenu..." required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+                <button type="button" class="btn btn-primary" onclick="addNote()">Dodaj</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Obriši protokol</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Da li ste sigurni da želite da obrišete protokol #@Model.BrojProtokola?</p>
+                <p class="text-danger"><small>Ova akcija je trajna i ne može se poništiti.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <button type="submit" class="btn btn-danger">Obriši</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- QR Code Enlarge Modal -->
+<div class="modal fade" id="qrEnlargeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">QR kod - Protokol @Model.BrojProtokola</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="@Model.QrCodePath" class="img-fluid" alt="QR Code" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                <button type="button" class="btn btn-primary" onclick="printQrCode()">
+                    <i class="bi bi-printer"></i> Štampaj
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Signature Modal -->
+<div class="modal fade" id="signatureModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Digitalni Potpis</h5>
+                <!-- Fixed close button for Bootstrap 5 -->
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-3 mb-md-0">
+                        <div class="form-group">
+                            <label>Razlog potpisivanja:</label>
+                            <input type="text" id="signatureReason" class="form-control" placeholder="Npr. Odobrenje dokumenta">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Lokacija:</label>
+                            <input type="text" id="signatureLocation" class="form-control" placeholder="Npr. Sarajevo, BiH">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label>Potpis:</label>
+                    <div id="signaturePad" class="signature-pad">
+                        <canvas class="signature-canvas"></canvas>
+                        <div class="signature-pad-actions mt-2">
+                            <button type="button" class="btn btn-secondary btn-sm" id="clearSignature">
+                                <i class="fas fa-eraser"></i> Obriši
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="signatureError" class="alert alert-danger d-none"></div>
+            </div>
+            <div class="modal-footer">
+                <!-- Fixed close button for Bootstrap 5 -->
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+                <button type="button" class="btn btn-primary" id="saveSignature">
+                    <i class="fas fa-signature"></i> Potpiši dokument
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="notification-container"></div>
+
+    @section Scripts {
+        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+        <script>
+            // Provjera da li je SignaturePad učitana
+            console.log("SignaturePad loaded:", typeof SignaturePad !== 'undefined');
+
+            $(document).ready(function() {
+                // Initialize signatures system
+                initSignatures(@Model.DocumentId);
+
+                // Adjust canvas size on mobile
+                if (window.innerWidth <= 576) {
+                    adjustMobileCanvas();
+                }
+            });
+
+            // Adjust canvas for mobile devices
+            function adjustMobileCanvas() {
+                const canvas = document.querySelector("#signaturePad canvas");
+                if (canvas) {
+                    const container = canvas.parentElement;
+                    canvas.width = container.offsetWidth - 20;
+                    canvas.height = 150;
+                }
+            }
+
+            // Handle orientation change on mobile
+            window.addEventListener('orientationchange', function() {
+                setTimeout(adjustMobileCanvas, 200);
+            });
+
+            function enlargeQrCode() {
+                $('#qrEnlargeModal').modal('show');
+            }
+
+            // Quick status change function
+            function updateDocumentStatus(newStatus) {
+                if (!newStatus) return;
+
+                if (!confirm('Da li ste sigurni da želite promijeniti status dokumenta?')) {
+                    document.getElementById('quickStatusChange').value = '';
+                    return;
+                }
+
+                const payload = {
+                    ProtocolId: @Model.Id,
+                    NewStatus: newStatus
+                };
+
+                console.log("📤 Sending payload to UpdateDocumentStatus:", payload);
+
+                fetch('@Url.Action("UpdateDocumentStatus", "Protocol")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => {
+                    console.log("📥 Raw response:", response);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("📥 Parsed response JSON:", data);
+                    if (data.success) {
+                        showToast('Uspješno', 'Status dokumenta je ažuriran', 'success');
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        showToast('Greška', data.message, 'error');
+                        document.getElementById('quickStatusChange').value = '';
+                    }
+                })
+                .catch(error => {
+                    console.error('🔥 Fetch error:', error);
+                    showToast('Greška', 'Došlo je do greške', 'error');
+                    document.getElementById('quickStatusChange').value = '';
+                });
+            }
+
+            function updateFile() {
+                const formData = new FormData(document.getElementById('editFileForm'));
+
+                fetch('@Url.Action("UpdateFile", "Protocol")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ProtocolId: formData.get('ProtocolId'),
+                        DocumentId: formData.get('DocumentId'),
+                        NewStatus: formData.get('Status'),
+                        FileName: formData.get('FileName'),
+                        FileNote: formData.get('FileNote')
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        $('#editFileModal').modal('hide');
+                        showToast('Uspješno', 'Fajl je ažuriran', 'success');
+                        // Refresh page after 1 second
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        showToast('Greška', data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    showToast('Greška', 'Došlo je do greške', 'error');
+                });
+            }
+
+            function addNote() {
+                const formData = new FormData(document.getElementById('addNoteForm'));
+
+                fetch('@Url.Action("AddProtocolNote", "Protocol")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ProtocolId: formData.get('ProtocolId'),
+                        Note: formData.get('Note')
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        $('#addNoteModal').modal('hide');
+                        showToast('Uspješno', 'Napomena je dodana', 'success');
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        showToast('Greška', data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    showToast('Greška', 'Došlo je do greške', 'error');
+                });
+            }
+
+            function copyProtocolInfo() {
+                fetch('@Url.Action("GetProtocolInfo", "Protocol", new { id = Model.Id })', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        const protocol = data.protocol;
+                        const protocolInfo = `
+            Protokol: #${protocol.brojProtokola}
+            Stranka: ${protocol.stranka}
+            Datum: ${protocol.datum}
+            Primalac: ${protocol.primalac}
+            Status: ${protocol.status}
+                        `.trim();
+
+                        navigator.clipboard.writeText(protocolInfo).then(() => {
+                            showToast('Kopirano', 'Informacije su kopirane', 'success');
+                        }, (err) => {
+                            showToast('Greška', 'Nije moguće kopirati: ' + err, 'error');
+                        });
+                    } else {
+                        showToast('Greška', data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showToast('Greška', 'Došlo je do greške: ' + error.message, 'error');
+                });
+            }
+
+            function showToast(title, message, type) {
+                // Simple toast implementation with mobile adjustments
+                const toast = document.createElement('div');
+                const isMobile = window.innerWidth <= 576;
+
+                if (isMobile) {
+                    toast.style = `position: fixed; bottom: 10px; left: 10px; right: 10px; z-index: 9999;`;
+                } else {
+                    toast.style = `position: fixed; bottom: 20px; left: 20px; z-index: 9999;`;
+                }
+
+                toast.className = `toast align-items-center text-white bg-${type} border-0`;
+                toast.innerHTML = `
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <strong>${title}</strong><br>${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                `;
+
+                document.body.appendChild(toast);
+                const bsToast = new bootstrap.Toast(toast);
+                bsToast.show();
+
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 3000);
+            }
+
+            // Auto-refresh deadline countdown every minute
+            setInterval(() => {
+                const deadlineElement = document.querySelector('.text-deadline-close, .text-deadline-passed, .text-deadline-normal');
+                if (deadlineElement) {
+                    const event = new Event('deadlineUpdate');
+                    document.dispatchEvent(event);
+                }
+            }, 60000);
+
+            // Global variables
+            let currentProtocolId = null;
+            let currentAssignmentId = null;
+            let currentDocumentId = null;
+            let signaturePad = null;
+
+            function getPriorityBadgeClass(priority) {
+                switch (priority) {
+                    case 'Nizak': return 'success';
+                    case 'Srednji': return 'warning';
+                    case 'Visok': return 'primary';
+                    case 'Hitno': return 'danger';
+                    default: return 'secondary';
+                }
+            }
+
+            function getStatusBadgeClass(status) {
+                switch (status) {
+                    case 'Aktivno': return 'primary';
+                    case 'Završeno': return 'success';
+                    case 'Otkazano': return 'danger';
+                    default: return 'secondary';
+                }
+            }
+
+            // Initialize signature system
+            function initSignatures(documentId) {
+                console.log("Initializing signatures for document:", documentId);
+                currentDocumentId = documentId;
+
+                // Initialize signature pad immediately
+                initSignaturePad();
+
+                // Event listeners
+                const addButton = document.getElementById('addSignatureBtn');
+                if (addButton) {
+                    addButton.addEventListener('click', openSignatureModal);
+                }
+
+                const saveButton = document.getElementById('saveSignature');
+                if (saveButton) {
+                    saveButton.addEventListener('click', saveSignature);
+                }
+
+                const clearButton = document.getElementById('clearSignature');
+                if (clearButton) {
+                    clearButton.addEventListener('click', clearSignature);
+                }
+
+                loadSignatures(documentId);
+            }
+
+            // Create signature card HTML
+            function createSignatureCard(signature) {
+                const card = document.createElement('div');
+                card.className = `card signature-card ${signature.isValid ? 'valid' : 'invalid'}`;
+
+                const signedDate = new Date(signature.signedAt).toLocaleDateString('hr-HR');
+
+                const username = signature.user?.username || signature.username || 'Nepoznat korisnik';
+                const email = signature.user?.email || signature.email || '';
+
+                const isOverdue = signature.rok && new Date(signature.rok) < new Date();
+                const deadlineClass = isOverdue ? 'deadline-warning' : 'text-muted';
+
+                card.innerHTML = `
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap">
+                            <div class="mb-2 mb-sm-0">
+                                <h6 class="card-title mb-1">
+                                    ${signature.username}
+                                </h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    Potpisano: ${signature.signedAt}
+                                </small>
+                            </div>
+                            <div>
+                                <span class="badge badge-${signature.isValid ? 'success' : 'danger'}">
+                                    ${signature.isValid ? 'Valjan' : 'Nevaljan'}
+                                </span>
+                                <button class="btn btn-sm btn-outline-danger ml-2" onclick="deleteSignature(${signature.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <img src="${signature.signatureData}" alt="Potpis" class="signature-image">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                <small><strong>Razlog:</strong> ${signature.reason || 'Nije navedeno'}</small>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <small><strong>Lokacija:</strong> ${signature.location || 'Nije navedeno'}</small>
+                            </div>
+                        </div>
+
+                        ${signature.validatedAt ? `
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                <i class="fas fa-check-circle"></i>
+                                Verificirano: ${new Date(signature.validatedAt).toLocaleDateString('hr-HR')}
+                            </small>
+                        </div>
+                        ` : `
+                        <div class="mt-2">
+                            <button class="btn btn-sm btn-outline-primary mr-2" onclick="validateSignature(${signature.id})">
+                                <i class="fas fa-check"></i> Verificiraj potpis
+                            </button>
+                        </div>
+                        `}
+                    </div>
+                `;
+
+                return card;
+            }
+
+            // Validate signature
+            async function validateSignature(signatureId) {
+                try {
+                    console.log("Validating signature:", signatureId);
+
+                    const response = await fetch(`/api/DigitalSignature/Validate/${signatureId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': getAntiForgeryToken()
+                        },
+                        body: JSON.stringify({})
+                    });
+
+                    const result = await response.json();
+                    console.log("Validation result:", result);
+
+                    if (response.ok) {
+                        showToast('Uspjeh', result.message || 'Potpis je valjan!', 'success');
+                        loadSignatures(currentDocumentId);
+                    } else {
+                        showError(result.message || 'Greška pri validaciji potpisa');
+                    }
+                } catch (error) {
+                    console.error('Error validating signature:', error);
+                    showError('Greška pri validaciji potpisa');
+                }
+            }
+
+            // Delete signature function
+            async function deleteSignature(signatureId) {
+                if (!confirm('Jeste li sigurni da želite obrisati ovaj potpis? Ova akcija je trajna.')) {
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`/api/DigitalSignature/${signatureId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'RequestVerificationToken': getAntiForgeryToken()
+                        }
+                    });
+
+                    if (response.ok) {
+                        showToast('Uspjeh', 'Potpis uspješno obrisan!', 'success');
+                        loadSignatures(currentDocumentId);
+                    } else {
+                        const result = await response.json();
+                        showError(result.message || 'Greška pri brisanju potpisa');
+                    }
+                } catch (error) {
+                    console.error('Error deleting signature:', error);
+                    showError('Greška pri brisanju potpisa');
+                }
+            }
+
+            // Initialize signature pad with mobile support
+            function initSignaturePad() {
+                const canvas = document.querySelector("#signaturePad canvas");
+                if (!canvas) {
+                    console.error("Canvas element not found!");
+                    return;
+                }
+
+                // Clear any existing signature pad
+                if (signaturePad) {
+                    signaturePad.off();
+                    signaturePad = null;
+                }
+
+                // Create new signature pad
+                signaturePad = new SignaturePad(canvas, {
+                    minWidth: 1,
+                    maxWidth: 3,
+                    penColor: "rgb(0, 0, 0)",
+                    backgroundColor: "rgb(255, 255, 255)"
+                });
+
+                // Resize canvas
+                resizeCanvas();
+
+                // Add resize listener
+                window.addEventListener("resize", resizeCanvas);
+
+                // Touch event handling for mobile
+                if ('ontouchstart' in window) {
+                    canvas.style.touchAction = 'none';
+                }
+
+                console.log("SignaturePad initialized successfully");
+            }
+
+            function resizeCanvas() {
+                const canvas = document.querySelector("#signaturePad canvas");
+                if (!canvas || !signaturePad) return;
+
+                const ratio = Math.max(window.devicePixelRatio || 1, 1);
+                const container = canvas.parentElement;
+
+                // Save current signature
+                const data = signaturePad.toData();
+
+                // Adjust canvas size based on screen width
+                if (window.innerWidth <= 576) {
+                    canvas.width = (container.offsetWidth - 20) * ratio;
+                    canvas.height = 150 * ratio;
+                } else {
+                    canvas.width = canvas.offsetWidth * ratio;
+                    canvas.height = canvas.offsetHeight * ratio;
+                }
+
+                canvas.getContext("2d").scale(ratio, ratio);
+
+                // Restore signature
+                signaturePad.fromData(data);
+            }
+
+            // Open signature modal
+                    function openSignatureModal() {
+            console.log("Opening signature modal");
+
+            // Reset form
+            document.getElementById('signatureReason').value = '';
+            document.getElementById('signatureLocation').value = '';
+
+            // Clear signature pad
+            clearSignature();
+
+            // Hide error
+            document.getElementById('signatureError').classList.add('d-none');
+
+            // Re-initialize signature pad to ensure it's working
+            setTimeout(() => {
+                initSignaturePad();
+            }, 100);
+
+            // Show modal using Bootstrap 5 syntax
+            const modal = new bootstrap.Modal(document.getElementById('signatureModal'));
+            modal.show();
+        }
+            // Clear signature
+            function clearSignature() {
+                if (signaturePad) {
+                    signaturePad.clear();
+                    console.log("Signature cleared");
+                }
+            }
+
+            // Save signature
+                    async function saveSignature() {
+            console.log("Saving signature and signing PDF...");
+
+            const reason = document.getElementById('signatureReason').value;
+            const location = document.getElementById('signatureLocation').value;
+
+            if (!signaturePad || signaturePad.isEmpty()) {
+                showSignatureError('Molimo dodajte svoj potpis');
+                return;
+            }
+
+            if (!reason) {
+                showSignatureError('Molimo navedite razlog potpisivanja');
+                return;
+            }
+
+            try {
+                const signatureData = signaturePad.toDataURL();
+
+                const response = await fetch('/api/DigitalSignature/SignPdf', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': getAntiForgeryToken()
+                    },
+                    body: JSON.stringify({
+                        documentId: currentDocumentId,
+                        signatureData: signatureData,
+                        reason: reason,
+                        location: location
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showToast('Uspješno', 'Dokument je uspješno potpisan', 'success');
+
+                    // Hide modal using Bootstrap 5 syntax
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('signatureModal'));
+                    modal.hide();
+
+                    setTimeout(() => window.location.reload(), 1500);
+                } else {
+                    showSignatureError(result.message || 'Greška pri potpisivanju PDF-a');
+                }
+            } catch (error) {
+                console.error('Error signing PDF:', error);
+                showSignatureError('Greška pri digitalnom potpisivanju dokumenta');
+            }
+        }
+
+            // Get anti-forgery token
+            function getAntiForgeryToken() {
+                const tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+                return tokenElement ? tokenElement.value : '';
+            }
+
+            // Load signatures for document
+            async function loadSignatures(documentId) {
+                try {
+                    showSignaturesLoading(true);
+
+                    const response = await fetch(`/api/DigitalSignature/ForDocument/${documentId}`);
+                    console.log("Response status:", response.status);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const signatures = await response.json();
+                    console.log("Signatures from API:", signatures);
+
+                    if (signatures.length > 0) {
+                        console.log("First signature structure:", signatures[0]);
+                        console.log("User object in first signature:", signatures[0].user);
+                        console.log("Username in first signature:", signatures[0].user?.username);
+                    }
+
+                    displaySignatures(signatures);
+                } catch (error) {
+                    console.error('Error loading signatures:', error);
+                    showError('Greška pri učitavanju potpisa');
+                } finally {
+                    showSignaturesLoading(false);
+                }
+            }
+
+            // Display signatures
+            function displaySignatures(signatures) {
+                const container = document.getElementById('signaturesList');
+                const noSignatures = document.getElementById('noSignatures');
+
+            if (!container || !noSignatures) {
+                console.error("Signature container elements not found!");
+                return;
+            }
+
+            container.innerHTML = '';
+
+            if (!signatures || signatures.length === 0) {
+                noSignatures.classList.remove('d-none');
+                container.classList.add('d-none');
+                return;
+            }
+
+            noSignatures.classList.add('d-none');
+            container.classList.remove('d-none');
+
+            signatures.forEach(signature => {
+                const signatureCard = createSignatureCard(signature);
+                container.appendChild(signatureCard);
+            });
+        }
+
+        // Helper functions
+        function showSignaturesLoading(show) {
+            const loading = document.getElementById('signaturesLoading');
+            const container = document.getElementById('signaturesContainer');
+
+            if (loading && container) {
+                if (show) {
+                    loading.classList.remove('d-none');
+                    container.classList.add('d-none');
+                } else {
+                    loading.classList.add('d-none');
+                    container.classList.remove('d-none');
+                }
+            }
+        }
+
+        function showSignatureError(message) {
+            const errorDiv = document.getElementById('signatureError');
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.classList.remove('d-none');
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ako imate documentId u hidden polju ili data atributima
+            const documentId = getDocumentIdFromPage();
+            if (documentId) {
+                initSignatures(documentId);
+            }
+        });
+
+        // Helper to get document ID
+        function getDocumentIdFromPage() {
+            // Provjerite različite načine kako dobaviti documentId
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id') ||
+                   document.getElementById('DocumentId')?.value ||
+                   document.querySelector('[data-document-id]')?.dataset.documentId;
+        }
+
+
+              function showNotification(message, type) {
+          const container = document.getElementById("notification-container");
+          const notif = document.createElement("div");
+          notif.className = `notification ${type}`;
+          notif.textContent = message;
+
+          container.appendChild(notif);
+
+          // Auto remove after 3s
+          setTimeout(() => {
+            notif.style.animation = "fadeOut 0.5s forwards";
+            notif.addEventListener("animationend", () => notif.remove());
+          }, 3000);
+        }
+
+        function showSuccess(message) {
+          showNotification(message, "success");
+        }
+
+        function showError(message) {
+          showNotification(message, "error");
+        }
+    </script>
+}
+    @section Styles {
+        <style>
+            /* Mobile-first responsive styles */
+            @@media (max-width: 576px) {
+                /* Card headers responsive */
+                .card-header
+
+            {
+                padding: 0.75rem;
+            }
+
+            .card-header h4 {
+                font-size: 1.1rem;
+            }
+
+            .card-header h5 {
+                font-size: 1rem;
+            }
+
+            .card-header h6 {
+                font-size: 0.9rem;
+            }
+
+            /* Button adjustments for mobile */
+            .btn-sm {
+                padding: 0.35rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            /* File icon mobile adjustment */
+            .file-icon-mobile {
+                font-size: 2.5rem !important;
+            }
+
+            /* QR code responsive */
+            .qr-code-image {
+                max-width: 150px;
+                cursor: pointer;
+            }
+
+            /* Timeline adjustments */
+            .timeline {
+                padding-left: 1rem;
+            }
+
+                .timeline::before {
+                    left: 0.3rem;
+                }
+
+            .timeline-marker {
+                left: -1.2rem;
+                width: 0.6rem;
+                height: 0.6rem;
+            }
+
+            .timeline-content h6 {
+                font-size: 0.85rem;
+            }
+
+            .timeline-content small {
+                font-size: 0.75rem;
+            }
+
+            /* Signature pad mobile */
+            .signature-canvas {
+                width: 100% !important;
+                height: 150px !important;
+                touch-action: none;
+            }
+
+            /* Modal fullscreen on mobile */
+            .modal-fullscreen-sm-down .modal-dialog {
+                margin: 0;
+                max-width: 100%;
+                height: 100%;
+            }
+
+            .modal-fullscreen-sm-down .modal-content {
+                height: 100%;
+                border-radius: 0;
+            }
+
+            /* Form adjustments */
+            .form-label {
+                font-size: 0.9rem;
+            }
+
+            .form-control, .form-select {
+                font-size: 0.9rem;
+            }
+
+            /* Badge responsive */
+            .badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.5rem;
+            }
+
+            /* Text breaking for long content */
+            .text-break {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            /* Napomena content box */
+            .napomena-content {
+                font-size: 0.85rem;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+
+            /* Notification positioning for mobile */
+            #notification-container {
+                bottom: 10px !important;
+                left: 10px !important;
+                right: 10px !important;
+                max-width: calc(100% - 20px) !important;
+            }
+
+            .notification {
+                max-width: 100% !important;
+            }
+
+            /* Status dropdown mobile */
+            #quickStatusChange {
+                font-size: 0.85rem;
+            }
+
+            /* Signature card mobile adjustments */
+            .signature-card {
+                margin-bottom: 0.75rem;
+            }
+
+                .signature-card .card-body {
+                    padding: 0.75rem;
+                }
+
+            .signature-image {
+                max-width: 150px;
+                max-height: 60px;
+            }
+
+            /* Font size utilities for mobile */
+            .fs-7 {
+                font-size: 0.875rem !important;
+            }
+
+            .fs-8 {
+                font-size: 0.8rem !important;
+            }
+
+            }
+
+            @@media (min-width: 577px) and (max-width: 768px) {
+                /* Tablet adjustments */
+                .file-icon-mobile
+
+            {
+                font-size: 3rem !important;
+            }
+
+            .qr-code-image {
+                max-width: 180px;
+            }
+
+            .signature-canvas {
+                width: 100% !important;
+                height: 180px !important;
+            }
+
+            }
+
+            /* Original styles (unchanged for desktop) */
+            .signature-pad {
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: #f8f9fa;
+            }
+
+                .signature-pad canvas {
+                    border-bottom: 1px solid #ddd;
+                    width: 100%;
+                    height: 200px;
+                    cursor: crosshair;
+                }
+
+            .signature-card {
+                border-left: 4px solid #007bff;
+                transition: all 0.3s ease;
+                margin-bottom: 1rem;
+            }
+
+                .signature-card.valid {
+                    border-left-color: #28a745;
+                }
+
+                .signature-card.invalid {
+                    border-left-color: #dc3545;
+                }
+
+            .signature-image {
+                max-width: 200px;
+                max-height: 80px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 5px;
+                background: white;
+            }
+
+            /* Delete button styles */
+            .signature-card .btn-outline-danger {
+                opacity: 0.7;
+                transition: opacity 0.3s ease;
+            }
+
+            .signature-card:hover .btn-outline-danger {
+                opacity: 1;
+            }
+
+            .signature-card .btn-outline-danger:hover {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+
+            /* Timeline styles */
+            .timeline {
+                position: relative;
+                padding-left: 1.5rem;
+            }
+
+                .timeline::before {
+                    content: '';
+                    position: absolute;
+                    left: 0.5rem;
+                    top: 0;
+                    bottom: 0;
+                    width: 2px;
+                    background: #dee2e6;
+                }
+
+            .timeline-item {
+                position: relative;
+                margin-bottom: 1.5rem;
+            }
+
+            .timeline-marker {
+                position: absolute;
+                left: -1rem;
+                top: 0.25rem;
+                width: 0.75rem;
+                height: 0.75rem;
+                border-radius: 50%;
+                border: 2px solid white;
+            }
+
+            .timeline-content {
+                padding-left: 1rem;
+            }
+
+            /* Badge styles */
+            .badge-urgency-high {
+                background-color: #dc3545;
+                color: white;
+            }
+
+            .badge-urgency-medium {
+                background-color: #ffc107;
+                color: black;
+            }
+
+            .badge-urgency-low {
+                background-color: #28a745;
+                color: white;
+            }
+
+            /* Deadline text styles */
+            .text-deadline-passed {
+                color: #dc3545;
+                font-weight: bold;
+            }
+
+            .text-deadline-close {
+                color: #ffc107;
+                font-weight: bold;
+            }
+
+            .text-deadline-normal {
+                color: #28a745;
+            }
+
+            /* Notification container */
+            #notification-container {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                z-index: 9999;
+            }
+
+            .notification {
+                padding: 12px 20px;
+                border-radius: 6px;
+                color: white;
+                font-size: 14px;
+                min-width: 200px;
+                max-width: 300px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                opacity: 0;
+                transform: translateX(-20px);
+                animation: slideIn 0.3s forwards;
+            }
+
+                .notification.success {
+                    background-color: #28a745;
+                }
+
+                .notification.error {
+                    background-color: #dc3545;
+                }
+
+            @@keyframes slideIn {
+                to
+
+            {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            }
+
+            @@keyframes fadeOut {
+                to
+
+            {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            }
+
+            /* QR Code styles */
+            .qr-code-image {
+                max-width: 200px;
+                cursor: pointer;
+            }
+
+            /* Ensure proper spacing on mobile */
+            @@media (max-width: 576px) {
+                .row
+
+            {
+                margin-left: -0.5rem;
+                margin-right: -0.5rem;
+            }
+
+            .col-12, [class*="col-"] {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            }
+
+            /* Custom scrollbar for mobile */
+            @@media (max-width: 768px) {
+                :: -webkit-scrollbar
+
+            {
+                width: 6px;
+                height: 6px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 3px;
+            }
+
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                }
+
+            }
+
+            /* Signature actions container */
+            .signature-card .card-title {
+                display: flex;
+                justify-content: between;
+                align-items: center;
+            }
+
+            .signature-card .badge {
+                margin-right: 5px;
+            }
+
+            /* Custom confirm dialog styling */
+            .swal2-popup {
+                font-family: inherit;
+            }
+
+            .swal2-title {
+                color: #dc3545;
+            }
+
+            .swal2-actions button {
+                margin: 0 5px;
+            }
+        </style>
+    }
+@functions {
+    private string GetUrgencyBadge(string hitno)
+    {
+        return hitno?.ToLower() switch
+        {
+            "da" or "hitno" => "badge-urgency-high",
+            "ne" or "normalno" => "badge-urgency-low",
+            _ => "badge bg-secondary"
+        };
+    }
+
+    private string GetDeadlineClass(DateTime? rok)
+    {
+        if (!rok.HasValue) return "text-muted";
+
+        if (rok.Value < DateTime.Now)
+            return "text-deadline-passed";
+
+        if (rok.Value < DateTime.Now.AddDays(3))
+            return "text-deadline-close";
+
+        return "text-deadline-normal";
+    }
+
+    private string GetFileIcon(string extension)
+    {
+        return extension.ToLower() switch
+        {
+            ".pdf" => "bi-file-earmark-pdf",
+            ".doc" or ".docx" => "bi-file-earmark-word",
+            ".xls" or ".xlsx" => "bi-file-earmark-excel",
+            ".ppt" or ".pptx" => "bi-file-earmark-ppt",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" => "bi-file-earmark-image",
+            ".mp3" or ".wav" or ".ogg" => "bi-file-earmark-music",
+            ".mp4" or ".mov" or ".avi" => "bi-file-earmark-play",
+            ".zip" or ".rar" or ".7z" => "bi-file-earmark-zip",
+            _ => "bi-file-earmark"
+        };
+    }
+
+    private string GetFileIconClass(string extension)
+    {
+        return extension.ToLower() switch
+        {
+            ".pdf" => "text-danger",
+            ".doc" or ".docx" => "text-primary",
+            ".xls" or ".xlsx" => "text-success",
+            ".ppt" or ".pptx" => "text-warning",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" => "text-info",
+            ".mp3" or ".wav" or ".ogg" => "text-secondary",
+            ".mp4" or ".mov" or ".avi" => "text-primary",
+            ".zip" or ".rar" or ".7z" => "text-warning",
+            _ => "text-secondary"
+        };
+    }
+
+    private string FormatFileSize(long bytes)
+    {
+        string[] sizes = { "B", "KB", "MB", "GB" };
+        int order = 0;
+        double len = bytes;
+        while (len >= 1024 && order < sizes.Length - 1)
+        {
+            order++;
+            len = len / 1024;
+        }
+        return $"{len:0.##} {sizes[order]}";
+    }
+
+    private string GetStatusBadgeClass(DocumentStatus status)
+    {
+        return status switch
+        {
+            DocumentStatus.Zaprimljeno => "bg-info",
+            DocumentStatus.Uvid => "bg-warning",
+            DocumentStatus.UObradi => "bg-primary",
+            DocumentStatus.NaDopuni => "bg-secondary",
+            DocumentStatus.Recenzija => "bg-dark",
+            DocumentStatus.Odobreno => "bg-success",
+            DocumentStatus.Odbijeno => "bg-danger",
+            DocumentStatus.Arhivirano => "bg-light text-dark",
+            DocumentStatus.IsTrashed => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+
+    private string GetStatusDisplayName(DocumentStatus status)
+    {
+        return status switch
+        {
+            DocumentStatus.Zaprimljeno => "Zaprimljeno",
+            DocumentStatus.Uvid => "Na uvidu",
+            DocumentStatus.UObradi => "U obradi",
+            DocumentStatus.NaDopuni => "Na dopuni",
+            DocumentStatus.Recenzija => "Recenzija",
+            DocumentStatus.Odobreno => "Odobreno",
+            DocumentStatus.Odbijeno => "Odbijeno",
+            DocumentStatus.Arhivirano => "Arhivirano",
+            DocumentStatus.IsTrashed => "Obrisano",
+            _ => status.ToString()
+        };
+    }
+}

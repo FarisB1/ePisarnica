@@ -1,0 +1,196 @@
+﻿@model List<ePisarnica.ViewModels.RoleManagementViewModel>
+@{
+    ViewData["Title"] = "Upravljanje korisnicima";
+}
+
+<div class="container py-4">
+    <h2 class="mb-3 text-primary text-center text-md-start">
+        <i class="fas fa-users-cog me-2"></i>Upravljanje korisnicima
+    </h2>
+    <p class="text-muted text-center text-md-start mb-4">
+        Dodjeljujte ili mijenjajte uloge korisnika putem ovog administratorskog panela.
+    </p>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info text-center">@TempData["Message"]</div>
+    }
+
+    <!-- Skriveni anti-forgery token -->
+    <form asp-controller="Account" asp-action="ManageUsers" method="post">
+        @Html.AntiForgeryToken()
+    </form>
+
+    <!-- Tabela za desktop -->
+    <div class="table-responsive shadow-sm rounded d-none d-md-block">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Korisničko ime</th>
+                    <th>Ime i prezime</th>
+                    <th>Email</th>
+                    <th>Trenutna uloga</th>
+                    <th style="width:220px;">Akcije</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@user.Username</td>
+                        <td class="fw-semibold">@user.Ime @user.Prezime</td>
+                        <td>@user.Email</td>
+                        <td>
+                            <span class="badge @(user.CurrentRole == "Admin" ? "bg-success" : "bg-primary")">
+                                @user.CurrentRole
+                            </span>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-info"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#userDetailsModal"
+                                        data-userid="@user.UserId">
+                                    <i class="fas fa-eye"></i> Detalji
+                                </button>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown">
+                                        <i class="fas fa-user-cog"></i> Promijeni ulogu
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item change-role"
+                                               data-userid="@user.UserId"
+                                               data-newrole="User" href="#">Postavi kao Korisnik</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item change-role"
+                                               data-userid="@user.UserId"
+                                               data-newrole="Admin" href="#">Postavi kao Admin</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mobilni prikaz kao kartice -->
+    <div class="d-md-none">
+        @foreach (var user in Model)
+        {
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">@user.Username</h5>
+                    <p class="card-text mb-1">
+                        <i class="fas fa-envelope me-1"></i>@user.Email
+                    </p>
+                    <p class="card-text mb-2">
+                        <i class="fas fa-user-tag me-1"></i>
+                        <span class="badge @(user.CurrentRole == "Admin" ? "bg-success" : "bg-primary")">
+                            @user.CurrentRole
+                        </span>
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-sm btn-info flex-grow-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#userDetailsModal"
+                                data-userid="@user.UserId">
+                            <i class="fas fa-eye"></i> Detalji
+                        </button>
+                        <div class="dropdown flex-grow-1">
+                            <button class="btn btn-sm btn-warning dropdown-toggle w-100" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-cog"></i> Promijeni ulogu
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item change-role"
+                                       data-userid="@user.UserId"
+                                       data-newrole="User" href="#">Postavi kao Korisnik</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item change-role"
+                                       data-userid="@user.UserId"
+                                       data-newrole="Admin" href="#">Postavi kao Admin</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Modal za detalje korisnika -->
+<div class="modal fade" id="userDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-user me-2"></i>Detalji korisnika</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="userDetailsContent">
+                <div class="text-center py-3 text-muted">
+                    <i class="fas fa-spinner fa-spin"></i> Učitavanje…
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            function getAntiForgeryToken() {
+                return $('input[name="__RequestVerificationToken"]').val();
+            }
+
+            $('.change-role').on('click', function (e) {
+                e.preventDefault();
+                const link = $(this);
+                const userId = link.data('userid');
+                const newRole = link.data('newrole');
+                const username = link.closest('tr').find('td:first').text() || link.closest('.card-body').find('h5').text();
+                const originalText = link.text();
+
+                if (!confirm(`Promijeniti ulogu korisnika ${username} u ${newRole}?`)) return;
+
+                link.html('<i class="fas fa-spinner fa-spin"></i> Ažuriranje…');
+
+                $.ajax({
+                    url: '@Url.Action("UpdateRole", "Account")',
+                    type: 'POST',
+                    data: { userId: userId, newRole: newRole },
+                    headers: { 'RequestVerificationToken': getAntiForgeryToken() },
+                    success: function (res) {
+                        if (res.success) {
+                            alert('✅ ' + res.message);
+                            location.reload();
+                        } else {
+                            alert('❌ Greška: ' + res.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        let errorMsg = '❌ Došlo je do greške prilikom ažuriranja uloge. ';
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response?.message) errorMsg += 'Detalji: ' + response.message;
+                        } catch { errorMsg += `Status: ${status}, Greška: ${error}`; }
+                        alert(errorMsg);
+                    },
+                    complete: function () { link.html(originalText); }
+                });
+            });
+
+            $('#userDetailsModal').on('show.bs.modal', function (e) {
+                const button = $(e.relatedTarget);
+                const userId = button.data('userid');
+                $('#userDetailsContent').load('@Url.Action("UserDetails", "Account")?id=' + userId);
+            });
+        });
+    </script>
+}

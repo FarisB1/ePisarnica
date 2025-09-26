@@ -1,0 +1,355 @@
+﻿@model ePisarnica.Models.ProtocolEntry
+
+@{
+    ViewData["Title"] = "Novi unos u protokol";
+}
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h5 class="card-title mb-0">
+            <i class="bi bi-journal-plus"></i> @ViewData["Title"]
+        </h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" method="post" id="protocolForm" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <!-- Osnovne informacije -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6 class="border-bottom pb-2">
+                        <i class="bi bi-info-circle"></i> Osnovne informacije
+                    </h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Stranka" class="form-label">Stranka (Pošiljalac) *</label>
+                        <input asp-for="Stranka" class="form-control" value="@User.Identity.Name" readonly />
+                        <span asp-validation-for="Stranka" class="text-danger"></span>
+                        <div class="form-text">Vi ste pošiljalac kao trenutno prijavljeni korisnik</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Upload Section -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6 class="border-bottom pb-2">
+                        <i class="bi bi-paperclip"></i> Dokument
+                    </h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label class="form-label">Upload novog fajla *</label>
+                        <div class="file-upload-area">
+                            <input type="file" asp-for="UploadedFile" class="form-control"
+                                   id="fileUpload" accept=".pdf" required />
+                            <div class="form-text">Max veličina: 10MB. Dozvoljeni formati: PDF</div>
+                            <div id="filePreview" class="mt-2" style="display: none;">
+                                <div class="alert alert-info p-2">
+                                    <i class="bi bi-file-earmark"></i>
+                                    <span id="fileName"></span>
+                                    <small id="fileSize" class="text-muted"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <span asp-validation-for="UploadedFile" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-warning" id="uploadWarning" style="display: none;">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <span id="warningMessage"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dodijeljen primalac (to be assigned later by admin) -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6 class="border-bottom pb-2">
+                        <i class="bi bi-person-check"></i> Dodjela dokumenta
+                    </h6>
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i>
+                        Dokument će biti dodijeljen odgovornom primaocu nakon što administrator pregleda i odobri zahtjev.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Dostavio" class="form-label">Dostavio</label>
+                        <input asp-for="Dostavio" class="form-control" placeholder="Ime i prezime dostavljača (opciono)" />
+                        <span asp-validation-for="Dostavio" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Hitno" class="form-label">Hitnost *</label>
+                        <select asp-for="Hitno" asp-items="ViewBag.HitnoOptions" class="form-select" required>
+                            <option value="">-- Odaberite hitnost --</option>
+                        </select>
+                        <span asp-validation-for="Hitno" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kontakt informacije -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6 class="border-bottom pb-2">
+                        <i class="bi bi-telephone"></i> Kontakt informacije
+                    </h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Adresa" class="form-label">Adresa *</label>
+                        <input asp-for="Adresa" class="form-control" placeholder="Ulica i broj" required />
+                        <span asp-validation-for="Adresa" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Telefon" class="form-label">Telefon *</label>
+                        <input asp-for="Telefon" class="form-control" placeholder="+387..." required />
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label">Email *</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="email@example.com" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="VrstaPostupka" class="form-label">Vrsta postupka *</label>
+                        <select asp-for="VrstaPostupka" asp-items="ViewBag.VrstaPostupkaOptions" class="form-select" required>
+                            <option value="">-- Odaberite vrstu postupka --</option>
+                        </select>
+                        <span asp-validation-for="VrstaPostupka" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rokovi -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6 class="border-bottom pb-2">
+                        <i class="bi bi-calendar-event"></i> Rokovi
+                    </h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="RokZaOdgovor" class="form-label">Rok za odgovor *</label>
+                        <input asp-for="RokZaOdgovor" type="date" class="form-control" required />
+                        <span asp-validation-for="RokZaOdgovor" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Napomena -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h6 class="border-bottom pb-2">
+                        <i class="bi bi-chat-text"></i> Napomena
+                    </h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group mb-3">
+                        <label asp-for="Napomena" class="form-label">Napomena *</label>
+                        <textarea asp-for="Napomena" class="form-control" rows="4" placeholder="Opis dokumenta i svrha dostave..." required></textarea>
+                        <span asp-validation-for="Napomena" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Kreiraj protokol
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Odustani
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // File upload handling
+        document.getElementById('fileUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Check file size (10MB limit)
+                if (file.size > 10 * 1024 * 1024) {
+                    showWarning('Fajl je prevelik. Maksimalna veličina je 10MB.');
+                    this.value = '';
+                    return;
+                }
+
+                // Check file type
+                const allowedExtensions = ['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.jpg', '.jpeg', '.png', '.txt'];
+                const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+                if (!allowedExtensions.includes(fileExtension)) {
+                    showWarning('Nepodržan format fajla. Dozvoljeni formati: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG, TXT');
+                    this.value = '';
+                    return;
+                }
+
+                // Show file preview
+                showFilePreview(file);
+
+                // Clear existing document selection
+                document.getElementById('existingDocument').value = '';
+            }
+        });
+
+        // Existing document selection
+        document.getElementById('existingDocument').addEventListener('change', function() {
+            if (this.value) {
+                // Clear file upload
+                document.getElementById('fileUpload').value = '';
+                document.getElementById('filePreview').style.display = 'none';
+                hideWarning();
+            }
+        });
+
+        function showFilePreview(file) {
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const filePreview = document.getElementById('filePreview');
+
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            filePreview.style.display = 'block';
+            hideWarning();
+        }
+
+        function showWarning(message) {
+            const warning = document.getElementById('uploadWarning');
+            const warningMessage = document.getElementById('warningMessage');
+
+            warningMessage.textContent = message;
+            warning.style.display = 'block';
+        }
+
+        function hideWarning() {
+            document.getElementById('uploadWarning').style.display = 'none';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function previewProtocol() {
+            const fileInput = document.getElementById('fileUpload');
+            const file = fileInput.files[0];
+            let fileInfo = 'Nema fajla';
+
+            if (file) {
+                fileInfo = `${file.name} (${formatFileSize(file.size)})`;
+            } else if (document.getElementById('existingDocument').value) {
+                const selectedOption = document.getElementById('existingDocument').options[document.getElementById('existingDocument').selectedIndex];
+                fileInfo = `Postojeći dokument: ${selectedOption.text}`;
+            }
+
+            $('#previewContent').html(`
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i>
+                    Pregled protokola
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Stranka:</strong> ${$('#Stranka').val() || 'Nije uneseno'}</p>
+                        <p><strong>Primalac:</strong> ${$('#Primalac').val() || 'Nije uneseno'}</p>
+                        <p><strong>Dostavio:</strong> ${$('#Dostavio').val() || 'Nije uneseno'}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Fajl:</strong> ${fileInfo}</p>
+                        <p><strong>Hitnost:</strong> ${$('#Hitno').val() || 'Nije odabrano'}</p>
+                    </div>
+                </div>
+                <p><strong>Napomena:</strong> ${$('#Napomena').val() || 'Nema napomene'}</p>
+            `);
+            $('#previewModal').modal('show');
+        }
+
+        // Form validation
+        document.getElementById('protocolForm').addEventListener('submit', function(e) {
+            const fileUpload = document.getElementById('fileUpload');
+            const existingDocument = document.getElementById('existingDocument');
+
+            if (!fileUpload.value && !existingDocument.value) {
+                e.preventDefault();
+                showWarning('Molimo odaberite fajl za upload ili postojeći dokument.');
+                return false;
+            }
+        });
+
+        $(document).ready(function() {
+            if (!$('#RokZaOdgovor').val()) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                $('#RokZaOdgovor').val(tomorrow.toISOString().split('T')[0]);
+            }
+
+            $('label[for="Stranka"]').append(' <span class="text-danger">*</span>');
+        });
+    </script>
+
+    <style>
+        .file-upload-area {
+            border: 2px dashed #dee2e6;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+
+            .file-upload-area:hover {
+                border-color: #007bff;
+                background-color: #e3f2fd;
+            }
+
+        .form-label {
+            font-weight: 500;
+        }
+    </style>
+}

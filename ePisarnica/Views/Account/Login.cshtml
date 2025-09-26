@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@model ePisarnica.ViewModels.LoginViewModel
+
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijava | ePisarnica</title>
+    <link rel="stylesheet" href="~/css/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-blob">
+                <img src="assets/images/blob.svg" alt="Blob" class="blob-image blob-image--1">
+                <img src="assets/images/blob.svg" alt="Blob" class="blob-image blob-image--2">
+                <img src="assets/images/blob.svg" alt="Blob" class="blob-image blob-image--3">
+            </div>
+            <div class="form-header">
+                <p>Molimo unesite vaše podatke</p>
+                <h1>Dobrodošli Nazad</h1>
+            </div>
+
+            <!-- Prikaz poruka o uspjehu/grešci -->
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success">
+                    @ViewBag.Message
+                </div>
+            }
+
+            <!-- Prikaz grešaka validacije -->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="validation-summary">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+            }
+
+            <form class="form-box" asp-action="Login" asp-controller="Account" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="input-group">
+                    <input type="text" asp-for="UsernameOrEmail" class="input-field" placeholder="" required>
+                    <label asp-for="UsernameOrEmail" class="floating-label">Korisničko ime ili Email</label>
+                    <span asp-validation-for="UsernameOrEmail" class="text-danger"></span>
+                </div>
+                <div class="input-group">
+                    <input type="password" asp-for="Password" class="input-field" placeholder="" required>
+                    <label asp-for="Password" class="floating-label">Lozinka</label>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="eye-icon" onclick="togglePassword()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" /></svg>
+                    </div>
+                </div>
+                <div class="input-group checkbox-group">
+                    <div class="form-col remember-me">
+                        <input type="checkbox" asp-for="RememberMe" class="checkbox-field">
+                        <label asp-for="RememberMe">Zapamti me</label>
+                    </div>
+                    <div class="form-col">
+                        <a href="#" class="form-link">Zaboravili ste lozinku?</a>
+                    </div>
+                </div>
+                <button type="submit" class="form-btn form-btn--submit">Prijavi se</button>
+            </form>
+            <div class="form-divider">
+                <p>Ili</p>
+            </div>
+            <div class="form-bottom">
+
+                <p>Nemate račun? <a class="form-link" asp-area="" asp-controller="Account" asp-action="Register">Registrujte se</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById("Password")
+            const eyeIcon = document.querySelector(".eye-icon")
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text"
+                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>`;
+            } else {
+                passwordInput.type = "password"
+                eyeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>`;
+            }
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

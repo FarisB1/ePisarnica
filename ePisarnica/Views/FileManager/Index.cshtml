@@ -1,0 +1,1266 @@
+﻿@model ePisarnica.ViewModels.FileManagerViewModel
+@{
+    ViewData["Title"] = "File Manager";
+    var isGridView = ViewBag.CurrentView == "grid";
+    var currentFolderId = ViewBag.CurrentFolderId as int?;
+
+    // Pagination variables
+    var pageSize = ViewBag.PageSize ?? 12;
+    var currentPage = ViewBag.CurrentPage ?? 1;
+    var totalFiles = ViewBag.TotalFiles ?? 0;
+    var totalPages = (int)Math.Ceiling((double)totalFiles / pageSize);
+    var searchTerm = ViewBag.SearchTerm as string ?? "";
+}
+<div class="file-manager-container d-flex flex-column">
+    <!-- Uklonjen dupli header jer sidebar već prikazuje "Upravljač dokumenata" -->
+    <div class="d-flex align-items-center justify-content-between mb-4 mt-5">
+        <div class="d-flex align-items-center gap-3">
+            @if (!string.IsNullOrEmpty(Model.CurrentFolder))
+            {
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="@Url.Action("Index")" class="text-decoration-none">
+                                <i class="bi bi-house"></i> Početna
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">@Model.CurrentFolder</li>
+                    </ol>
+                </nav>
+            }
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <div class="position-relative search-box">
+                <input type="text" class="form-control form-control-sm" placeholder="Pretraga fajlova..."
+                       value="@searchTerm" onkeypress="handleSearchKeyPress(event)" id="searchInput">
+                <button class="btn btn-sm btn-outline-secondary search-btn" onclick="performSearch()">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+            <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#createFolderModal">
+                <i class="bi bi-folder-plus"></i> Novi folder
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="document.getElementById('fileInput').click()">
+                <i class="bi bi-upload"></i> Dodaj fajl
+            </button>
+            <button id="toggleView" class="btn btn-outline-dark btn-sm">
+                <i class="bi @(isGridView ? "bi-list" : "bi-grid")"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Brzo dodavanje fajlova -->
+    <div class="upload-box mb-4" onclick="document.getElementById('fileInput').click()">
+        <i class="bi bi-cloud-arrow-up fs-1 text-muted"></i>
+        <p class="mt-2 mb-1">Prevucite fajlove ovdje ili kliknite za dodavanje</p>
+        @if (!string.IsNullOrEmpty(Model.CurrentFolder))
+        {
+            <small class="text-muted">Fajlovi će biti dodani u: @Model.CurrentFolder</small>
+        }
+        <input type="file" id="fileInput" multiple hidden onchange="handleFileUpload(this.files)">
+    </div>
+
+    <!-- Glavni sadržaj -->
+    <div class="flex-grow-1">
+        <!-- Sekcija foldera -->
+        @if (Model.Folders.Any())
+        {
+            <div class="folders-section mb-4">
+                <h6 class="text-muted mb-3">Folderi</h6>
+                <div class="row g-3">
+                    @{
+                        var firstFolders = Model.Folders.Take(4).ToList();
+                        var remainingFolders = Model.Folders.Skip(4).ToList();
+                    }
+
+                    <!-- Prvih 4 foldera -->
+                    @foreach (var folder in firstFolders)
+                    {
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="folder-card" onclick="navigateToFolder('@folder.Name')" style="cursor: pointer;">
+                                <div class="folder-icon" style="color: @folder.Color">
+                                    <i class="bi bi-folder-fill"></i>
+                                </div>
+                                <p class="mb-1 fw-semibold">@folder.Name</p>
+                                <small class="text-muted">@FormatDate(folder.CreatedAt)</small>
+                                <div class="folder-actions">
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" onclick="event.stopPropagation()">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); event.stopPropagation(); showEditFolderModal(@folder.Id, '@folder.Name')"><i class="bi bi-pencil"></i> Preimenuj</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); event.stopPropagation(); deleteFolder(@folder.Id)"><i class="bi bi-trash"></i> Obriši</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Preostali folderi u collapsible sekciji -->
+                    @if (remainingFolders.Any())
+                    {
+                        <div class="col-12">
+                            <a class="btn btn-outline-secondary btn-sm mb-3" data-bs-toggle="collapse" href="#moreFolders" role="button" aria-expanded="false" aria-controls="moreFolders">
+                                <i class="bi bi-chevron-down"></i> Više foldera
+                            </a>
+                            <div class="collapse" id="moreFolders">
+                                <div class="row g-3 mt-2">
+                                    @foreach (var folder in remainingFolders)
+                                    {
+                                        <div class="col-sm-6 col-md-4 col-lg-3">
+                                            <div class="folder-card" onclick="navigateToFolder('@folder.Name')" style="cursor: pointer;">
+                                                <div class="folder-icon" style="color: @folder.Color">
+                                                    <i class="bi bi-folder-fill"></i>
+                                                </div>
+                                                <p class="mb-1 fw-semibold">@folder.Name</p>
+                                                <small class="text-muted">@FormatDate(folder.CreatedAt)</small>
+                                                <div class="folder-actions">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown" onclick="event.stopPropagation()">
+                                                            <i class="bi bi-three-dots-vertical"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-end">
+                                                            <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); event.stopPropagation(); showEditFolderModal(@folder.Id, '@folder.Name')"><i class="bi bi-pencil"></i> Preimenuj</a></li>
+                                                            <li><hr class="dropdown-divider"></li>
+                                                            <li><a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); event.stopPropagation(); deleteFolder(@folder.Id)"><i class="bi bi-trash"></i> Obriši</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+
+        <!-- Info o rezultatima -->
+        @if (!string.IsNullOrEmpty(searchTerm) || totalFiles > 0)
+        {
+            <div class="results-info mb-3 d-flex justify-content-between align-items-center">
+                <div>
+                    @if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        <span class="text-muted">Rezultati pretrage za "<strong>@searchTerm</strong>": @totalFiles fajlova pronađeno</span>
+                        <button class="btn btn-sm btn-outline-secondary ms-2" onclick="clearSearch()">
+                            <i class="bi bi-x"></i> Očisti
+                        </button>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Prikazano @Model.Files.Count() od @totalFiles fajlova</span>
+                    }
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <label class="form-label mb-0 text-muted small">Stavki po stranici:</label>
+                    <select class="form-select form-select-sm" style="width: auto;" onchange="changePageSize(this.value)">
+                        <option value="12" selected="@(pageSize == 12)">12</option>
+                        <option value="24" selected="@(pageSize == 24)">24</option>
+                        <option value="48" selected="@(pageSize == 48)">48</option>
+                        <option value="96" selected="@(pageSize == 96)">96</option>
+                    </select>
+                </div>
+            </div>
+        }
+
+        <!-- Fajlovi -->
+        <div id="fileContainer" class="@(isGridView ? "row g-3" : "list-view") mb-4">
+            @if (Model.Files.Any())
+            {
+                @foreach (var file in Model.Files)
+                {
+                    if (isGridView)
+                    {
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            <div class="file-card" onclick="openFile(@file.Id, '@file.FileType')" style="cursor: pointer;">
+                                <div class="file-icon @GetFileIconClass(file.FileExtension)">
+                                    <i class="@GetFileIcon(file.FileExtension)"></i>
+                                </div>
+                                <p class="mb-1 fw-semibold">@file.Title</p>
+                                <small class="text-muted">@FormatFileSize(file.FileSize) • @FormatDate(file.ModifiedAt)</small>
+                                <div class="file-actions">
+                                    <div class="dropdown dropup">
+                                        <button class="btn btn-sm btn-outline-secondary" type="button"
+                                                data-bs-toggle="dropdown" onclick="event.stopPropagation()">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation(); downloadFile(@file.Id)"><i class="bi bi-download"></i> Preuzmi</a></li>
+                                            <li>
+                                                @if (file.ProtocolEntry != null)
+                                                {
+                                                    <a asp-controller="Protocol" asp-action="Details" asp-route-id="@file.ProtocolEntry.Id" class="badge bg-success">
+                                                        Protokol @file.ProtocolEntry.BrojProtokola
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation();
+                                                   openProtocolModal(@file.Id);">
+                                                        <i class="bi bi-qr-code"></i> Dodaj u protokol
+                                                    </a>
+                                                }
+                                            </li>
+                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation(); showEditFileModal(@file.Id, '@file.Title')"><i class="bi bi-pencil"></i> Preimenuj</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation(); showMoveModal(@file.Id, '@file.Title')"><i class="bi bi-folder2-open"></i> Premjesti u folder</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item text-danger" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation(); moveToTrash(@file.Id)"><i class="bi bi-trash"></i> Premjesti u smeće</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="file-list-item" onclick="openFile(@file.Id, '@file.FileType')" style="cursor: pointer;">
+                            <div class="form-check me-3">
+                                <input class="form-check-input" type="checkbox" onclick="event.stopPropagation()">
+                            </div>
+                            <div class="file-info">
+                                <div class="file-icon @GetFileIconClass(file.FileExtension)">
+                                    <i class="@GetFileIcon(file.FileExtension)"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0 fw-semibold">@file.Title</p>
+                                    <small class="text-muted">@FormatFileSize(file.FileSize) • @FormatDate(file.ModifiedAt)</small>
+                                </div>
+                            </div>
+                            <div class="file-actions">
+                                <div class="dropdown dropup">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button"
+                                            data-bs-toggle="dropdown" onclick="event.stopPropagation()">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" hhref="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation(); downloadFile(@file.Id)"><i class="bi bi-download"></i> Preuzmi</a></li>
+                                        <li>
+                                            @if (file.ProtocolEntry != null)
+                                            {
+                                                <a asp-controller="Protocol" asp-action="Details" asp-route-id="@file.ProtocolEntry.Id" class="badge bg-success">
+                                                    Protokol @file.ProtocolEntry.BrojProtokola
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation();
+                                                   openProtocolModal(@file.Id);">
+                                                    <i class="bi bi-qr-code"></i> Dodaj u protokol
+                                                </a>
+                                            }
+                                        </li>
+                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation(); showEditFileModal(@file.Id, '@file.Title')"><i class="bi bi-pencil"></i> Preimenuj</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation(); showMoveModal(@file.Id, '@file.Title')"><i class="bi bi-folder2-open"></i> Premjesti u folder</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-danger" href="javascript:void(0)" onclick="event.preventDefault(); event.stopPropagation(); moveToTrash(@file.Id)"><i class="bi bi-trash"></i> Premjesti u smeće</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-5">
+                    @if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        <i class="bi bi-search fs-1 text-muted"></i>
+                        <p class="text-muted mt-2">Nema pronađenih fajlova za "@searchTerm"</p>
+                        <button class="btn btn-outline-primary" onclick="clearSearch()">Očisti pretragu</button>
+                    }
+                    else
+                    {
+                        <i class="bi bi-folder-x fs-1 text-muted"></i>
+                        <p class="text-muted mt-2">Nema fajlova</p>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Paginacija -->
+    @if (totalPages > 1)
+    {
+        <nav aria-label="File pagination" class="mt-auto">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="pagination-info text-muted small">
+                    Stranica @currentPage od @totalPages
+                    (@((currentPage - 1) * pageSize + 1) - @Math.Min(currentPage * pageSize, totalFiles) od @totalFiles stavki)
+                </div>
+                <ul class="pagination pagination-sm mb-0">
+                    ...
+                </ul>
+            </div>
+        </nav>
+    }
+</div>
+
+<!-- Modal za dodavanje u protokol -->
+<div class="modal fade" id="protocolModal" tabindex="-1" aria-labelledby="protocolModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="protocolForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="protocolModalLabel">Dodaj u protokol</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="protocolFileId" name="fileId" />
+
+                    <div class="mb-3">
+                        <label class="form-label">Stranka</label>
+                        <input type="text" class="form-control" id="protocolStranka" name="stranka" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Napomena</label>
+                        <textarea class="form-control" id="protocolNapomena" name="napomena"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal za kreiranje foldera -->
+<div class="modal fade" id="createFolderModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kreiraj novi folder</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createFolderForm">
+                    <div class="mb-3">
+                        <label class="form-label">Naziv foldera</label>
+                        <input type="text" class="form-control" id="folderName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Boja foldera</label>
+                        <input type="color" class="form-control form-control-color" id="folderColor" value="#6c757d">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+                <button type="button" class="btn btn-primary" onclick="createFolder()">Kreiraj</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal za preimenovanje foldera -->
+<div class="modal fade" id="editFolderModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Preimenuj folder</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editFolderForm">
+                    <div class="mb-3">
+                        <label class="form-label">Naziv foldera</label>
+                        <input type="text" class="form-control" id="editFolderName" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+                <button type="button" class="btn btn-primary" onclick="saveEditFolder()">Sačuvaj promjene</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal za preimenovanje fajla -->
+<div class="modal fade" id="editFileModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Preimenuj fajl</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editFileForm">
+                    <div class="mb-3">
+                        <label class="form-label">Naziv fajla</label>
+                        <input type="text" class="form-control" id="editFileName" required>
+                        <div class="form-text">Ekstenzija će biti sačuvana automatski</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Otkaži</button>
+                <button type="button" class="btn btn-primary" onclick="saveEditFile()">Sačuvaj promjene</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Move File Modal -->
+<div class="modal fade" id="moveFileModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Move File</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Premjesti <strong id="moveFileName"></strong> u:</p>
+                <div class="list-group" id="folderList">
+                    <button type="button" class="list-group-item list-group-item-action" onclick="moveFileToFolder(null, 'Root')">
+                        <i class="bi bi-house"></i> Početni Folder
+                    </button>
+                    @foreach (var folder in Model.Folders)
+                    {
+                        <button type="button" class="list-group-item list-group-item-action" onclick="moveFileToFolder(@folder.Id, '@folder.Name')">
+                            <i class="bi bi-folder" style="color: @folder.Color"></i> @folder.Name
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer border-top text-muted mt-auto">
+    <div class="container">
+        &copy; 2025 - ePisarnica -
+        <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+
+@section Styles {
+    <style>
+
+        #fileContainer{
+            overflow: visible;
+        }
+        /* File Manager Container - works within sidebar layout */
+        .file-manager-container {
+            min-height: calc(100vh - 200px); /* Account for navbar and footer */
+            padding: 0;
+        }
+
+        .row, .col-sm-6, .col-md-4, .col-lg-3 {
+            overflow: visible;
+        }
+
+        /* Breadcrumb styling */
+        .breadcrumb {
+            background: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "›";
+            color: #6c757d;
+        }
+
+        .upload-box {
+            border: 2px dashed #dee2e6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+            .upload-box:hover {
+                border-color: #0d6efd;
+                background: #f0f8ff;
+            }
+
+        .file-card, .folder-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            z-index: 1;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: visible !important;
+            height: 200px; /* Fixed height for consistency */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            .file-card:hover, .folder-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+        .file-icon, .folder-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .file-actions, .folder-actions {
+            position: absolute!important;
+            top: 0.5rem;
+            right: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1050!important;
+        }
+
+        .file-card:hover .file-actions,
+        .folder-card:hover .folder-actions {
+            opacity: 1;
+        }
+
+        .file-actions .btn, .folder-actions .btn {
+            padding: 0.25rem 0.5rem;
+            margin-left: 0.25rem;
+        }
+
+        .list-view {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .file-list-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+            .file-list-item:hover {
+                background: #f8f9fa;
+            }
+
+            .file-list-item .file-actions {
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                position: absolute;
+                top: 50%;
+                right: 1rem;
+                transform: translateY(-50%);
+                display: flex;
+                gap: 0.25rem;
+            }
+
+            .file-list-item:hover .file-actions {
+                opacity: 1;
+            }
+
+        .file-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .dropdown-menu {
+            position: absolute !important;
+        }
+
+
+        .dropdown-menu .dropdown-item {
+            padding: 0.5rem 1rem;
+            z-index: 2000 !important;
+        }
+
+            .dropdown-menu .dropdown-item i {
+                width: 16px;
+                margin-right: 8px;
+            }
+
+        .folders-section {
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 1rem;
+        }
+
+        .list-view .file-actions {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.25rem;
+            z-index: 1000;
+        }
+
+        /* Search box styling */
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-btn {
+            border-left: none;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            padding: 0.25rem 0.5rem;
+        }
+
+        #searchInput {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+        }
+
+        /* Results info styling */
+        .results-info {
+            padding: 0.75rem 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        /* Pagination styling */
+        .pagination-info {
+            font-size: 0.875rem;
+        }
+
+        .pagination-sm .page-link {
+            padding: 0.375rem 0.75rem;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        /* Selection styles */
+        .selected {
+            outline: 2px solid #0d6efd !important;
+            outline-offset: 2px;
+        }
+
+        .file-card.selected,
+        .folder-card.selected {
+            border-color: #0d6efd !important;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25) !important;
+        }
+
+        .file-list-item.selected {
+            background-color: #e7f1ff !important;
+            border-color: #0d6efd !important;
+        }
+
+        /* Responsive improvements */
+        @@media (max-width: 768px) {
+            .file-manager-container
+
+        {
+            min-height: calc(100vh - 150px); /* Less space needed on mobile */
+        }
+
+        .file-card, .folder-card {
+            height: auto;
+            min-height: 160px;
+        }
+
+        .pagination-sm {
+            font-size: 0.75rem;
+        }
+
+        .pagination-info {
+            font-size: 0.75rem;
+        }
+
+        }
+
+
+    </style>
+}
+
+@section Scripts {
+    <script>
+        // Store current folder ID for uploads
+        const currentFolderId = @(currentFolderId?.ToString() ?? "null");
+        const currentPage = @currentPage;
+        const pageSize = @pageSize;
+        const currentFolder = '@Model.CurrentFolder';
+        const currentView = '@(isGridView ? "grid" : "list")';
+        const currentSearch = '@searchTerm';
+
+        let selectedFileId = null;
+        let selectedFolderId = null;
+
+            function openProtocolModal(fileId) {
+            document.getElementById("protocolFileId").value = fileId;
+            var modal = new bootstrap.Modal(document.getElementById('protocolModal'));
+            modal.show();
+        }
+
+        document.getElementById("protocolForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            var data = {
+                fileId: document.getElementById("protocolFileId").value,
+                stranka: document.getElementById("protocolStranka").value,
+                napomena: document.getElementById("protocolNapomena").value
+            };
+
+            fetch('/FileManager/AddToProtocol', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(r => r.json())
+            .then(res => {
+                if (res.success) {
+                    alert("Dodano u protokol! Broj: " + res.brojProtokola);
+                    location.reload();
+                } else {
+                    alert(res.message);
+                }
+            });
+        });
+
+        // Navigation and pagination functions
+        function buildUrl(page = null, search = null, view = null, size = null) {
+            const params = new URLSearchParams();
+
+            if (currentFolder) params.set('folder', currentFolder);
+            if (page && page !== 1) params.set('page', page);
+            if (search && search !== '') params.set('search', search);
+            if (view && view !== 'grid') params.set('view', view);
+            if (size && size !== 12) params.set('pageSize', size);
+
+            const queryString = params.toString();
+            return '@Url.Action("Index")' + (queryString ? '?' + queryString : '');
+        }
+
+        function goToPage(page) {
+            window.location.href = buildUrl(page, currentSearch, currentView, pageSize);
+        }
+
+        function changePageSize(newSize) {
+            window.location.href = buildUrl(1, currentSearch, currentView, newSize);
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            window.location.href = buildUrl(1, searchTerm, currentView, pageSize);
+        }
+
+        function clearSearch() {
+            window.location.href = buildUrl(1, '', currentView, pageSize);
+        }
+
+        function handleSearchKeyPress(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                performSearch();
+            }
+        }
+
+        // Navigate to folder
+        function navigateToFolder(folderName) {
+            window.location.href = `@Url.Action("Index")?folder=${encodeURIComponent(folderName)}`;
+        }
+
+        // Open file based on type
+        function openFile(fileId, fileType) {
+            const imageTypes = ['Image'];
+            const audioTypes = ['Audio'];
+            const videoTypes = ['Video'];
+            const documentTypes = ['Document'];
+
+            if (imageTypes.includes(fileType) || audioTypes.includes(fileType) || videoTypes.includes(fileType)) {
+                window.location.href = `@Url.Action("ViewFile")/${fileId}`;
+            } else{
+                window.location.href = `@Url.Action("ViewFile")/${fileId}`;
+            }
+        }
+
+        // Download file
+        function downloadFile(fileId) {
+            window.location.href = `@Url.Action("DownloadFile")/${fileId}`;
+        }
+
+        // Show edit folder modal
+        function showEditFolderModal(folderId, currentName) {
+            selectedFolderId = folderId;
+            document.getElementById('editFolderName').value = currentName;
+            $('#editFolderModal').modal('show');
+        }
+
+        // Save edited folder
+        async function saveEditFolder() {
+            const newName = document.getElementById('editFolderName').value.trim();
+
+            if (!newName) {
+                alert('Molimo vas unesite ime foldera');
+                return;
+            }
+
+            if (!selectedFolderId) {
+                alert('Nema izabranog foldera');
+                return;
+            }
+
+            try {
+                const response = await fetch('@Url.Action("EditFolder", "FileManager")', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        folderId: selectedFolderId,
+                        newName: newName
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    $('#editFolderModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert('Greška: ' + result.message);
+                }
+            } catch (error) {
+                alert('Greška prilikom mijenjanja imena folder: ' + error.message);
+            }
+        }
+
+        // Show edit file modal
+        function showEditFileModal(fileId, currentName) {
+            selectedFileId = fileId;
+            document.getElementById('editFileName').value = currentName;
+            $('#editFileModal').modal('show');
+        }
+                var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+        dropdownElementList.map(function (dropdownToggleEl) {
+            new bootstrap.Dropdown(dropdownToggleEl, {
+                popperConfig: function (defaultBsPopperConfig) {
+                    var newConfig = {
+                        ...defaultBsPopperConfig,
+                        strategy: 'fixed' // force na body
+                    }
+                    return newConfig
+                }
+            })
+        })
+
+        // Save edited file
+        async function saveEditFile() {
+            const newName = document.getElementById('editFileName').value.trim();
+
+            if (!newName) {
+                alert('Molimo vas unesite ime fajla');
+                return;
+            }
+
+            if (!selectedFileId) {
+                alert('Nema izabranog fajla');
+                return;
+            }
+
+            try {
+                const response = await fetch('@Url.Action("EditFile", "FileManager")', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fileId: selectedFileId,
+                        newName: newName
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    $('#editFileModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert('Greška: ' + result.message);
+                }
+            } catch (error) {
+                alert('Greška prilikom mijenjanja imena fajla: ' + error.message);
+            }
+        }
+
+        // Show move modal
+        function showMoveModal(fileId, fileName) {
+            selectedFileId = fileId;
+            document.getElementById('moveFileName').textContent = fileName;
+            $('#moveFileModal').modal('show');
+        }
+
+        // Move file to folder
+        async function moveFileToFolder(folderId, folderName) {
+            if (!selectedFileId) return;
+
+            try {
+                const response = await fetch('@Url.Action("MoveFile", "FileManager")', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fileId: selectedFileId,
+                        targetFolderId: folderId
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    $('#moveFileModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error moving file: ' + error.message);
+            }
+        }
+
+        // Move file to trash
+        async function moveToTrash(fileId) {
+            if (!confirm('Jeste li sigurni da želite premjestiti ovu datoteku u smeće?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('@Url.Action("MoveToTrash", "FileManager")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id: fileId })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    location.reload();
+                } else {
+                    alert('Premještanje u smeće nije uspjelo: ' + (result.message || 'Nepoznata greška'));
+                }
+            } catch (error) {
+                alert('Greška pri premještanju u smeće: ' + error.message);
+            }
+        }
+
+        // Delete folder (placeholder - you may want to add this functionality to controller)
+        async function deleteFolder(folderId) {
+            if (!confirm('Jeste li sigurni da želite izbrisati ovu mapu? Ova radnja se ne može poništiti.')) {
+                return;
+            }
+
+            // You can implement the DeleteFolder action in your controller
+            alert('Funkcionalnost brisanja foldera mora biti implementirana u kontroleru.');
+        }
+
+        // Toggle between grid and list view
+        document.getElementById('toggleView').addEventListener('click', function() {
+            const newView = currentView === 'grid' ? 'list' : 'grid';
+            window.location.href = buildUrl(currentPage, currentSearch, newView, pageSize);
+        });
+
+        // Handle file upload - now includes folder ID
+        async function handleFileUpload(files) {
+            if (!files || files.length === 0) return;
+
+            // Prevent multiple simultaneous uploads
+            if (window.uploadInProgress) {
+                console.log('Otpremanje je već u toku');
+                return;
+            }
+
+            window.uploadInProgress = true;
+
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
+
+            // Add current folder ID if we're in a folder
+            if (currentFolderId) {
+                formData.append('folderId', currentFolderId);
+            }
+
+            try {
+                const response = await fetch('@Url.Action("UploadFiles", "FileManager")', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    // Clear the file input to prevent re-uploads
+                    document.getElementById('fileInput').value = '';
+                    location.reload();
+                } else {
+                    alert('Upload failed: ' + result.message);
+                }
+            } catch (error) {
+                alert('Upload error: ' + error.message);
+            } finally {
+                window.uploadInProgress = false;
+            }
+        }
+
+        // Create new folder
+        async function createFolder() {
+            const name = document.getElementById('folderName').value;
+            const color = document.getElementById('folderColor').value;
+
+            if (!name) {
+                alert('Molimo unesite naziv mape');
+                return;
+            }
+
+            try {
+                const response = await fetch('@Url.Action("CreateFolder", "FileManager")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, color })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    $('#createFolderModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert('Nije uspjelo kreiranje foldera: ' + result.message);
+                }
+            } catch (error) {
+                alert('Greška pri kreiranju mape: ' + error.message);
+            }
+        }
+
+        // Drag and drop functionality
+        const uploadBox = document.querySelector('.upload-box');
+
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.style.borderColor = '#0d6efd';
+            uploadBox.style.background = '#f0f8ff';
+        });
+
+        uploadBox.addEventListener('dragleave', (e) => {
+            // Only change style if we're leaving the upload box itself, not child elements
+            if (!uploadBox.contains(e.relatedTarget)) {
+                uploadBox.style.borderColor = '#dee2e6';
+                uploadBox.style.background = '#fafafa';
+            }
+        });
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.style.borderColor = '#dee2e6';
+            uploadBox.style.background = '#fafafa';
+
+            if (e.dataTransfer.files.length > 0 && !window.uploadInProgress) {
+                handleFileUpload(e.dataTransfer.files);
+            }
+        });
+
+        // Clear form when modals are hidden
+        $('#createFolderModal').on('hidden.bs.modal', function () {
+            document.getElementById('createFolderForm').reset();
+        });
+
+        $('#editFolderModal').on('hidden.bs.modal', function () {
+            selectedFolderId = null;
+        });
+
+        $('#editFileModal').on('hidden.bs.modal', function () {
+            selectedFileId = null;
+        });
+
+        $('#moveFileModal').on('hidden.bs.modal', function () {
+            selectedFileId = null;
+        });
+
+        // Enhanced keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // F2 for rename (when a file/folder is selected)
+            if (e.key === 'F2' && selectedFileId) {
+                e.preventDefault();
+                // Find the file name from the DOM
+                const fileElement = document.querySelector(`[onclick*="${selectedFileId}"]`);
+                if (fileElement) {
+                    const fileName = fileElement.querySelector('.fw-semibold').textContent;
+                    showEditFileModal(selectedFileId, fileName);
+                }
+            }
+
+            // Delete key for moving to trash
+            if (e.key === 'Delete' && selectedFileId) {
+                e.preventDefault();
+                moveToTrash(selectedFileId);
+            }
+
+            // Escape to clear selection
+            if (e.key === 'Escape') {
+                selectedFileId = null;
+                selectedFolderId = null;
+                // Remove any selection highlights
+                document.querySelectorAll('.selected').forEach(el => {
+                    el.classList.remove('selected');
+                });
+            }
+
+            // Ctrl+F for search focus
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+
+            // Arrow keys for pagination
+            if (e.key === 'ArrowLeft' && e.ctrlKey && currentPage > 1) {
+                e.preventDefault();
+                goToPage(currentPage - 1);
+            }
+
+            if (e.key === 'ArrowRight' && e.ctrlKey && currentPage < @totalPages) {
+                e.preventDefault();
+                goToPage(currentPage + 1);
+            }
+        });
+
+        // Add click handlers to track selected items
+        document.addEventListener('click', function(e) {
+            // Remove previous selections
+            document.querySelectorAll('.selected').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            // Check if clicked on file card
+            const fileCard = e.target.closest('.file-card');
+            if (fileCard) {
+                fileCard.classList.add('selected');
+                const onclickAttr = fileCard.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/openFile\((\d+)/);
+                    if (match) {
+                        selectedFileId = parseInt(match[1]);
+                    }
+                }
+            }
+
+            // Check if clicked on file list item
+            const fileListItem = e.target.closest('.file-list-item');
+            if (fileListItem) {
+                fileListItem.classList.add('selected');
+                const onclickAttr = fileListItem.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/openFile\((\d+)/);
+                    if (match) {
+                        selectedFileId = parseInt(match[1]);
+                    }
+                }
+            }
+
+            // Check if clicked on folder card
+            const folderCard = e.target.closest('.folder-card');
+            if (folderCard) {
+                folderCard.classList.add('selected');
+                // Extract folder ID from actions if available
+                const dropdown = folderCard.querySelector('[onclick*="showEditFolderModal"]');
+                if (dropdown) {
+                    const onclickAttr = dropdown.getAttribute('onclick');
+                    const match = onclickAttr.match(/showEditFolderModal\((\d+)/);
+                    if (match) {
+                        selectedFolderId = parseInt(match[1]);
+                    }
+                }
+            }
+        });
+
+        // Initialize search input focus if there's a search term
+        if (currentSearch && currentSearch.length > 0) {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('searchInput').focus();
+            });
+        }
+    </script>
+}
+
+@functions {
+    private string GetFileIcon(string extension)
+    {
+        return extension.ToLower() switch
+        {
+            ".pdf" => "bi-file-earmark-pdf",
+            ".doc" or ".docx" => "bi-file-earmark-word",
+            ".xls" or ".xlsx" => "bi-file-earmark-excel",
+            ".ppt" or ".pptx" => "bi-file-earmark-ppt",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" => "bi-file-earmark-image",
+            ".mp3" or ".wav" or ".ogg" => "bi-file-earmark-music",
+            ".mp4" or ".mov" or ".avi" => "bi-file-earmark-play",
+            ".zip" or ".rar" or ".7z" => "bi-file-earmark-zip",
+            _ => "bi-file-earmark"
+        };
+    }
+
+    private string GetFileIconClass(string extension)
+    {
+        return extension.ToLower() switch
+        {
+            ".pdf" => "text-danger",
+            ".doc" or ".docx" => "text-primary",
+            ".xls" or ".xlsx" => "text-success",
+            ".ppt" or ".pptx" => "text-warning",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" => "text-info",
+            ".mp3" or ".wav" or ".ogg" => "text-secondary",
+            ".mp4" or ".mov" or ".avi" => "text-primary",
+            ".zip" or ".rar" or ".7z" => "text-warning",
+            _ => "text-secondary"
+        };
+    }
+
+    private string FormatFileSize(long bytes)
+    {
+        string[] sizes = { "B", "KB", "MB", "GB" };
+        int order = 0;
+        double len = bytes;
+        while (len >= 1024 && order < sizes.Length - 1)
+        {
+            order++;
+            len = len / 1024;
+        }
+        return $"{len:0.##} {sizes[order]}";
+    }
+
+    private string FormatDate(DateTime date)
+    {
+        var timeSpan = DateTime.Now - date;
+
+        if (timeSpan.TotalDays > 30)
+            return $"prije {(int)(timeSpan.TotalDays / 30)} mjeseci";
+        else if (timeSpan.TotalDays > 7)
+            return $"prije {(int)(timeSpan.TotalDays / 7)} sedmica";
+        else if (timeSpan.TotalDays > 1)
+            return $"prije {(int)timeSpan.TotalDays} dana";
+        else if (timeSpan.TotalHours > 1)
+            return $"prije {(int)timeSpan.TotalHours} sati";
+        else if (timeSpan.TotalMinutes > 1)
+            return $"prije {(int)timeSpan.TotalMinutes} minuta";
+        else
+            return "Upravo sada";
+    }
+
+}

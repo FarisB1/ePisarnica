@@ -1,0 +1,178 @@
+﻿@model List<ePisarnica.Models.ProtocolEntry>
+
+@{
+    ViewData["Title"] = "Izveštaj Protokola";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Izveštaj Protokola</h3>
+                    <div class="card-tools">
+                        <a href="@Url.Action("Index")" class="btn btn-sm btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Nazad na listu
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <!-- Report Filters -->
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h4 class="card-title">Filteri izveštaja</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form method="get" asp-action="GenerateReport" class="form-inline">
+                                        <div class="form-group mr-2">
+                                            <label for="dateFrom" class="mr-2">Od:</label>
+                                            <input type="date" id="dateFrom" name="dateFrom"
+                                                   value="@ViewBag.DateFrom?.ToString("yyyy-MM-dd")"
+                                                   class="form-control form-control-sm" />
+                                        </div>
+                                        <div class="form-group mr-2">
+                                            <label for="dateTo" class="mr-2">Do:</label>
+                                            <input type="date" id="dateTo" name="dateTo"
+                                                   value="@ViewBag.DateTo?.ToString("yyyy-MM-dd")"
+                                                   class="form-control form-control-sm" />
+                                        </div>
+                                        <div class="form-group mr-2">
+                                            <label for="status" class="mr-2">Status:</label>
+                                            <select id="status" name="status" class="form-control form-control-sm">
+                                                <option value="">Svi statusi</option>
+                                                @foreach (var item in ViewBag.StatusList)
+                                                {
+                                                    <option value="@item.Value" selected="@(ViewBag.StatusFilter == item.Value ? "selected" : null)">
+                                                        @item.Text
+                                                    </option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group mr-2">
+                                            <label for="vrstaPostupka" class="mr-2">Vrsta postupka:</label>
+                                            <select id="vrstaPostupka" name="vrstaPostupka" class="form-control form-control-sm">
+                                                <option value="">Sve vrste</option>
+                                                @foreach (var item in ViewBag.VrstaPostupkaOptions)
+                                                {
+                                                    <option value="@item.Value" selected="@(ViewBag.VrstaPostupkaFilter == item.Value ? "selected" : null)">
+                                                        @item.Text
+                                                    </option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group mr-2">
+                                            <label for="format" class="mr-2">Format:</label>
+                                            <select id="format" name="format" class="form-control form-control-sm">
+                                                <option value="html" selected="@(ViewBag.Format == "html" ? "selected" : null)">HTML</option>
+                                                <option value="pdf" selected="@(ViewBag.Format == "pdf" ? "selected" : null)">PDF</option>
+                                                <option value="excel" selected="@(ViewBag.Format == "excel" ? "selected" : null)">Excel</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-filter"></i> Filtriraj
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Summary -->
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        Prikazano <strong>@Model.Count</strong> zapisa
+                        @if (ViewBag.DateFrom != null || ViewBag.DateTo != null)
+                        {
+                            <span>
+                                za period:
+                                <strong>@(ViewBag.DateFrom?.ToString("dd.MM.yyyy") ?? "početak")</strong> -
+                                <strong>@(ViewBag.DateTo?.ToString("dd.MM.yyyy") ?? "kraj")</strong>
+                            </span>
+                        }
+                    </div>
+
+                    <!-- Report Table -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Broj Protokola</th>
+                                    <th>Datum</th>
+                                    <th>Stranka</th>
+                                    <th>Primalac</th>
+                                    <th>Vrsta Postupka</th>
+                                    <th>Hitno</th>
+                                    <th>Status Dokumenta</th>
+                                    <th>Dostavio</th>
+                                    <th>Telefon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.BrojProtokola</td>
+                                        <td>@item.Datum.ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td>@item.Stranka</td>
+                                        <td>@item.Primalac</td>
+                                        <td>@item.VrstaPostupka</td>
+                                        <td>@item.Hitno</td>
+                                        <td>
+                                            @if (item.Document != null)
+                                            {
+                                                <span class="badge badge-info">@item.Document.Status.ToString()</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-secondary">Nema dokumenta</span>
+                                            }
+                                        </td>
+                                        <td>@item.Dostavio</td>
+                                        <td>@item.Telefon</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Export Buttons -->
+                    <div class="mt-3">
+                        <a href="@Url.Action("GenerateReport", new {
+                            dateFrom = ViewBag.DateFrom,
+                            dateTo = ViewBag.DateTo,
+                            status = ViewBag.StatusFilter,
+                            vrstaPostupka = ViewBag.VrstaPostupkaFilter,
+                            format = "excel" })"
+                           class="btn btn-success">
+                            <i class="fas fa-file-excel"></i> Preuzmi Excel
+                        </a>
+                        <a href="@Url.Action("GenerateReport", new {
+                            dateFrom = ViewBag.DateFrom,
+                            dateTo = ViewBag.DateTo,
+                            status = ViewBag.StatusFilter,
+                            vrstaPostupka = ViewBag.VrstaPostupkaFilter,
+                            format = "pdf" })"
+                           class="btn btn-danger ml-2">
+                            <i class="fas fa-file-pdf"></i> Preuzmi PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Initialize filters
+            $('#status').val('@ViewBag.StatusFilter');
+            $('#vrstaPostupka').val('@ViewBag.VrstaPostupkaFilter');
+            $('#format').val('@ViewBag.Format');
+        });
+    </script>
+}

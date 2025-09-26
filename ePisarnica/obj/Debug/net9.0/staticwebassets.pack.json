@@ -1,0 +1,717 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\ePisarnica.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ePisarnica.10etuy98ab.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\images\\episarnica_logo.png",
+      "PackagePath": "staticwebassets\\images\\episarnica_logo.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.js"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_1.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_1.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_10.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_10.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_11.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_11.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_12.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_12.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_13.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_13.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_14.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_14.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_15.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_15.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_16.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_16.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_17.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_17.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_18.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_18.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_19.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_19.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_2.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_2.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_20.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_20.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_21.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_21.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_22.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_22.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_23.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_23.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_24.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_24.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_25.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_25.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_26.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_26.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_3.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_3.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_4.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_4.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_5.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_5.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_6.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_6.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_7.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_7.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_8.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_8.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_9.png",
+      "PackagePath": "staticwebassets\\qrcodes\\qr_9.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\2ed5722e-2ee1-492a-94c3-46928f97403a_KKS - Pitanja.docx",
+      "PackagePath": "staticwebassets\\uploads\\2\\2ed5722e-2ee1-492a-94c3-46928f97403a_KKS - Pitanja.docx"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\3fd0599b-3941-41d9-946f-a8ab788dd05a_IntroductionJMeter_Siri12021.pdf",
+      "PackagePath": "staticwebassets\\uploads\\2\\3fd0599b-3941-41d9-946f-a8ab788dd05a_IntroductionJMeter_Siri12021.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\7e9460f3-de9f-42d3-b595-eefe69f5fd37_eTicket_40213493715.pdf",
+      "PackagePath": "staticwebassets\\uploads\\2\\7e9460f3-de9f-42d3-b595-eefe69f5fd37_eTicket_40213493715.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\9ff427de-683c-479b-bf5a-52f890e286dc_Projekat_PametnoVozilo.pdf",
+      "PackagePath": "staticwebassets\\uploads\\2\\9ff427de-683c-479b-bf5a-52f890e286dc_Projekat_PametnoVozilo.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\a1a1f7da-7923-42af-a954-20c518406b17_TEST1-KKS_sa bod.skalom.pdf",
+      "PackagePath": "staticwebassets\\uploads\\2\\a1a1f7da-7923-42af-a954-20c518406b17_TEST1-KKS_sa bod.skalom.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\bef5a6af-8e7d-44f2-ba3f-a622f2b52ae5_RSparc1.pdf",
+      "PackagePath": "staticwebassets\\uploads\\2\\bef5a6af-8e7d-44f2-ba3f-a622f2b52ae5_RSparc1.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\dca9b56f-f796-49dd-8b0c-a1c7dfefae9a_Proljece_esej.docx",
+      "PackagePath": "staticwebassets\\uploads\\2\\dca9b56f-f796-49dd-8b0c-a1c7dfefae9a_Proljece_esej.docx"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\e45f6203-c435-4f08-a0ae-63a798572e8d_Dokumentacija.pdf",
+      "PackagePath": "staticwebassets\\uploads\\2\\e45f6203-c435-4f08-a0ae-63a798572e8d_Dokumentacija.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\f29a7330-7975-4e54-9abc-3da658f03550_Diplomski rad - Vildana B.docx",
+      "PackagePath": "staticwebassets\\uploads\\2\\f29a7330-7975-4e54-9abc-3da658f03550_Diplomski rad - Vildana B.docx"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\2\\f7882e3e-660a-4811-92f7-71bcfc67c6cd_APznzaZJWtP2eD_v-yhb6GnvYHBLBNDW2y08RtkcsR4ltf4Jf2Ja-wE_xxk4cKGEUZBPqKjuXliZjYUd5hdGQCJT2xehor6-W2wUTGjVv3PEqdHnrZ7alHpn4MUA1fpDS_fkne0YvO3ITsj-4FFhGhRlYMqn746we6wRlC4GqsGIOfT2zkW1ZCnWSN_M4yAulkh7ZY2TGcuUTKvKh292D6.pdf",
+      "PackagePath": "staticwebassets\\uploads\\2\\f7882e3e-660a-4811-92f7-71bcfc67c6cd_APznzaZJWtP2eD_v-yhb6GnvYHBLBNDW2y08RtkcsR4ltf4Jf2Ja-wE_xxk4cKGEUZBPqKjuXliZjYUd5hdGQCJT2xehor6-W2wUTGjVv3PEqdHnrZ7alHpn4MUA1fpDS_fkne0YvO3ITsj-4FFhGhRlYMqn746we6wRlC4GqsGIOfT2zkW1ZCnWSN_M4yAulkh7ZY2TGcuUTKvKh292D6.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\3\\301f8710-feca-420e-847f-c91a682bd4f0_Screenshot 2025-06-13 200136.png",
+      "PackagePath": "staticwebassets\\uploads\\3\\301f8710-feca-420e-847f-c91a682bd4f0_Screenshot 2025-06-13 200136.png"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\3\\6d72a7f9-f74b-4e82-bf4e-6ba544423150_50.docx",
+      "PackagePath": "staticwebassets\\uploads\\3\\6d72a7f9-f74b-4e82-bf4e-6ba544423150_50.docx"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\3\\6d72a7f9-f74b-4e82-bf4e-6ba544423150_50.pdf",
+      "PackagePath": "staticwebassets\\uploads\\3\\6d72a7f9-f74b-4e82-bf4e-6ba544423150_50.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\3\\Diplomski rad - Vildana B.pdf",
+      "PackagePath": "staticwebassets\\uploads\\3\\Diplomski rad - Vildana B.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\0e927cae-2135-43d2-b109-2c45a95e429c_RSparc1.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\0e927cae-2135-43d2-b109-2c45a95e429c_RSparc1.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\163f1b3a-2c8c-4960-83d9-6e785699339c_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\163f1b3a-2c8c-4960-83d9-6e785699339c_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\19fb7e6a-6ed1-4131-964b-7054cefd4735_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\19fb7e6a-6ed1-4131-964b-7054cefd4735_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\1ca4496f-98b0-44be-9728-97efc6b3f30f_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\1ca4496f-98b0-44be-9728-97efc6b3f30f_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\1cf8f0ac-89f6-46e7-a192-2c962a2c6e7e_6-1-6-729.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\1cf8f0ac-89f6-46e7-a192-2c962a2c6e7e_6-1-6-729.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\21424dc0-e075-4c99-91ba-9586633d30b1_Protokol_3_20250901_022318.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\21424dc0-e075-4c99-91ba-9586633d30b1_Protokol_3_20250901_022318.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\2596a766-dee7-44ff-a87b-17ae1b131bab_US_P1_27042024B_rjesenje.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\2596a766-dee7-44ff-a87b-17ae1b131bab_US_P1_27042024B_rjesenje.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\2dc9dd2a-1a26-40f8-a851-a45f8f363164_RSparc1 (1).pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\2dc9dd2a-1a26-40f8-a851-a45f8f363164_RSparc1 (1).pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\33b5f788-5e8d-45a5-9047-df175163cf98_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\33b5f788-5e8d-45a5-9047-df175163cf98_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\70e24a3b-2fe2-4ea5-ad3d-8bcca0361a65_V.Ferel--Vakcine_novi_genocid.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\70e24a3b-2fe2-4ea5-ad3d-8bcca0361a65_V.Ferel--Vakcine_novi_genocid.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\8f63ed6a-1457-4294-91fb-1f04515be278_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\8f63ed6a-1457-4294-91fb-1f04515be278_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\96d2bbb6-851f-4bd0-b29f-50b67838b2a4_mono90-6.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\96d2bbb6-851f-4bd0-b29f-50b67838b2a4_mono90-6.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\994d2682-0329-474b-aedb-eb100e743af2_ijms-22-00213.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\994d2682-0329-474b-aedb-eb100e743af2_ijms-22-00213.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\V.Ferel--Vakcine_novi_genocid_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\V.Ferel--Vakcine_novi_genocid_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\bfc97595-3e10-4497-9c86-d396a6409932_6-1-6-729.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\bfc97595-3e10-4497-9c86-d396a6409932_6-1-6-729.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\c7e2c100-966b-4e42-b2b8-e7613dafd6eb_JMETER.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\c7e2c100-966b-4e42-b2b8-e7613dafd6eb_JMETER.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\ca13dbdd-7e6e-41cd-9dd0-1e341816ee29_eTicket.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\ca13dbdd-7e6e-41cd-9dd0-1e341816ee29_eTicket.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\d30862c3-c6d9-48e7-854e-1ee1d822f848_RSparc1.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\d30862c3-c6d9-48e7-854e-1ee1d822f848_RSparc1.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\d70bb822-b271-45bd-9293-7aeb9a18f82f_eTicket_40213493715.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\d70bb822-b271-45bd-9293-7aeb9a18f82f_eTicket_40213493715.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\f33f1856-47ea-49ea-a7b6-0b29f87b98cd_Projekat RIS.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\f33f1856-47ea-49ea-a7b6-0b29f87b98cd_Projekat RIS.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\fb9be54f-e861-4ae7-9fdc-a87e1372970f_ijms-22-00213.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\2\\fb9be54f-e861-4ae7-9fdc-a87e1372970f_ijms-22-00213.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\1499e2b3-49e7-44f9-a999-f23ae66d3879_Projekat_PametnoVozilo.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\1499e2b3-49e7-44f9-a999-f23ae66d3879_Projekat_PametnoVozilo.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\15bcba08-bd01-445e-883f-af4458a5e28b_pdss_sestr_klara_horvat.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\15bcba08-bd01-445e-883f-af4458a5e28b_pdss_sestr_klara_horvat.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\1b097cb4-9576-4c40-af3d-3a85e1ce89b3_Projekat RIS.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\1b097cb4-9576-4c40-af3d-3a85e1ce89b3_Projekat RIS.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\2a2b4a21-c204-49e5-8330-1c2ea71b2a00_KKS zabiljeske .pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\2a2b4a21-c204-49e5-8330-1c2ea71b2a00_KKS zabiljeske .pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\5c108bd2-6be0-4a66-ac97-6ac04215fcfc_KKS - Pitanja.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\5c108bd2-6be0-4a66-ac97-6ac04215fcfc_KKS - Pitanja.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\60c472fc-d80c-42ec-917e-041d01fac4da_RSparc1.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\60c472fc-d80c-42ec-917e-041d01fac4da_RSparc1.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\62a3bdf1-913c-42d3-9c45-08c16119290e_OM_Primjer_ispita.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\62a3bdf1-913c-42d3-9c45-08c16119290e_OM_Primjer_ispita.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\6f214dd1-0505-47c5-8ba4-8062c3e464c4_VJERA I ŽIVOT.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\6f214dd1-0505-47c5-8ba4-8062c3e464c4_VJERA I ŽIVOT.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\73fd0df1-0c67-4f0a-9e9e-57096c771b9d_US_Skripta_31_Bos.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\73fd0df1-0c67-4f0a-9e9e-57096c771b9d_US_Skripta_31_Bos.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\84caaaea-018a-4b01-8654-cb2bef1fb983_RSparc1.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\84caaaea-018a-4b01-8654-cb2bef1fb983_RSparc1.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\86660ab5-e69e-4f85-87ff-66626a0dc5c3_US_Skripta_31_Bos.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\86660ab5-e69e-4f85-87ff-66626a0dc5c3_US_Skripta_31_Bos.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\8e3d7610-7f47-4523-ba8c-d19fc723aa20_US_Skripta_31_Bos.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\8e3d7610-7f47-4523-ba8c-d19fc723aa20_US_Skripta_31_Bos.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\91978952-1acc-4907-8057-855bd206e4a5_RSparc1.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\91978952-1acc-4907-8057-855bd206e4a5_RSparc1.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\KKS - Pitanja_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\KKS - Pitanja_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\KKS zabiljeske _signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\KKS zabiljeske _signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\OM_Primjer_ispita_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\OM_Primjer_ispita_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\Projekat RIS_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\Projekat RIS_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\Projekat_PametnoVozilo_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\Projekat_PametnoVozilo_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\RSparc1_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\RSparc1_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\US_Skripta_31_Bos_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\US_Skripta_31_Bos_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\c08ec8ee-b2db-4db3-a09c-8e58c4a3956f_US_Skripta_31_Bos.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\c08ec8ee-b2db-4db3-a09c-8e58c4a3956f_US_Skripta_31_Bos.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\c3332cdc-fa7d-4c8b-aaaf-ad190b1a74a7_Projekat_PametnoVozilo.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\c3332cdc-fa7d-4c8b-aaaf-ad190b1a74a7_Projekat_PametnoVozilo.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\c69e001d-52cf-4d2f-9ea6-25617aa5ed91_RSparc1.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\c69e001d-52cf-4d2f-9ea6-25617aa5ed91_RSparc1.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\c91a7823-e9d4-4178-916f-0e826fbc99b1_Dokumentacija.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\c91a7823-e9d4-4178-916f-0e826fbc99b1_Dokumentacija.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\cedb8f76-c72d-45f0-892d-eb663743821c_KKS - Pitanja.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\cedb8f76-c72d-45f0-892d-eb663743821c_KKS - Pitanja.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\d7186c0d-6e64-4515-91e9-45f095b9e42e_Projekat_PametnoVozilo.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\d7186c0d-6e64-4515-91e9-45f095b9e42e_Projekat_PametnoVozilo.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\e1dd0ca3-de02-4dba-bd89-88ac5e8da114_Projekat RIS.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\e1dd0ca3-de02-4dba-bd89-88ac5e8da114_Projekat RIS.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\e6b51f0f-44d2-4420-9a3e-2f4e36aff719_Likovno.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\e6b51f0f-44d2-4420-9a3e-2f4e36aff719_Likovno.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\pdss_sestr_klara_horvat_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\pdss_sestr_klara_horvat_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\4\\1534bd48-00c2-44a1-88a4-164adf4ed031_IntroductionJMeter_Siri12021.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\4\\1534bd48-00c2-44a1-88a4-164adf4ed031_IntroductionJMeter_Siri12021.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\4\\5845aed4-2e85-4a91-aa5f-eee216e9a2b3_APznzaZJWtP2eD_v-yhb6GnvYHBLBNDW2y08RtkcsR4ltf4Jf2Ja-wE_xxk4cKGEUZBPqKjuXliZjYUd5hdGQCJT2xehor6-W2wUTGjVv3PEqdHnrZ7alHpn4MUA1fpDS_fkne0YvO3ITsj-4FFhGhRlYMqn746we6wRlC4GqsGIOfT2zkW1ZCnWSN_M4yAulkh7ZY2TGcuUTKvKh292D6.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\4\\5845aed4-2e85-4a91-aa5f-eee216e9a2b3_APznzaZJWtP2eD_v-yhb6GnvYHBLBNDW2y08RtkcsR4ltf4Jf2Ja-wE_xxk4cKGEUZBPqKjuXliZjYUd5hdGQCJT2xehor6-W2wUTGjVv3PEqdHnrZ7alHpn4MUA1fpDS_fkne0YvO3ITsj-4FFhGhRlYMqn746we6wRlC4GqsGIOfT2zkW1ZCnWSN_M4yAulkh7ZY2TGcuUTKvKh292D6.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\4\\IntroductionJMeter_Siri12021_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\4\\IntroductionJMeter_Siri12021_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\5\\123836b4-a3ec-4d1e-bbce-5e351839c359_JMETER.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\5\\123836b4-a3ec-4d1e-bbce-5e351839c359_JMETER.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\5\\ff83d9a4-3b75-4e55-9ccc-cc7aa1282215_Projekat RIS.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\5\\ff83d9a4-3b75-4e55-9ccc-cc7aa1282215_Projekat RIS.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\6\\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\0a675917-94c3-4543-9cb8-6e82fe99139f_KKS zabiljeske .pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\0a675917-94c3-4543-9cb8-6e82fe99139f_KKS zabiljeske .pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\2abb8338-b56c-4cf3-8004-de87f3d4fdb0_US_Skripta_31_Bos.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\2abb8338-b56c-4cf3-8004-de87f3d4fdb0_US_Skripta_31_Bos.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\6f698c2e-46ad-4f93-b788-9e687b3d1afd_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\6f698c2e-46ad-4f93-b788-9e687b3d1afd_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\KKS - Pitanja_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\KKS - Pitanja_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\KKS zabiljeske _signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\KKS zabiljeske _signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\KKS-VedadFaris_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\KKS-VedadFaris_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\US_Skripta_31_Bos_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\US_Skripta_31_Bos_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\bf86812c-fdbf-400f-acfd-f197c598984b_KKS - Pitanja.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\bf86812c-fdbf-400f-acfd-f197c598984b_KKS - Pitanja.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\e66d8786-2d4b-4031-91b5-ed3c7258e38a_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\7\\e66d8786-2d4b-4031-91b5-ed3c7258e38a_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.ePisarnica.props",
+      "PackagePath": "build\\ePisarnica.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.ePisarnica.props",
+      "PackagePath": "buildMultiTargeting\\ePisarnica.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.ePisarnica.props",
+      "PackagePath": "buildTransitive\\ePisarnica.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ePisarnica.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ePisarnica.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
