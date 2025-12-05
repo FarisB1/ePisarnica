@@ -15,6 +15,11 @@
     {
         <div class="alert alert-info text-center">@TempData["Message"]</div>
     }
+    <div class="text-end mb-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            <i class="fas fa-user-plus"></i> Dodaj korisnika
+        </button>
+    </div>
 
     <!-- Skriveni anti-forgery token -->
     <form asp-controller="Account" asp-action="ManageUsers" method="post">
@@ -142,6 +147,62 @@
     </div>
 </div>
 
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title"><i class="fas fa-user-plus me-2"></i>Novi korisnik</h5>
+                <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="addUserForm">
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label class="form-label">Korisničko ime</label>
+                        <input class="form-control" name="Username" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Ime</label>
+                        <input class="form-control" name="Ime" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Prezime</label>
+                        <input class="form-control" name="Prezime" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="Email" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Lozinka</label>
+                        <input type="password" minlength="6" class="form-control" name="Password" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Uloga</label>
+                        <select class="form-select" name="Role" required>
+                            <option value="User">User</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="fas fa-save"></i> Spremi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 @section Scripts {
     <script>
         $(function () {
@@ -192,5 +253,32 @@
                 $('#userDetailsContent').load('@Url.Action("UserDetails", "Account")?id=' + userId);
             });
         });
+
+                // ADD USER AJAX
+        $("#addUserForm").on("submit", function (e) {
+            e.preventDefault();
+
+            const form = $(this);
+            const data = form.serialize();
+
+            $.ajax({
+                url: '@Url.Action("AddUser", "Account")',
+                type: 'POST',
+                data: data,
+                headers: { 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() },
+                success: function (res) {
+                    if (res.success) {
+                        alert("✅ " + res.message);
+                        location.reload();
+                    } else {
+                        alert("❌ " + res.message);
+                    }
+                },
+                error: function () {
+                    alert("❌ Greška prilikom dodavanja korisnika.");
+                }
+            });
+        });
+
     </script>
 }

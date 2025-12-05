@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mbxLtdXRXdhyHjADEufQJuLQhhcGsM4+en6kGnLeL3Y=",
+  "Hash": "MPZ8aw5X1ZdHLlYJgePgPyOxKnTVKXVxCsMnbZ/RuAk=",
   "Source": "ePisarnica",
   "BasePath": "_content/ePisarnica",
   "Mode": "Default",
@@ -2929,8 +2929,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "87998kqjch",
-      "Integrity": "1M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM=",
+      "Fingerprint": "a28pbtny1d",
+      "Integrity": "7puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\qrcodes\\qr_15.png"
@@ -2950,8 +2950,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ckf5s6s6kn",
-      "Integrity": "DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg=",
+      "Fingerprint": "fce94zmaor",
+      "Integrity": "34B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\qrcodes\\qr_16.png"
@@ -2971,8 +2971,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ulb6yfpmxu",
-      "Integrity": "Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws=",
+      "Fingerprint": "cxhd6mpip8",
+      "Integrity": "AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\qrcodes\\qr_17.png"
@@ -3627,6 +3627,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\3\\Diplomski rad - Vildana B.pdf"
+    },
+    {
+      "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\4\\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf",
+      "SourceId": "ePisarnica",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Diplomski\\ePisarnica\\wwwroot\\",
+      "BasePath": "_content/ePisarnica",
+      "RelativePath": "uploads/4/9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1)#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xp19swrmhy",
+      "Integrity": "C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\4\\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf"
     },
     {
       "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf",
@@ -4364,6 +4385,27 @@
       "OriginalItemSpec": "wwwroot\\uploads\\protocols\\3\\91978952-1acc-4907-8057-855bd206e4a5_RSparc1.pdf"
     },
     {
+      "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf",
+      "SourceId": "ePisarnica",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Diplomski\\ePisarnica\\wwwroot\\",
+      "BasePath": "_content/ePisarnica",
+      "RelativePath": "uploads/protocols/3/957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "84vnecabcm",
+      "Integrity": "uCTh+YSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\protocols\\3\\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf"
+    },
+    {
       "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf",
       "SourceId": "ePisarnica",
       "SourceType": "Discovered",
@@ -4509,6 +4551,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\protocols\\3\\d7186c0d-6e64-4515-91e9-45f095b9e42e_Projekat_PametnoVozilo.pdf"
+    },
+    {
+      "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf",
+      "SourceId": "ePisarnica",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Diplomski\\ePisarnica\\wwwroot\\",
+      "BasePath": "_content/ePisarnica",
+      "RelativePath": "uploads/protocols/3/Drugi parcijalni ispit RS - 16.09.2025_signed#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8sole3lzer",
+      "Integrity": "SMUgHgXJg7S3nq+4PhXdaD+5Wk25CRqz00vrzk80XEE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\protocols\\3\\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf"
     },
     {
       "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\e1dd0ca3-de02-4dba-bd89-88ac5e8da114_Projekat RIS.pdf",
@@ -4826,6 +4889,48 @@
       "OriginalItemSpec": "wwwroot\\uploads\\protocols\\5\\ff83d9a4-3b75-4e55-9ccc-cc7aa1282215_Projekat RIS.pdf"
     },
     {
+      "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf",
+      "SourceId": "ePisarnica",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Diplomski\\ePisarnica\\wwwroot\\",
+      "BasePath": "_content/ePisarnica",
+      "RelativePath": "uploads/protocols/6/216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1)#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xp19swrmhy",
+      "Integrity": "C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\protocols\\6\\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf"
+    },
+    {
+      "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf",
+      "SourceId": "ePisarnica",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Diplomski\\ePisarnica\\wwwroot\\",
+      "BasePath": "_content/ePisarnica",
+      "RelativePath": "uploads/protocols/6/8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "r7blf3zalb",
+      "Integrity": "+chh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\protocols\\6\\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf"
+    },
+    {
       "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf",
       "SourceId": "ePisarnica",
       "SourceType": "Discovered",
@@ -4845,6 +4950,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\protocols\\6\\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf"
+    },
+    {
+      "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\DIPLOMSKI-Besim (1)_signed.pdf",
+      "SourceId": "ePisarnica",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Diplomski\\ePisarnica\\wwwroot\\",
+      "BasePath": "_content/ePisarnica",
+      "RelativePath": "uploads/protocols/6/DIPLOMSKI-Besim (1)_signed#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5dmnrlfb1i",
+      "Integrity": "BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\protocols\\6\\DIPLOMSKI-Besim (1)_signed.pdf"
+    },
+    {
+      "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\KKS-VedadFaris_signed.pdf",
+      "SourceId": "ePisarnica",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Diplomski\\ePisarnica\\wwwroot\\",
+      "BasePath": "_content/ePisarnica",
+      "RelativePath": "uploads/protocols/6/KKS-VedadFaris_signed#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "qlpfh8omis",
+      "Integrity": "XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc+A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\protocols\\6\\KKS-VedadFaris_signed.pdf"
     },
     {
       "Identity": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\7\\0a675917-94c3-4543-9cb8-6e82fe99139f_KKS zabiljeske .pdf",
@@ -25064,7 +25211,7 @@
       ]
     },
     {
-      "Route": "qrcodes/qr_15.87998kqjch.png",
+      "Route": "qrcodes/qr_15.a28pbtny1d.png",
       "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_15.png",
       "Selectors": [],
       "ResponseHeaders": [
@@ -25074,7 +25221,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "979"
+          "Value": "1446"
         },
         {
           "Name": "Content-Type",
@@ -25082,11 +25229,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM=\""
+          "Value": "\"7puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 25 Sep 2025 21:10:12 GMT"
+          "Value": "Sun, 19 Oct 2025 21:45:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -25096,7 +25243,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "87998kqjch"
+          "Value": "a28pbtny1d"
         },
         {
           "Name": "label",
@@ -25104,7 +25251,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-1M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM="
+          "Value": "sha256-7puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE="
         }
       ]
     },
@@ -25119,7 +25266,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "979"
+          "Value": "1446"
         },
         {
           "Name": "Content-Type",
@@ -25127,11 +25274,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM=\""
+          "Value": "\"7puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 25 Sep 2025 21:10:12 GMT"
+          "Value": "Sun, 19 Oct 2025 21:45:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -25141,12 +25288,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-1M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM="
+          "Value": "sha256-7puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE="
         }
       ]
     },
     {
-      "Route": "qrcodes/qr_16.ckf5s6s6kn.png",
+      "Route": "qrcodes/qr_16.fce94zmaor.png",
       "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_16.png",
       "Selectors": [],
       "ResponseHeaders": [
@@ -25156,7 +25303,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "965"
+          "Value": "1159"
         },
         {
           "Name": "Content-Type",
@@ -25164,11 +25311,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg=\""
+          "Value": "\"34B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 16 Sep 2025 01:59:28 GMT"
+          "Value": "Mon, 01 Dec 2025 13:55:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -25178,7 +25325,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ckf5s6s6kn"
+          "Value": "fce94zmaor"
         },
         {
           "Name": "label",
@@ -25186,7 +25333,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg="
+          "Value": "sha256-34B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8="
         }
       ]
     },
@@ -25201,7 +25348,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "965"
+          "Value": "1159"
         },
         {
           "Name": "Content-Type",
@@ -25209,11 +25356,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg=\""
+          "Value": "\"34B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 16 Sep 2025 01:59:28 GMT"
+          "Value": "Mon, 01 Dec 2025 13:55:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -25223,7 +25370,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg="
+          "Value": "sha256-34B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8="
+        }
+      ]
+    },
+    {
+      "Route": "qrcodes/qr_17.cxhd6mpip8.png",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_17.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "972"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 15:13:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cxhd6mpip8"
+        },
+        {
+          "Name": "label",
+          "Value": "qrcodes/qr_17.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0="
         }
       ]
     },
@@ -25238,7 +25430,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "812"
+          "Value": "972"
         },
         {
           "Name": "Content-Type",
@@ -25246,11 +25438,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws=\""
+          "Value": "\"AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 16 Sep 2025 02:11:59 GMT"
+          "Value": "Mon, 01 Dec 2025 15:13:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -25260,52 +25452,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws="
-        }
-      ]
-    },
-    {
-      "Route": "qrcodes/qr_17.ulb6yfpmxu.png",
-      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\qrcodes\\qr_17.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "812"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 16 Sep 2025 02:11:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ulb6yfpmxu"
-        },
-        {
-          "Name": "label",
-          "Value": "qrcodes/qr_17.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws="
+          "Value": "sha256-AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0="
         }
       ]
     },
@@ -27848,6 +27995,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-QVeF0lAhDX5YG6+3rsgmJ+G3tHbfC5f2HuG0wl8CK9Y="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4/9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\4\\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1257999"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 13:54:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/4/9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).xp19swrmhy.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\4\\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1257999"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 13:54:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xp19swrmhy"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/4/9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk="
         }
       ]
     },
@@ -30722,6 +30951,88 @@
       ]
     },
     {
+      "Route": "uploads/protocols/3/957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.84vnecabcm.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "129816"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uCTh+YSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Oct 2025 21:45:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "84vnecabcm"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/protocols/3/957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uCTh+YSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/3/957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "129816"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uCTh+YSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Oct 2025 21:45:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uCTh+YSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k="
+        }
+      ]
+    },
+    {
       "Route": "uploads/protocols/3/96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.jviy9uget5.pdf",
       "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf",
       "Selectors": [],
@@ -31292,6 +31603,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-FN0sRm6dw9njo46Hk9J6R5Sh7thvJ4AF7ZklN8Xl47E="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/3/Drugi parcijalni ispit RS - 16.09.2025_signed.8sole3lzer.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "155063"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SMUgHgXJg7S3nq+4PhXdaD+5Wk25CRqz00vrzk80XEE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 14:27:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8sole3lzer"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/protocols/3/Drugi parcijalni ispit RS - 16.09.2025_signed.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SMUgHgXJg7S3nq+4PhXdaD+5Wk25CRqz00vrzk80XEE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/3/Drugi parcijalni ispit RS - 16.09.2025_signed.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "155063"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SMUgHgXJg7S3nq+4PhXdaD+5Wk25CRqz00vrzk80XEE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 14:27:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SMUgHgXJg7S3nq+4PhXdaD+5Wk25CRqz00vrzk80XEE="
         }
       ]
     },
@@ -32526,6 +32919,170 @@
       ]
     },
     {
+      "Route": "uploads/protocols/6/216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1257999"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 13:55:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/6/216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).xp19swrmhy.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1257999"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 13:55:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xp19swrmhy"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/protocols/6/216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/6/8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "499210"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+chh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 15:13:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+chh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/6/8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.r7blf3zalb.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "499210"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+chh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 15:13:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r7blf3zalb"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/protocols/6/8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+chh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM="
+        }
+      ]
+    },
+    {
       "Route": "uploads/protocols/6/cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf",
       "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf",
       "Selectors": [],
@@ -32604,6 +33161,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-k5bGYZEAUaJrem5z5qGF2/VmNfVLfn61XvVDPqoJhNU="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/6/DIPLOMSKI-Besim (1)_signed.5dmnrlfb1i.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\DIPLOMSKI-Besim (1)_signed.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1288408"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 13:55:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5dmnrlfb1i"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/protocols/6/DIPLOMSKI-Besim (1)_signed.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/6/DIPLOMSKI-Besim (1)_signed.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\DIPLOMSKI-Besim (1)_signed.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1288408"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 13:55:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/6/KKS-VedadFaris_signed.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\KKS-VedadFaris_signed.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "531300"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc+A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 15:13:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc+A="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/protocols/6/KKS-VedadFaris_signed.qlpfh8omis.pdf",
+      "AssetFile": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\KKS-VedadFaris_signed.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "531300"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc+A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 01 Dec 2025 15:13:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qlpfh8omis"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/protocols/6/KKS-VedadFaris_signed.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc+A="
         }
       ]
     },

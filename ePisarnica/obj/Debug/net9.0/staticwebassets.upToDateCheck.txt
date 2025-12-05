@@ -166,6 +166,7 @@ wwwroot\uploads\3\301f8710-feca-420e-847f-c91a682bd4f0_Screenshot 2025-06-13 200
 wwwroot\uploads\3\6d72a7f9-f74b-4e82-bf4e-6ba544423150_50.docx
 wwwroot\uploads\3\6d72a7f9-f74b-4e82-bf4e-6ba544423150_50.pdf
 wwwroot\uploads\3\Diplomski rad - Vildana B.pdf
+wwwroot\uploads\4\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf
 wwwroot\uploads\protocols\2\055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf
 wwwroot\uploads\protocols\2\0e927cae-2135-43d2-b109-2c45a95e429c_RSparc1.pdf
 wwwroot\uploads\protocols\2\163f1b3a-2c8c-4960-83d9-6e785699339c_KKS-VedadFaris.pdf
@@ -201,6 +202,7 @@ wwwroot\uploads\protocols\3\84caaaea-018a-4b01-8654-cb2bef1fb983_RSparc1.pdf
 wwwroot\uploads\protocols\3\86660ab5-e69e-4f85-87ff-66626a0dc5c3_US_Skripta_31_Bos.pdf
 wwwroot\uploads\protocols\3\8e3d7610-7f47-4523-ba8c-d19fc723aa20_US_Skripta_31_Bos.pdf
 wwwroot\uploads\protocols\3\91978952-1acc-4907-8057-855bd206e4a5_RSparc1.pdf
+wwwroot\uploads\protocols\3\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf
 wwwroot\uploads\protocols\3\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf
 wwwroot\uploads\protocols\3\c08ec8ee-b2db-4db3-a09c-8e58c4a3956f_US_Skripta_31_Bos.pdf
 wwwroot\uploads\protocols\3\c3332cdc-fa7d-4c8b-aaaf-ad190b1a74a7_Projekat_PametnoVozilo.pdf
@@ -208,6 +210,7 @@ wwwroot\uploads\protocols\3\c69e001d-52cf-4d2f-9ea6-25617aa5ed91_RSparc1.pdf
 wwwroot\uploads\protocols\3\c91a7823-e9d4-4178-916f-0e826fbc99b1_Dokumentacija.pdf
 wwwroot\uploads\protocols\3\cedb8f76-c72d-45f0-892d-eb663743821c_KKS - Pitanja.pdf
 wwwroot\uploads\protocols\3\d7186c0d-6e64-4515-91e9-45f095b9e42e_Projekat_PametnoVozilo.pdf
+wwwroot\uploads\protocols\3\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf
 wwwroot\uploads\protocols\3\e1dd0ca3-de02-4dba-bd89-88ac5e8da114_Projekat RIS.pdf
 wwwroot\uploads\protocols\3\e6b51f0f-44d2-4420-9a3e-2f4e36aff719_Likovno.pdf
 wwwroot\uploads\protocols\3\KKS - Pitanja_signed.pdf
@@ -223,7 +226,11 @@ wwwroot\uploads\protocols\4\5845aed4-2e85-4a91-aa5f-eee216e9a2b3_APznzaZJWtP2eD_
 wwwroot\uploads\protocols\4\IntroductionJMeter_Siri12021_signed.pdf
 wwwroot\uploads\protocols\5\123836b4-a3ec-4d1e-bbce-5e351839c359_JMETER.pdf
 wwwroot\uploads\protocols\5\ff83d9a4-3b75-4e55-9ccc-cc7aa1282215_Projekat RIS.pdf
+wwwroot\uploads\protocols\6\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf
+wwwroot\uploads\protocols\6\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf
 wwwroot\uploads\protocols\6\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf
+wwwroot\uploads\protocols\6\DIPLOMSKI-Besim (1)_signed.pdf
+wwwroot\uploads\protocols\6\KKS-VedadFaris_signed.pdf
 wwwroot\uploads\protocols\7\0a675917-94c3-4543-9cb8-6e82fe99139f_KKS zabiljeske .pdf
 wwwroot\uploads\protocols\7\2abb8338-b56c-4cf3-8004-de87f3d4fdb0_US_Skripta_31_Bos.pdf
 wwwroot\uploads\protocols\7\6f698c2e-46ad-4f93-b788-9e687b3d1afd_KKS-VedadFaris.pdf

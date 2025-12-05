@@ -29,24 +29,41 @@
                 </nav>
             }
         </div>
-        <div class="d-flex align-items-center gap-3">
-            <div class="position-relative search-box">
-                <input type="text" class="form-control form-control-sm" placeholder="Pretraga fajlova..."
-                       value="@searchTerm" onkeypress="handleSearchKeyPress(event)" id="searchInput">
-                <button class="btn btn-sm btn-outline-secondary search-btn" onclick="performSearch()">
+        <div class="container-fluid mb-3">
+
+            <!-- Search bar (full width) -->
+            <div class="position-relative mb-2">
+                <input type="text"
+                       class="form-control form-control-sm w-100"
+                       placeholder="Pretraga fajlova..."
+                       value="@searchTerm"
+                       onkeypress="handleSearchKeyPress(event)"
+                       id="searchInput">
+                <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 h-100 px-2"
+                        onclick="performSearch()">
                     <i class="bi bi-search"></i>
                 </button>
             </div>
-            <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#createFolderModal">
-                <i class="bi bi-folder-plus"></i> Novi folder
-            </button>
-            <button class="btn btn-primary btn-sm" onclick="document.getElementById('fileInput').click()">
-                <i class="bi bi-upload"></i> Dodaj fajl
-            </button>
-            <button id="toggleView" class="btn btn-outline-dark btn-sm">
-                <i class="bi @(isGridView ? "bi-list" : "bi-grid")"></i>
-            </button>
+
+            <!-- Action buttons -->
+            <div class="d-flex justify-content-end align-items-end flex-wrap gap-2">
+                <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#createFolderModal">
+                    <i class="bi bi-folder-plus"></i>
+                    <span class="d-none d-sm-inline"> Novi folder</span>
+                </button>
+
+                <button class="btn btn-primary btn-sm" onclick="document.getElementById('fileInput').click()">
+                    <i class="bi bi-upload"></i>
+                    <span class="d-none d-sm-inline"> Dodaj fajl</span>
+                </button>
+
+                <button id="toggleView" class="btn btn-outline-dark btn-sm">
+                    <i class="bi @(isGridView ? "bi-list" : "bi-grid")"></i>
+                </button>
+            </div>
+
         </div>
+
     </div>
 
     <!-- Brzo dodavanje fajlova -->

@@ -425,6 +425,10 @@
       "PackagePath": "staticwebassets\\uploads\\3\\Diplomski rad - Vildana B.pdf"
     },
     {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\4\\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf",
+      "PackagePath": "staticwebassets\\uploads\\4\\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf"
+    },
+    {
       "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\2\\055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf",
       "PackagePath": "staticwebassets\\uploads\\protocols\\2\\055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf"
     },
@@ -565,8 +569,16 @@
       "PackagePath": "staticwebassets\\uploads\\protocols\\3\\91978952-1acc-4907-8057-855bd206e4a5_RSparc1.pdf"
     },
     {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf"
+    },
+    {
       "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf",
       "PackagePath": "staticwebassets\\uploads\\protocols\\3\\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\3\\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf"
     },
     {
       "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\3\\KKS - Pitanja_signed.pdf",
@@ -651,6 +663,22 @@
     {
       "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\5\\ff83d9a4-3b75-4e55-9ccc-cc7aa1282215_Projekat RIS.pdf",
       "PackagePath": "staticwebassets\\uploads\\protocols\\5\\ff83d9a4-3b75-4e55-9ccc-cc7aa1282215_Projekat RIS.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\6\\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\6\\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\DIPLOMSKI-Besim (1)_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\6\\DIPLOMSKI-Besim (1)_signed.pdf"
+    },
+    {
+      "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\KKS-VedadFaris_signed.pdf",
+      "PackagePath": "staticwebassets\\uploads\\protocols\\6\\KKS-VedadFaris_signed.pdf"
     },
     {
       "Id": "E:\\Diplomski\\ePisarnica\\wwwroot\\uploads\\protocols\\6\\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf",

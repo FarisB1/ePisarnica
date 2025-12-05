@@ -301,3 +301,4 @@ E:\Diplomski\ePisarnica\obj\Debug\net9.0\refint\ePisarnica.dll
 E:\Diplomski\ePisarnica\obj\Debug\net9.0\ePisarnica.pdb
 E:\Diplomski\ePisarnica\obj\Debug\net9.0\ePisarnica.genruntimeconfig.cache
 E:\Diplomski\ePisarnica\obj\Debug\net9.0\ref\ePisarnica.dll
+E:\Diplomski\ePisarnica\obj\Debug\net9.0\ePisarnica.sourcelink.json

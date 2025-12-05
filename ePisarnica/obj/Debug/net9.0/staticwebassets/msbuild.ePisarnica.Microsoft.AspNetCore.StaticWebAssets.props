@@ -1308,8 +1308,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>87998kqjch</Fingerprint>
-      <Integrity>1M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM=</Integrity>
+      <Fingerprint>a28pbtny1d</Fingerprint>
+      <Integrity>7puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_15.png'))</OriginalItemSpec>
@@ -1326,8 +1326,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ckf5s6s6kn</Fingerprint>
-      <Integrity>DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg=</Integrity>
+      <Fingerprint>fce94zmaor</Fingerprint>
+      <Integrity>34B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_16.png'))</OriginalItemSpec>
@@ -1344,8 +1344,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ulb6yfpmxu</Fingerprint>
-      <Integrity>Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws=</Integrity>
+      <Fingerprint>cxhd6mpip8</Fingerprint>
+      <Integrity>AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_17.png'))</OriginalItemSpec>
@@ -1907,6 +1907,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\3\Diplomski rad - Vildana B.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ePisarnica</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ePisarnica</BasePath>
+      <RelativePath>uploads/4/9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>xp19swrmhy</Fingerprint>
+      <Integrity>C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\2\055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf'))">
       <SourceType>Package</SourceType>
@@ -2538,6 +2556,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\91978952-1acc-4907-8057-855bd206e4a5_RSparc1.pdf'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ePisarnica</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ePisarnica</BasePath>
+      <RelativePath>uploads/protocols/3/957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>84vnecabcm</Fingerprint>
+      <Integrity>uCTh+YSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf'))">
       <SourceType>Package</SourceType>
       <SourceId>ePisarnica</SourceId>
@@ -2663,6 +2699,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\d7186c0d-6e64-4515-91e9-45f095b9e42e_Projekat_PametnoVozilo.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ePisarnica</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ePisarnica</BasePath>
+      <RelativePath>uploads/protocols/3/Drugi parcijalni ispit RS - 16.09.2025_signed.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>8sole3lzer</Fingerprint>
+      <Integrity>SMUgHgXJg7S3nq+4PhXdaD+5Wk25CRqz00vrzk80XEE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\e1dd0ca3-de02-4dba-bd89-88ac5e8da114_Projekat RIS.pdf'))">
       <SourceType>Package</SourceType>
@@ -2934,6 +2988,42 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\5\ff83d9a4-3b75-4e55-9ccc-cc7aa1282215_Projekat RIS.pdf'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ePisarnica</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ePisarnica</BasePath>
+      <RelativePath>uploads/protocols/6/216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>xp19swrmhy</Fingerprint>
+      <Integrity>C0P+kRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ePisarnica</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ePisarnica</BasePath>
+      <RelativePath>uploads/protocols/6/8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>r7blf3zalb</Fingerprint>
+      <Integrity>+chh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf'))">
       <SourceType>Package</SourceType>
       <SourceId>ePisarnica</SourceId>
@@ -2951,6 +3041,42 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\DIPLOMSKI-Besim (1)_signed.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ePisarnica</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ePisarnica</BasePath>
+      <RelativePath>uploads/protocols/6/DIPLOMSKI-Besim (1)_signed.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5dmnrlfb1i</Fingerprint>
+      <Integrity>BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\DIPLOMSKI-Besim (1)_signed.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\KKS-VedadFaris_signed.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ePisarnica</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ePisarnica</BasePath>
+      <RelativePath>uploads/protocols/6/KKS-VedadFaris_signed.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>qlpfh8omis</Fingerprint>
+      <Integrity>XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc+A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\KKS-VedadFaris_signed.pdf'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\7\0a675917-94c3-4543-9cb8-6e82fe99139f_KKS zabiljeske .pdf'))">
       <SourceType>Package</SourceType>

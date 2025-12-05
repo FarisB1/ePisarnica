@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ePisarnica.Models.Document>
 
-<h2>🗑 Trash</h2>
+<h2>🗑 Korpa</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Trashed At</th>
-            <th>Actions</th>
+            <th>Ime</th>
+            <th>Datum brisanja</th>
+            <th>Akcije</th>
         </tr>
     </thead>
     <tbody>
@@ -19,12 +19,12 @@
                 <td>
                     <form asp-action="Restore" method="post" style="display:inline;">
                         <input type="hidden" name="id" value="@file.Id" />
-                        <button type="submit" class="btn btn-success btn-sm">♻ Restore</button>
+                        <button type="submit" class="btn btn-success btn-sm">♻ Vrati</button>
                     </form>
 
                     <form asp-action="DeletePermanent" method="post" style="display:inline;">
                         <input type="hidden" name="id" value="@file.Id" />
-                        <button type="submit" class="btn btn-danger btn-sm">❌ Delete Permanent</button>
+                        <button type="submit" class="btn btn-danger btn-sm">❌ Obriši</button>
                     </form>
                 </td>
             </tr>

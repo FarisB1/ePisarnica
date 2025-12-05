@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ePisarnica")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa9768c697ccb880b92ca1f35fe8d464a9a25ed3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ePisarnica")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ePisarnica")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

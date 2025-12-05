@@ -418,6 +418,38 @@ namespace ePisarnica.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = "AdminOnly")]
+        public async Task<IActionResult> AddUser(AddUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return Json(new { success = false, message = "Neispravni podaci." });
+
+            // Provjera da li postoji email ili username
+            var exists = await _context.Users.AnyAsync(u =>
+                u.Username == model.Username || u.Email == model.Email);
+
+            if (exists)
+                return Json(new { success = false, message = "Korisnik s unesenim emailom ili usernameom već postoji." });
+
+            var newUser = new User
+            {
+                Username = model.Username,
+                Ime = model.Ime,
+                Prezime = model.Prezime,
+                Email = model.Email,
+                PasswordHash = ComputeSha256Hash(model.Password),
+                Role = model.Role
+            };
+
+            _context.Users.Add(newUser);
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true, message = "Korisnik uspješno dodan." });
+        }
+
+
         private static string ComputeSha256Hash(string rawData)
         {
             using var sha256 = SHA256.Create();

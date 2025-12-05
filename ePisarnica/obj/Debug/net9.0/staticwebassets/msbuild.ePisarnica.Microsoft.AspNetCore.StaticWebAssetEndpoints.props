@@ -864,41 +864,41 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-a83SN8mqhfeg1kerZ32CZjGWbGjwQbmlbhwtCVI1UDM="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"972"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022a83SN8mqhfeg1kerZ32CZjGWbGjwQbmlbhwtCVI1UDM=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 19:00:20 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_15.87998kqjch.png">
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_15.a28pbtny1d.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_15.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"87998kqjch"},{"Name":"integrity","Value":"sha256-1M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM="},{"Name":"label","Value":"_content/ePisarnica/qrcodes/qr_15.png"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"979"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00221M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 21:10:12 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"a28pbtny1d"},{"Name":"integrity","Value":"sha256-7puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE="},{"Name":"label","Value":"_content/ePisarnica/qrcodes/qr_15.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1446"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00227puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Oct 2025 21:45:27 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_15.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_15.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-1M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"979"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00221M4OHm1YKvADnMAuxdtzLmARaxcg1KiHb28vfrcguBM=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 21:10:12 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-7puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1446"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00227puLYtKnbfa9UGbYz1G0Smzd43yV1zcEBGnuYpLzQAE=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Oct 2025 21:45:27 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_16.ckf5s6s6kn.png">
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_16.fce94zmaor.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_16.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ckf5s6s6kn"},{"Name":"integrity","Value":"sha256-DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg="},{"Name":"label","Value":"_content/ePisarnica/qrcodes/qr_16.png"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"965"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg=\u0022"},{"Name":"Last-Modified","Value":"Tue, 16 Sep 2025 01:59:28 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"fce94zmaor"},{"Name":"integrity","Value":"sha256-34B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8="},{"Name":"label","Value":"_content/ePisarnica/qrcodes/qr_16.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1159"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u002234B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 13:55:16 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_16.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_16.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"965"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022DJLs1t//O60ObYQMzeU1kzjSseptyOs4FaKxruESFxg=\u0022"},{"Name":"Last-Modified","Value":"Tue, 16 Sep 2025 01:59:28 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-34B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1159"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u002234B/cp77HuBHoTg8TSqHZv5ZqSoaQGtqjBwjyCMzTe8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 13:55:16 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_17.cxhd6mpip8.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_17.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"cxhd6mpip8"},{"Name":"integrity","Value":"sha256-AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0="},{"Name":"label","Value":"_content/ePisarnica/qrcodes/qr_17.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"972"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 15:13:11 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_17.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_17.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"812"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws=\u0022"},{"Name":"Last-Modified","Value":"Tue, 16 Sep 2025 02:11:59 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_17.ulb6yfpmxu.png">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_17.png'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ulb6yfpmxu"},{"Name":"integrity","Value":"sha256-Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws="},{"Name":"label","Value":"_content/ePisarnica/qrcodes/qr_17.png"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"812"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022Qo4mxVAoBl1/DZ1Pln/5BMv46/R/B6L1Uw4dZm/LJws=\u0022"},{"Name":"Last-Modified","Value":"Tue, 16 Sep 2025 02:11:59 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"972"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022AIoPwMWnb5VaSfCdEUc2VKpKiD3iW99ZWTdQQKbaPN0=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 15:13:11 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/qrcodes/qr_18.7ikuy593tg.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\qrcodes\qr_18.png'))</AssetFile>
@@ -1271,6 +1271,18 @@
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"pqcjwc8lwk"},{"Name":"integrity","Value":"sha256-QVeF0lAhDX5YG6\u002B3rsgmJ\u002BG3tHbfC5f2HuG0wl8CK9Y="},{"Name":"label","Value":"_content/ePisarnica/uploads/3/Diplomski rad - Vildana B.pdf"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"42736"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022QVeF0lAhDX5YG6\u002B3rsgmJ\u002BG3tHbfC5f2HuG0wl8CK9Y=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 18:39:09 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/4/9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-C0P\u002BkRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1257999"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022C0P\u002BkRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 13:54:44 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/4/9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).xp19swrmhy.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4\9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"xp19swrmhy"},{"Name":"integrity","Value":"sha256-C0P\u002BkRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk="},{"Name":"label","Value":"_content/ePisarnica/uploads/4/9f72f6dd-2b62-4bc7-8c0a-d8131021e6d9_DIPLOMSKI-Besim (1).pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1257999"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022C0P\u002BkRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 13:54:44 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/2/055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\2\055c4741-40f6-4319-9b88-a9bb03717867_KKS-VedadFaris.pdf'))</AssetFile>
@@ -1692,6 +1704,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-DL4vG1kz0yRCRqNKqjycvKBQ8WzIMrabM0r2oxd8Bc8="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"4960003"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022DL4vG1kz0yRCRqNKqjycvKBQ8WzIMrabM0r2oxd8Bc8=\u0022"},{"Name":"Last-Modified","Value":"Tue, 16 Sep 2025 22:40:45 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/3/957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.84vnecabcm.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"84vnecabcm"},{"Name":"integrity","Value":"sha256-uCTh\u002BYSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k="},{"Name":"label","Value":"_content/ePisarnica/uploads/protocols/3/957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"129816"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022uCTh\u002BYSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Oct 2025 21:45:26 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/3/957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\957b4066-8622-4f85-acc7-56e2ca4d902e_Drugi parcijalni ispit RS - 16.09.2025.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-uCTh\u002BYSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"129816"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022uCTh\u002BYSKd5yb6kKjL358EoW8vxWFhqqkLuycmC/g46k=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Oct 2025 21:45:26 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/3/96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.jviy9uget5.pdf">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\96d022bb-f5e9-40f6-9a50-2d18b4189ed6_marko_grabar_-diplomski_rad.pdf'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
@@ -1775,6 +1799,18 @@
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-FN0sRm6dw9njo46Hk9J6R5Sh7thvJ4AF7ZklN8Xl47E="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"15932"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022FN0sRm6dw9njo46Hk9J6R5Sh7thvJ4AF7ZklN8Xl47E=\u0022"},{"Name":"Last-Modified","Value":"Tue, 16 Sep 2025 02:19:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/3/Drugi parcijalni ispit RS - 16.09.2025_signed.8sole3lzer.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8sole3lzer"},{"Name":"integrity","Value":"sha256-SMUgHgXJg7S3nq\u002B4PhXdaD\u002B5Wk25CRqz00vrzk80XEE="},{"Name":"label","Value":"_content/ePisarnica/uploads/protocols/3/Drugi parcijalni ispit RS - 16.09.2025_signed.pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"155063"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022SMUgHgXJg7S3nq\u002B4PhXdaD\u002B5Wk25CRqz00vrzk80XEE=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 14:27:28 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/3/Drugi parcijalni ispit RS - 16.09.2025_signed.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\Drugi parcijalni ispit RS - 16.09.2025_signed.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-SMUgHgXJg7S3nq\u002B4PhXdaD\u002B5Wk25CRqz00vrzk80XEE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"155063"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022SMUgHgXJg7S3nq\u002B4PhXdaD\u002B5Wk25CRqz00vrzk80XEE=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 14:27:28 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/3/e1dd0ca3-de02-4dba-bd89-88ac5e8da114_Projekat RIS.pdf">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\3\e1dd0ca3-de02-4dba-bd89-88ac5e8da114_Projekat RIS.pdf'))</AssetFile>
@@ -1956,6 +1992,30 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"rggfk0qho2"},{"Name":"integrity","Value":"sha256-G3XlK\u002BjPsD1d1rctKPWR53aLtSVMMz/2saQIrsIdIeQ="},{"Name":"label","Value":"_content/ePisarnica/uploads/protocols/5/ff83d9a4-3b75-4e55-9ccc-cc7aa1282215_Projekat RIS.pdf"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"664993"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022G3XlK\u002BjPsD1d1rctKPWR53aLtSVMMz/2saQIrsIdIeQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 15 Sep 2025 21:52:27 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-C0P\u002BkRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1257999"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022C0P\u002BkRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 13:55:15 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).xp19swrmhy.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"xp19swrmhy"},{"Name":"integrity","Value":"sha256-C0P\u002BkRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk="},{"Name":"label","Value":"_content/ePisarnica/uploads/protocols/6/216a983f-8caf-4115-ac4c-fe1e0d464c5a_DIPLOMSKI-Besim (1).pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1257999"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022C0P\u002BkRcOtXCR6CqNZC8m9TDmzXN4H9t82qnQaqy7jmk=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 13:55:15 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-\u002Bchh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"499210"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022\u002Bchh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 15:13:11 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.r7blf3zalb.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"r7blf3zalb"},{"Name":"integrity","Value":"sha256-\u002Bchh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM="},{"Name":"label","Value":"_content/ePisarnica/uploads/protocols/6/8f9e6f32-50bb-43c5-94be-0229dc2f9755_KKS-VedadFaris.pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"499210"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022\u002Bchh4JIy/rLuzWKpGFAa82NnNuYKufdJiQwt4HqohiM=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 15:13:11 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
@@ -1967,6 +2027,30 @@
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"v9fxnppbup"},{"Name":"integrity","Value":"sha256-k5bGYZEAUaJrem5z5qGF2/VmNfVLfn61XvVDPqoJhNU="},{"Name":"label","Value":"_content/ePisarnica/uploads/protocols/6/cf0c113d-7cdd-4b9f-970c-73ac6b4d99da_US_Skripta_31_Bos.pdf"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"5274449"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022k5bGYZEAUaJrem5z5qGF2/VmNfVLfn61XvVDPqoJhNU=\u0022"},{"Name":"Last-Modified","Value":"Tue, 16 Sep 2025 23:47:42 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/DIPLOMSKI-Besim (1)_signed.5dmnrlfb1i.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\DIPLOMSKI-Besim (1)_signed.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"5dmnrlfb1i"},{"Name":"integrity","Value":"sha256-BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4="},{"Name":"label","Value":"_content/ePisarnica/uploads/protocols/6/DIPLOMSKI-Besim (1)_signed.pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1288408"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 13:55:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/DIPLOMSKI-Besim (1)_signed.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\DIPLOMSKI-Besim (1)_signed.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1288408"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022BxBkL4wghZS0PbohusAUU4cgm9ORHQ07s0KaWALJvB4=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 13:55:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/KKS-VedadFaris_signed.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\KKS-VedadFaris_signed.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc\u002BA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"531300"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc\u002BA=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 15:13:32 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/6/KKS-VedadFaris_signed.qlpfh8omis.pdf">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\6\KKS-VedadFaris_signed.pdf'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"qlpfh8omis"},{"Name":"integrity","Value":"sha256-XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc\u002BA="},{"Name":"label","Value":"_content/ePisarnica/uploads/protocols/6/KKS-VedadFaris_signed.pdf"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"531300"},{"Name":"Content-Type","Value":"application/pdf"},{"Name":"ETag","Value":"\u0022XgC5iPVvqgRKqBDlYRIW3qOJYaVnjDpfONJlufRuc\u002BA=\u0022"},{"Name":"Last-Modified","Value":"Mon, 01 Dec 2025 15:13:32 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ePisarnica/uploads/protocols/7/0a675917-94c3-4543-9cb8-6e82fe99139f_KKS zabiljeske .5jbda6dmgl.pdf">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\protocols\7\0a675917-94c3-4543-9cb8-6e82fe99139f_KKS zabiljeske .pdf'))</AssetFile>
